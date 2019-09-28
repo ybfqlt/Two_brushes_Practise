@@ -1,8 +1,7 @@
 package com.itcat.thread;
 
 import java.util.Date;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.FutureTask;
+import java.util.concurrent.*;
 
 /**
  * @Classname ThreadCreateDemo
@@ -31,20 +30,30 @@ public class ThreadCreateDemo {
 //        thread.start();
         //实现Callable接口
         //1.创建FutureTask实例,创建 MyCallable实例
-        FutureTask<String> task = new FutureTask<String>(new MyCallable());
-        //2.创建Thread实例，执行FutureTask
-        Thread thread = new Thread(task,"MyCallable");
-        thread.start();
-        //3.在主线程打印信息
+//        FutureTask<String> task = new FutureTask<String>(new MyCallable());
+//        //2.创建Thread实例，执行FutureTask
+//        Thread thread = new Thread(task,"MyCallable");
+//        thread.start();
+//        //3.在主线程打印信息
+//        for(int i=0;i<10;i++){
+//            System.out.println(Thread.currentThread().getName()+"执行时间: "+(new Date()).getTime()+";执行次数是: "+i);
+//        }
+//        //4.获取并打印MyCallable执行结果
+//        try{
+//            String result = task.get();
+//            System.out.println("MyCallable执行结果是:"+result);
+//        }catch(ExecutionException e){
+//            e.printStackTrace();
+//        }
+
+        //使用线程池创建线程
+        //1.使用Executors获取线程池对象
+        ExecutorService executorService = Executors.newFixedThreadPool(10);
+        //2.通过线程池对象获取线程并执行MyRunnable实例
+        executorService.execute(new MyRunnable());
+        //3.主线程打印信息
         for(int i=0;i<10;i++){
-            System.out.println(Thread.currentThread().getName()+"执行时间: "+(new Date()).getTime()+";执行次数是: "+i);
-        }
-        //4.获取并打印MyCallable执行结果
-        try{
-            String result = task.get();
-            System.out.println("MyCallable执行结果是:"+result);
-        }catch(ExecutionException e){
-            e.printStackTrace();
+            System.out.println(Thread.currentThread().getName()+"执行时间: "+(new Date()).getTime()+"; 执行次数是: "+i);
         }
     }
 }
