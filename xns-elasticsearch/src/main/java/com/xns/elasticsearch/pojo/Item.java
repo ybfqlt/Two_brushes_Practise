@@ -43,6 +43,9 @@ public class Item {
     @Field(type = FieldType.Keyword,index = false)
     String images;
 
+    public Item(){
+    }
+
     public Item(Long id, String title, String category, String brand, Double price, String images) {
         this.id = id;
         this.title = title;
@@ -51,4 +54,5 @@ public class Item {
         this.price = price;
         this.images = images;
     }
+
 }
