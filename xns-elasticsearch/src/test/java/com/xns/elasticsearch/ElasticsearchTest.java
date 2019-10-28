@@ -3,11 +3,14 @@ package com.xns.elasticsearch;
 import com.xns.elasticsearch.pojo.Item;
 import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.sort.SortBuilders;
+import org.elasticsearch.search.sort.SortOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
@@ -101,13 +104,23 @@ public class ElasticsearchTest {
         /**
          * 添加基本的查询条件
          */
-       nativeSearchQuery.withQuery(QueryBuilders.matchQuery("title", "手机"));
+       nativeSearchQuery.withQuery(QueryBuilders.matchQuery("category", "手机"));
+
+        /**
+         * 添加分页条件，页码是从0开始的
+         */
+//        nativeSearchQuery.withPageable(PageRequest.of(1,2));
+        /**
+         * 查出的结果为降序排列
+         */
+        nativeSearchQuery.withSort(SortBuilders.fieldSort("price").order(SortOrder.DESC));
         /**
          * 执行查询获取分页结果集，不分页，默认为一页
          */
        Page<Item> search = this.itemRepository.search(nativeSearchQuery.build());
        System.out.println(search.getTotalPages());
        System.out.println(search.getTotalElements());
-       search.forEach(System.out::println);
+       search.getContent().forEach(System.out::println);
     }
+
 }
