@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.memory.mapper.SurroundViewMapper" >
+
+    <insert id="insert" parameterType="com.memory.pojo.SurroundView">
+    insert into surround_view (ar_view_id, view_id, ar_view_name,
+      ar_view_desc, ar_view_address, ar_view_price,
+      ar_view_date, ar_view_type, ar_view_img,
+      ar_view_recommend, ar_open_time, ar_ticket_info,
+      ar_bus_router, ar_net_locate, ar_connect_address,
+      ar_view_distance)
+    values (#{arViewId,jdbcType=INTEGER}, #{viewId,jdbcType=INTEGER}, #{arViewName,jdbcType=VARCHAR},
+      #{arViewDesc,jdbcType=VARCHAR}, #{arViewAddress,jdbcType=VARCHAR}, #{arViewPrice,jdbcType=INTEGER},
+      #{arViewDate,jdbcType=VARCHAR}, #{arViewType,jdbcType=VARCHAR}, #{arViewImg,jdbcType=VARCHAR},
+      #{arViewRecommend,jdbcType=VARCHAR}, #{arOpenTime,jdbcType=VARCHAR}, #{arTicketInfo,jdbcType=VARCHAR},
+      #{arBusRouter,jdbcType=VARCHAR}, #{arNetLocate,jdbcType=VARCHAR}, #{arConnectAddress,jdbcType=VARCHAR},
+      #{arViewDistance,jdbcType=VARCHAR})
+  </insert>
+
+    <delete id="delete" parameterType="int">
+         delete from surround_view
+    where ar_view_id = #{arViewId}
+    </delete>
+
+<!--    <update id="update" parameterType="surroundView">-->
+<!--            update surround_view-->
+<!--            <set >-->
+<!--                <if test="surroundView.arViewId != null" >-->
+<!--                    ar_view_id = #{surroundView.arViewId,jdbcType=INTEGER},-->
+<!--                </if>-->
+<!--                <if test="surroundView.viewId != null" >-->
+<!--                    view_id = #{surroundView.viewId,jdbcType=INTEGER},-->
+<!--                </if>-->
+<!--                <if test="surroundView.arViewName != null" >-->
+<!--                    ar_view_name = #{surroundView.arViewName,jdbcType=VARCHAR},-->
+<!--                </if>-->
+<!--                <if test="surroundView.arViewDesc != null" >-->
+<!--                    ar_view_desc = #{surroundView.arViewDesc,jdbcType=VARCHAR},-->
+<!--                </if>-->
+<!--                <if test="surroundView.arViewAddress != null" >-->
+<!--                    ar_view_address = #{surroundView.arViewAddress,jdbcType=VARCHAR},-->
+<!--                </if>-->
+<!--                <if test="surroundView.arViewPrice != null" >-->
+<!--                    ar_view_price = #{surroundView.arViewPrice,jdbcType=INTEGER},-->
+<!--                </if>-->
+<!--                <if test="record.arViewDate != null" >-->
+<!--                    ar_view_date = #{surroundView.arViewDate,jdbcType=VARCHAR},-->
+<!--                </if>-->
+<!--                <if test="surroundView.arViewType != null" >-->
+<!--                    ar_view_type = #{surroundView.arViewType,jdbcType=VARCHAR},-->
+<!--                </if>-->
+<!--                <if test="surroundView.arViewImg != null" >-->
+<!--                    ar_view_img = #{surroundView.arViewImg,jdbcType=VARCHAR},-->
+<!--                </if>-->
+<!--                <if test="surroundView.arViewRecommend != null" >-->
+<!--                    ar_view_recommend = #{surroundView.arViewRecommend,jdbcType=VARCHAR},-->
+<!--                </if>-->
+<!--                <if test="record.arOpenTime != null" >-->
+<!--                    ar_open_time = #{surroundView.arOpenTime,jdbcType=VARCHAR},-->
+<!--                </if>-->
+<!--                <if test="surroundView.arTicketInfo != null" >-->
+<!--                    ar_ticket_info = #{surroundView.arTicketInfo,jdbcType=VARCHAR},-->
+<!--                </if>-->
+<!--                <if test="surroundView.arBusRouter != null" >-->
+<!--                    ar_bus_router = #{surroundView.arBusRouter,jdbcType=VARCHAR},-->
+<!--                </if>-->
+<!--                <if test="surroundView.arNetLocate != null" >-->
+<!--                    ar_net_locate = #{surroundView.arNetLocate,jdbcType=VARCHAR},-->
+<!--                </if>-->
+<!--                <if test="surroundView.arConnectAddress != null" >-->
+<!--                    ar_connect_address = #{surroundView.arConnectAddress,jdbcType=VARCHAR},-->
+<!--                </if>-->
+<!--                <if test="surroundView.arViewDistance != null" >-->
+<!--                    ar_view_distance = #{surroundView.arViewDistance,jdbcType=VARCHAR},-->
+<!--                </if>-->
+<!--            </set>-->
+<!--            <if test="_parameter != null" >-->
+<!--                <include refid="Update_By_Example_Where_Clause" />-->
+<!--            </if>-->
+<!--        </update>-->
+
+
+    <select id="findById" parameterType="int" resultType="com.memory.pojo.SurroundView">
+           select * from surround_view where ar_view_id=#{arViewId}
+    </select>
+
+    <select id="findAll"  resultType="com.memory.pojo.SurroundView">
+        select * from surround_view
+    </select>
+
+</mapper>
+

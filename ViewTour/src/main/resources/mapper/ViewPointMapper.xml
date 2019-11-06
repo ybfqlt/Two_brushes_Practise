@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.memory.mapper.ViewPointMapper" >
+
+    <insert id="insert" parameterType="com.memory.pojo.ViewPoint">
+           insert into view_point (view_id, view_name, view_desc,
+      view_address, view_price, view_date,
+      view_type, view_img, open_time,
+      ticket_info, bus_router, net_locate,
+      connect_address)
+    values (#{viewId,jdbcType=INTEGER}, #{viewName,jdbcType=VARCHAR}, #{viewDesc,jdbcType=VARCHAR},
+      #{viewAddress,jdbcType=VARCHAR}, #{viewPrice,jdbcType=INTEGER}, #{viewDate,jdbcType=VARCHAR},
+      #{viewType,jdbcType=VARCHAR}, #{viewImg,jdbcType=VARCHAR}, #{openTime,jdbcType=VARCHAR},
+      #{ticketInfo,jdbcType=VARCHAR}, #{busRouter,jdbcType=VARCHAR}, #{netLocate,jdbcType=VARCHAR},
+      #{connectAddress,jdbcType=VARCHAR})
+  </insert>
+
+    <delete id="delete" parameterType="int">
+          delete from view_point where view_id=#{viewId}
+    </delete>
+
+<!--    <update id="update" parameterType="com.memory.pojo.ViewPoint">-->
+<!--        update view_point-->
+<!--        <set >-->
+<!--            <if test="viewPoint.viewId != null" >-->
+<!--                view_id = #{viewPoint.viewId,jdbcType=INTEGER},-->
+<!--            </if>-->
+<!--            <if test="viewPoint.viewName != null" >-->
+<!--                view_name = #{viewPoint.viewName,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="viewPoint.viewDesc != null" >-->
+<!--                view_desc = #{viewPoint.viewDesc,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="viewPoint.viewAddress != null" >-->
+<!--                view_address = #{viewPoint.viewAddress,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="viewPoint.viewPrice != null" >-->
+<!--                view_price = #{viewPoint.viewPrice,jdbcType=INTEGER},-->
+<!--            </if>-->
+<!--            <if test="viewPoint.viewDate != null" >-->
+<!--                view_date = #{viewPoint.viewDate,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="viewPoint.viewType != null" >-->
+<!--                view_type = #{viewPoint.viewType,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="viewPoint.viewImg != null" >-->
+<!--                view_img = #{viewPoint.viewImg,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="viewPoint.openTime != null" >-->
+<!--                open_time = #{viewPoint.openTime,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="viewPoint.ticketInfo != null" >-->
+<!--                ticket_info = #{viewPoint.ticketInfo,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="viewPoint.busRouter != null" >-->
+<!--                bus_router = #{viewPoint.busRouter,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="viewPoint.netLocate != null" >-->
+<!--                net_locate = #{viewPoint.netLocate,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="viewPoint.connectAddress != null" >-->
+<!--                connect_address = #{viewPoint.connectAddress,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--        </set>-->
+<!--        <if test="_parameter != null" >-->
+<!--            <include refid="Update_By_Example_Where_Clause" />-->
+<!--        </if>-->
+<!--    </update>-->
+
+
+    <select id="findById" parameterType="int" resultType="com.memory.pojo.ViewPoint">
+            select * from where view_point where view_id=#{viewId}
+    </select>
+
+    <select id="findAll"  resultType="com.memory.pojo.ViewPoint">
+             select * from view_point
+    </select>
+
+</mapper>
