@@ -11,15 +11,25 @@
       http://www.springframework.org/schema/mvc
       http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 
+    <!--访问js等静态资源-->
+    <mvc:default-servlet-handler/>
+    <mvc:resources location="/images/" mapping="/images/**"/>
+    <mvc:resources location="/css/" mapping="/css/**"/>
+    <mvc:resources location="/fonts/" mapping="/fonts/**"/>
+    <mvc:resources location="/js/" mapping="/js/**"/>
+    <mvc:resources location="/vendors/" mapping="/vendors/**"/>
+    <mvc:resources location="/static/" mapping="/static/**"/>
+    <mvc:resources location="/scss/" mapping="/scss/**"/>
+
     <!-- 使用注解    开启注解包扫描器扫描@Controller     如果不写最新配置就采用springmvc容器中默认的三大组件处理-->
     <context:component-scan base-package="com.memory.controller"></context:component-scan>
     <!--注解驱动：加载新版本的注解映射器和注解适配器     代替上面的方式-->
     <mvc:annotation-driven/>
 
 <!--    &lt;!&ndash; 配置视图解析器的前缀和后缀 &ndash;&gt;-->
-<!--    <bean  class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
-<!--        <property name="prefix"   value="/WEB-INF/jsp/"></property>-->
-<!--        <property name="suffix"  value=".jsp"></property>-->
-<!--    </bean>-->
+    <!--    <bean  class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+    <!--        <property name="prefix"   value="/WEB-INF/"></property>-->
+    <!--        <property name="suffix"  value=".jsp"></property>-->
+    <!--    </bean>-->
 
 </beans>

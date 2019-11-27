@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -30,7 +30,7 @@
     <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style=" border-bottom: 1px solid #cccccc;">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
             <a class="navbar-brand brand-logo" href="../../index.html"><img src="../../images/logo.png" alt="logo"/></a>
-            <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="../images/logo-mini.svg" alt="logo"/></a>
+            <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="../../images/logo-mini.svg" alt="logo"/></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
             <div class="search-field d-none d-md-block">
@@ -55,7 +55,7 @@
                         </div>
                     </a>
                     <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item" href="login.html">
+                        <a class="dropdown-item" href="login.jsp">
                             <i class="mdi mdi-cached mr-2 text-success"></i>
                             登录
                         </a>
@@ -127,7 +127,7 @@
                         <div class="brand-logo">
                             <img src="../../images/logo.png">
                         </div>
-                        <form class="pt-3" action="http://localhost:8080/view/user/register" method="post" onsubmit="return checkForm()">
+                        <form class="pt-3" action="http://localhost:8080/register" method="post" onsubmit="return checkForm()">
                             <div class="form-group">
                                 <input type="text" name="userName" value="" class="form-control form-control-lg" id="userName" placeholder="Username">
                                 <span id="usernameMsg"></span>
@@ -144,7 +144,7 @@
                                 <input type="submit" value="注册" class="btn btn-block btn-gradient-danger btn-lg font-weight-medium auth-form-btn" />
                             </div>
                             <div class="text-left mt-4 font-weight-light">
-                                已经注册? <a href="login.jsp" class="text-primary" style="float: right">去登录</a>
+                               已经注册? <a href="../../static/login/login.jsp" class="text-primary" style="float: right">去登录</a>
                             </div>
                         </form>
                     </div>
@@ -156,14 +156,14 @@
 <script>
 
     function checkForm() {
-        let username = document.getElementById('userName').value;
-        let password = document.getElementById('passWord').value;
-        let email = document.getElementById('email').value;
-        let usernameMessage = document.getElementById('usernameMsg');
-        let passwordMessage = document.getElementById('passwordMsg');
-        let emailMessage = document.getElementById('emailMsg');
-        let reg1 = new RegExp( "^[0-9a-zA-Z_\u4e00-\u9fa5]{1,15}$");
-        let reg2 = new RegExp( "^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$");
+        var username = document.getElementById('userName').value;
+        var password = document.getElementById('passWord').value;
+        var email = document.getElementById('email').value;
+        var usernameMessage = document.getElementById('usernameMsg');
+        var passwordMessage = document.getElementById('passwordMsg');
+        var emailMessage = document.getElementById('emailMsg');
+        var reg1 = new RegExp( "^[0-9a-zA-Z_\u4e00-\u9fa5]{1,15}$");
+        var reg2 = new RegExp( "^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$");
         if(!reg1.test(username)){
             usernameMessage.innerText = '! 用户名必须为15位以下的字母数字或汉字';
             return false;

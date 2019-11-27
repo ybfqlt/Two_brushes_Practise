@@ -1,15 +1,15 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>注册</title>
-
+    <title>登录</title>
     <link rel="stylesheet" href="../../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
 
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="shortcut icon" href="../../images/favicon.png" />
+    <script src="../../js/jquery-3.3.1.min.js"></script>
     <style>
         .navbar.default-layout-navbar .navbar-brand-wrapper .navbar-brand img {
             width: 200px;
@@ -30,7 +30,7 @@
     <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style=" border-bottom: 1px solid #cccccc;">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
             <a class="navbar-brand brand-logo" href="../../index.html"><img src="../../images/logo.png" alt="logo"/></a>
-            <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="../images/logo-mini.svg" alt="logo"/></a>
+            <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="../../images/logo-mini.svg" alt="logo"/></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
             <div class="search-field d-none d-md-block">
@@ -55,7 +55,7 @@
                         </div>
                     </a>
                     <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item" href="login.html">
+                        <a class="dropdown-item" href="../../static/login/login.jsp">
                             <i class="mdi mdi-cached mr-2 text-success"></i>
                             登录
                         </a>
@@ -106,7 +106,7 @@
                         <h6 class="p-3 mb-0 text-center">4 new messages</h6>
                     </div>
                 </li>
-                <li class="nav-item nav-settings d-none d-lg-block">
+                <li class="nav-item nav-settings d-none d-lg-block" title="返回首页">
                     <a class="nav-link" href="../../index.html">
                         返回首页
                     </a>
@@ -127,24 +127,21 @@
                         <div class="brand-logo">
                             <img src="../../images/logo.png">
                         </div>
-                        <form class="pt-3" action="http://localhost:8080/view/user/register" method="post" onsubmit="return checkForm()">
+                        <h4>Hello! let's get started</h4>
+                        <form class="pt-3" action="http://localhost:8080/login" method="post">
                             <div class="form-group">
-                                <input type="text" name="userName" value="" class="form-control form-control-lg" id="userName" placeholder="Username">
-                                <span id="usernameMsg"></span>
+                                <input type="text" value="" name="userName" class="form-control form-control-lg" id="userName" placeholder="Username">
+                                <span id="usernameMessage"></span>
                             </div>
                             <div class="form-group">
-                                <input type="email" name="email" value="" class="form-control form-control-lg" id="email" placeholder="Email">
-                                <span id="emailMsg"></span>
-                            </div>
-                            <div class="form-group">
-                                <input type="password" name="password" value="" class="form-control form-control-lg" id="passWord" placeholder="Password">
-                                <span id="passwordMsg"></span>
+                                <input type="password" value="" name="password" class="form-control form-control-lg" id="passWord" placeholder="Password">
+                                <span id="passwordMessage"></span>
                             </div>
                             <div class="mt-3">
-                                <input type="submit" value="注册" class="btn btn-block btn-gradient-danger btn-lg font-weight-medium auth-form-btn" />
+                                <input type="button" onclick="checkForm()" value="登录" class="btn btn-block btn-gradient-danger btn-lg font-weight-medium auth-form-btn"/>
                             </div>
                             <div class="text-left mt-4 font-weight-light">
-                                已经注册? <a href="login.jsp" class="text-primary" style="float: right">去登录</a>
+                                未注册? <a href="sign.jsp" class="text-primary" style="float: right;">去创建</a>
                             </div>
                         </form>
                     </div>
@@ -154,17 +151,13 @@
     </div>
 </div>
 <script>
-
     function checkForm() {
-        let username = document.getElementById('userName').value;
-        let password = document.getElementById('passWord').value;
-        let email = document.getElementById('email').value;
-        let usernameMessage = document.getElementById('usernameMsg');
-        let passwordMessage = document.getElementById('passwordMsg');
-        let emailMessage = document.getElementById('emailMsg');
-        let reg1 = new RegExp( "^[0-9a-zA-Z_\u4e00-\u9fa5]{1,15}$");
-        let reg2 = new RegExp( "^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$");
-        if(!reg1.test(username)){
+        var username = document.getElementById('userName').value;
+        var password = document.getElementById('passWord').value;
+        var usernameMessage = document.getElementById('usernameMessage');
+        var passwordMessage = document.getElementById('passwordMessage');
+        var reg = new RegExp( "^[0-9a-zA-Z_\u4e00-\u9fa5]{1,15}$");
+        if(!reg.test(username)){
             usernameMessage.innerText = '! 用户名必须为15位以下的字母数字或汉字';
             return false;
         }
@@ -172,17 +165,15 @@
             passwordMessage.innerText = '! 密码不得少于六位';
             return false;
         }
-        if(reg2.test(email)){
-            emailMessage.innerText = '! 请输入正确的邮箱账号';
-            return false;
-        }
+
         usernameMessage.innerText = '';
         passwordMessage.innerText = '';
         return true;
     }
 </script>
+
 <script src="../../vendors/js/vendor.bundle.base.js"></script>
 <script src="../../vendors/js/vendor.bundle.addons.js"></script>
-</body>
 
+</body>
 </html>

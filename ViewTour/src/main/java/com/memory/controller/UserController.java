@@ -4,13 +4,9 @@ import com.memory.dto.Result;
 import com.memory.pojo.ViewUser;
 import com.memory.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.jws.WebParam;
-import javax.servlet.http.HttpServletRequest;
-import javax.swing.text.View;
 import java.util.Map;
 
 /**
@@ -20,7 +16,6 @@ import java.util.Map;
  * @Created by xns
  */
 @RestController
-@RequestMapping("/user")
 public class UserController {
 
     @Autowired
@@ -37,11 +32,11 @@ public class UserController {
         viewUser.setUserType("管理员");
         Boolean judge = userService.registerUser(viewUser);
         if (judge == true) {
-            ModelAndView modelAndView = new ModelAndView("redirect:/user/login");
+            ModelAndView modelAndView = new ModelAndView("redirect:static/login/login.jsp");
             modelAndView.addObject("mes","注册成功");
             return modelAndView;
         }
-        ModelAndView modelAndView = new ModelAndView("redirect:/user/register");
+        ModelAndView modelAndView = new ModelAndView("redirect:static/login/sign.jsp");
         modelAndView.addObject("mes","注册失败");
         return modelAndView;
     }
@@ -50,12 +45,11 @@ public class UserController {
     /**
      * 登录
      *
-     * @param map
      * @return
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Result getlogin(@RequestBody Map<String, String> map) {
-        Result res = userService.userLogin(map.get("userName"), map.get("password"));
+    public Result getlogin(@RequestParam("userName") String userName,@RequestParam("password") String password) {
+        Result res = userService.userLogin(userName, password);
 //        if(res.getJudge()==true){
 //            request.getSession().setAttribute("user",map.get("userName"));
 //            request.getSession().setAttribute("login",true);
