@@ -138,7 +138,7 @@
                                 <span id="passwordMessage"></span>
                             </div>
                             <div class="mt-3">
-                                <input type="button" onclick="checkForm()" value="登录" class="btn btn-block btn-gradient-danger btn-lg font-weight-medium auth-form-btn"/>
+                                <input type="submit" onclick="checkForm()" value="登录" class="btn btn-block btn-gradient-danger btn-lg font-weight-medium auth-form-btn"/>
                             </div>
                             <div class="text-left mt-4 font-weight-light">
                                 未注册? <a href="sign.jsp" class="text-primary" style="float: right;">去创建</a>

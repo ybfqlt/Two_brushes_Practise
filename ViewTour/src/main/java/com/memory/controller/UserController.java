@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @Classname userController
@@ -24,14 +24,14 @@ public class UserController {
 
     /**
      * 注册
-     *
+     * @param viewUser
      * @return
      */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ModelAndView Registeruser(ViewUser viewUser) {
+    public ModelAndView registerUser(ViewUser viewUser) {
         viewUser.setUserType("管理员");
         Boolean judge = userService.registerUser(viewUser);
-        if (judge == true) {
+        if (judge) {
             ModelAndView modelAndView = new ModelAndView("redirect:static/login/login.jsp");
             modelAndView.addObject("mes","注册成功");
             return modelAndView;
@@ -44,17 +44,21 @@ public class UserController {
 
     /**
      * 登录
-     *
+     * @param request
+     * @param password
      * @return
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Result getlogin(@RequestParam("userName") String userName,@RequestParam("password") String password) {
+    public ModelAndView getLogin(HttpServletRequest request,@RequestParam("userName") String userName, @RequestParam("password") String password) {
         Result res = userService.userLogin(userName, password);
-//        if(res.getJudge()==true){
-//            request.getSession().setAttribute("user",map.get("userName"));
-//            request.getSession().setAttribute("login",true);
-////            request.getSession().setAttribute("type",res.getMes());
-//        }
-        return res;
+        if(res.getJudge()){
+            request.getSession().setAttribute("user",userName);
+            request.getSession().setAttribute("login",true);
+            request.getSession().setAttribute("type",res.getMes());
+        }
+        ModelAndView modelAndView = new ModelAndView("redirect:static/login/sign.jsp");
+        modelAndView.addObject(res);
+        System.out.println("注册成功");
+        return modelAndView;
     }
 }
