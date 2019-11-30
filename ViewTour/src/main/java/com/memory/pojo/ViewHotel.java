@@ -1,6 +1,7 @@
 package com.memory.pojo;
 
 public class ViewHotel {
+
     private Integer hotelId;
 
     private Integer viewId;
@@ -14,6 +15,16 @@ public class ViewHotel {
     private String hotelAddress;
 
     private String hotelScore;
+
+    private String hotelImg;
+
+    public String getHotelImg() {
+        return hotelImg;
+    }
+
+    public void setHotelImg(String hotelImg) {
+        this.hotelImg = hotelImg;
+    }
 
     public Integer getHotelId() {
         return hotelId;

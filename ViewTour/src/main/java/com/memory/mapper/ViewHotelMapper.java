@@ -23,4 +23,17 @@ public interface ViewHotelMapper {
     //查询全部住宿
     List<ViewHotel> findAll();
 
+    /**
+     * 通过景点id查询
+     * @param viewId
+     * @return
+     */
+    List<ViewHotel> findByViewId(Integer viewId);
+
+    /**
+     * 更新
+     * @param viewHotel
+     * @return
+     */
+    int update(ViewHotel viewHotel);
 }

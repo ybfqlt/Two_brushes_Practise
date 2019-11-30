@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>详情</title>
+    <title>景点详情</title>
     <link rel="stylesheet" href="../../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="shortcut icon" href="../../images/favicon.png" />
+    <script src="../../js/jquery-3.3.1.min.js"></script>
     <style>
         .navbar.default-layout-navbar .navbar-brand-wrapper .navbar-brand img {
             width: 200px;
@@ -34,7 +34,7 @@
             padding: 1.5rem;
         }
         .card-description{
-            margin: 5px 0;
+           margin: 5px 0;
         }
         .card .card-description {
             margin-bottom: 0;
@@ -45,15 +45,13 @@
             display: inline-block;
             padding-left: 5px;
         }
-
     </style>
 </head>
-
 <body>
 <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style=" border-bottom: 1px solid #cccccc;">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo" href="../../index.html"><img src="../../images/logo.png" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="../images/logo-mini.svg" alt="logo"/></a>
+        <a class="navbar-brand brand-logo" href="../../index.jsp"><img src="../../images/logo.png" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="../../index.jsp"><img src="../images/logo-mini.svg" alt="logo"/></a>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-stretch">
         <div class="search-field d-none d-md-block">
@@ -78,7 +76,7 @@
                     </div>
                 </a>
                 <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                    <a class="dropdown-item" href="../login/login.html">
+                    <a class="dropdown-item" href="../login/login.jsp">
                         <i class="mdi mdi-cached mr-2 text-success"></i>
                         登录
                     </a>
@@ -157,45 +155,45 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../../index.html">
+                <a class="nav-link" href="../../index.jsp">
                     <span class="menu-title">首页</span>
                     <i class="mdi mdi-home menu-icon"></i>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="../../static/view/list_view.html" aria-expanded="false" aria-controls="ui-basic">
+                <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                     <span class="menu-title">景点管理</span>
                     <i class="menu-arrow"></i>
                     <i class="mdi mdi-crosshairs-gps menu-icon"></i>
                 </a>
                 <div class="collapse" id="ui-basic">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="../view/list_view.html">景点列表</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="../view/add_view.html">添加景点</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="../view/modify_view.html">删改景点</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="list_view.jsp">景点列表</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="add_view.jsp">添加景点</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="modify_view.jsp">删改景点</a></li>
                     </ul>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../router/router_curd.html">
+                <a class="nav-link" href="../router/router_curd.jsp">
                     <span class="menu-title">旅游路线管理</span>
                     <i class="mdi mdi-assistant menu-icon"></i>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="around_foods.html">
+                <a class="nav-link" href="../food/around_foods.jsp">
                     <span class="menu-title">周边饮食管理</span>
                     <i class="mdi mdi-heart-box-outline menu-icon"></i>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../around_view/around_views.html">
+                <a class="nav-link" href="../around_view/around_views.jsp">
                     <span class="menu-title">周边景点管理</span>
                     <i class="mdi mdi-assistant menu-icon"></i>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../hotel/around_hotel.html">
+                <a class="nav-link" href="../hotel/around_hotel.jsp">
                     <span class="menu-title">周边住宿管理</span>
                     <i class="mdi mdi-apps menu-icon"></i>
                 </a>
@@ -204,58 +202,167 @@
     </nav>
     <div class="main-panel">
         <div class="content-wrapper">
-            <div class="page-header">
+         <div class="page-header">
                 <h3 class="page-title">
-                    美食列表
+                    景点详情
                 </h3>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">美食详情</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">美食列表</li>
+                        <li class="breadcrumb-item"><a href="#">景点详情</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">景点列表</li>
                     </ol>
                 </nav>
             </div>
-            <div class="col-md-12 grid-margin stretch-card">
-                <div class="card">
-                    <div class="card-body" style="margin-top: 20px">
-                        <h4 class="card-title text-info">牛羊肉泡馍</h4>
-                        <h4 style="float: right;position: relative;top: -15%;"><a href="javascript:history.back(-1)">返回</a></h4>
-                        <hr>
-                        <div class="desc_more">
-                            <h5>美食介绍</h5>
-                            <blockquote class="blockquote">
-                                <p class="mb-0">
-                                    牛羊肉泡馍是陕西的风味美馔，尤以西安最享盛名。它烹制精细，料重味醇，肉烂汤浓，肥而不腻，营养丰富，香气四溢，诱人食欲，
-                                    食后回味无穷。因它暖胃耐饥，素为西安和西北地区各族人民所喜爱，
-                                    外宾来陕也争先品尝，以饱口福。新中国成立以来，特别是近年来用以招待国际友人，也深受好评。牛羊肉泡馍已成为陕西名食的“总代表”。
-                                </p>
-                            </blockquote>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <h5>美食展示</h5><br>
-                        <img src="../../images/dashboard/img2.jpg" width="300" href="200">
-                        <div class="col-md-8 grid-margin stretch-card" style="display: inline-block;position: absolute;top: 16%;">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">牛羊肉泡馍</h4>
-                                    <hr>
-                                    <ul class="list-ticked">
-                                        <li>中文名 &nbsp;&nbsp;陕西西安牛羊肉泡馍</li>
-                                        <li>地 方 &nbsp;&nbsp;陕西</li>
-                                        <li>口 味&nbsp;&nbsp;烹制精细，料重味醇</li>
-                                        <li>最 早&nbsp;&nbsp;西周</li>
-                                    </ul>
+         <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body"  style="margin-top: 20px" id="view_container">
+
+                </div>
+                <div class="card-body" id="view_details">
+                    <h5>景点展示</h5><br>
+
+                </div>
+                <div class="card-body" id="around_view">
+                    <h5>周边景点</h5>
+                    <hr>
+
+                </div>
+                <div class="card-body" id="around_food">
+                    <h5>周边美食</h5>
+                    <hr>
+
+                </div>
+                <div class="card-body" id="around_hotel">
+                    <h5>周边住宿</h5>
+                    <hr>
+
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+<script>
+    //TODO  获取当前景点的详情
+    $(function () {
+        $.ajax({
+            type:'GET',
+            url:'http://localhost:8080/viewInfo'+window.location.search,
+            dataType:"json",
+            success:function (data) {
+                //TODO  数据由四部分组成
+                container_load(data.content);//得到请求的介绍数据  动态加载
+                view_load(data.view); //周边景点数据
+                food_load(data.food);//周边美食数据
+                hotel_load(data.hotel);//周边住宿数据
+            }
+        });
+    });
+    //加载介绍部分
+    function container_load(data) {
+        let con = $(`   <h4 class="card-title text-info">${data.viewName}</h4>
+                <h4 style="float: right;position: relative;top: -10%;"><a href="javascript:history.back(-1)">返回</a></h4>
+                <hr>
+                <div class="desc_more">
+                    <h5>景点介绍</h5>
+                    <blockquote class="blockquote">
+                        <p class="mb-0">
+                            ${data.viewDesc}
+                        </p>
+                    </blockquote>
+                </div>`);
+        $('#view_container').append(con);
+        let con1 = $(` <img src="${data.viewImg}" width="300" href="200">
+                    <div class="col-md-8 grid-margin stretch-card" style="display: inline-block;position: absolute;top:16%;">
+                        <div class="card" >
+                            <div class="card-body">
+                            <h4 class="card-title">${data.viewName}</h4>
+                            <hr>
+                            <ul class="list-ticked">
+                                <li>开放时间 &nbsp;&nbsp;${data.openTime}</li>
+                                <li>票务信息 &nbsp;&nbsp;${data.ticketInfo}</li>
+                                <li>公交路线&nbsp;&nbsp;${data.busRouter}</li>
+                                <li>官方网站&nbsp;&nbsp;${data.netLocate}</li>
+                                <li>联系地址&nbsp;&nbsp;${data.connetAddress}</li>
+                            </ul>
+                        </div>`);
+        $('#view_details').append(con1);
+    }
+    //加载周边景点
+    function view_load(data) {
+        for(let i =0;i< data.length;i++){
+            let con = $(`     <div class="col-md-5 grid-margin stretch-card recommend_item">
+                    <div class="card card_item">
+                        <div class="card-body card_item_body">
+                            <h6>${data.arViewName}</h6>
+                            <div class="media">
+                                <img src="${data.arViewImg}" width="60" height="60"/>
+                                <div class="media-body">
+                                    <p class="card-description">
+                                        距离：<code>${data.arViewDistance}</code>, 票价：<code>${data.arViewPrice}元/人</code>
+                                    </p>
+                                    <p class="card-description">
+                                        推荐指数：<code class="text-warning">${data.arViewReconmend}</code>
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <hr>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                </div>`);
+            $('#around_view').append(con);
+        }
+
+    }
+    //加载周边美食
+    function food_load(data) {
+        for(let i =0;i< data.length;i++){
+            let con = $(`
+             <div class="col-md-5 grid-margin stretch-card recommend_item">
+                        <div class="card card_item">
+                            <div class="card-body card_item_body">
+                                <h6>${data.foodName}</h6>
+                                <div class="media">
+                                    <img src="${data.foodImg}" width="60" height="60"/>
+                                    <div class="media-body">
+                                        <p class="card-description">
+                                            距离：<code>${data.foodDistence}公里</code>, 票价：<code>${data.foodPrice}元/人</code>
+                                        </p>
+                                        <p class="card-description">
+                                            推荐指数：<code class="text-warning">${data.foodRecommend}</code>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`);
+            $('#around_food').append(con);
+        }
+    }
+    //加载周边住宿
+    function hotel_load(data) {
+        for(let i =0;i< data.length;i++) {
+            let con = $(` <div class="col-md-5 grid-margin stretch-card recommend_item">
+                        <div class="card card_item">
+                            <div class="card-body card_item_body">
+                                <h6>${data.hotelName}</h6>
+                                <div class="media">
+                                    <img src="${data.hotelImg}" width="60" height="60"/>
+                                    <div class="media-body">
+                                        <p class="card-description">
+                                            距离：<code>${data.hotelDistance}公里</code>, 票价：<code>${data.hotelPrice}元/人</code>
+                                        </p>
+                                        <p class="card-description">
+                                            推荐指数：<code class="text-warning">${data.hotelScore}</code>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`);
+            $('#around_hotel').append(con);
+        }
+    }
+</script>
 <script src="../../vendors/js/vendor.bundle.base.js"></script>
 <script src="../../vendors/js/vendor.bundle.addons.js"></script>
 </body>

@@ -70,11 +70,23 @@
 
 
     <select id="findById" parameterType="int" resultType="com.memory.pojo.ViewPoint">
-            select * from where view_point where view_id=#{viewId}
+            select * from  view_point where view_id=#{viewId}
     </select>
 
     <select id="findAll"  resultType="com.memory.pojo.ViewPoint">
              select * from view_point
+    </select>
+    <select id="findAllByRouter" resultType="com.memory.pojo.ViewPoint">
+        select * from view_point order by (select router_count from view_statistic where view_statistic.view_id=view_point.view_id)
+    </select>
+    <select id="findAllByFood" resultType="com.memory.pojo.ViewPoint">
+        select * from view_point order by (select food_count from view_statistic where view_statistic.view_id=view_point.view_id)
+    </select>
+    <select id="findAllByArView" resultType="com.memory.pojo.ViewPoint">
+        select * from view_point order by (select ar_view_count from view_statistic where view_statistic.view_id=view_point.view_id)
+    </select>
+    <select id="findAllByHotel" resultType="com.memory.pojo.ViewPoint">
+        select * from view_point order by (select hotel_count from view_statistic where view_statistic.view_id=view_point.view_id)
     </select>
 
 </mapper>

@@ -1,29 +1,59 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.memory.mapper.ViewHotelMapper" >
+<mapper namespace="com.memory.mapper.ViewHotelMapper">
 
     <insert id="insert" parameterType="com.memory.pojo.ViewHotel">
-         insert into view_hotel (hotel_id, view_id, hotel_name,
-      hotel_price, hotel_distance, hotel_address,
-      hotel_score)
-    values (#{hotelId,jdbcType=INTEGER}, #{viewId,jdbcType=INTEGER}, #{hotelName,jdbcType=VARCHAR},
-      #{hotelPrice,jdbcType=INTEGER}, #{hotelDistance,jdbcType=VARCHAR}, #{hotelAddress,jdbcType=VARCHAR},
-      #{hotelScore,jdbcType=VARCHAR})
-  </insert>
+        insert into view_hotel (hotel_id, view_id, hotel_name,
+                                hotel_price, hotel_distance, hotel_address,
+                                hotel_score)
+        values (#{hotelId,jdbcType=INTEGER}, #{viewId,jdbcType=INTEGER}, #{hotelName,jdbcType=VARCHAR},
+                #{hotelPrice,jdbcType=INTEGER}, #{hotelDistance,jdbcType=VARCHAR}, #{hotelAddress,jdbcType=VARCHAR},
+                #{hotelScore,jdbcType=VARCHAR})
+    </insert>
 
     <delete id="delete" parameterType="int">
-            delete from view_hotel where hotel_id=#{hotelId}
+        delete
+        from view_hotel
+        where hotel_id = #{hotelId}
     </delete>
 
 
-
-
     <select id="findById" parameterType="int" resultType="com.memory.pojo.ViewHotel">
-            select * from view_hotel where hotel_id=#{hotelId}
+        select *
+        from view_hotel
+        where hotel_id = #{hotelId}
     </select>
 
-    <select id="findAll"  resultType="com.memory.pojo.ViewHotel">
-           select * from view_hotel
+    <select id="findAll" resultType="com.memory.pojo.ViewHotel">
+        select *
+        from view_hotel
     </select>
+    <select id="findByViewId" resultType="com.memory.pojo.ViewHotel">
+        select *
+        from view_hotel
+        where view_id = #{viewId,jdbcType=INTEGER}
+    </select>
+    <update id="update">
+        update view_hotel
+        <set>
+            <if test="hotelName!=null">
+                hotel_name=#{hotelName},
+            </if>
+            <if test="hotelPrice!=null">
+                hotel_price=#{hotelPrice,jdbcType=INTEGER},
+            </if>
+            <if test="hotelDistance!=null">
+                hotel_distance=#{hotelDistance,jdbcType=VARCHAR},
+            </if>
+            <if test="hotelAddress!=null">
+                hotel_address=#{hotelAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="hotel_score!=null">
+                hotel_score=#{hotelScore,jdbcType=VARCHAR},
+            </if>
+            hotelId=#{hotelId}
+        </set>
+        where hotelId = #{hotelId}
+    </update>
 
 </mapper>

@@ -56,9 +56,8 @@ public class UserController {
             request.getSession().setAttribute("login",true);
             request.getSession().setAttribute("type",res.getMes());
         }
-        ModelAndView modelAndView = new ModelAndView("redirect:static/login/sign.jsp");
+        ModelAndView modelAndView = new ModelAndView("redirect:index.jsp");
         modelAndView.addObject(res);
-        System.out.println("注册成功");
         return modelAndView;
     }
 }

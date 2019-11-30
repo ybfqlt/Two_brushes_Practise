@@ -24,4 +24,9 @@ public interface ViewFoodMapper {
     List<ViewFood > findAll();
 
 
+    //据景点id查询所有美食
+    List<ViewFood> findByViewId(Integer viewId);
+
+    //更新
+    int update(ViewFood viewFood);
 }

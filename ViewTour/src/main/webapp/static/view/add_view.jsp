@@ -1,48 +1,41 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>景点列表</title>
+    <title>添加景点</title>
     <link rel="stylesheet" href="../../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="shortcut icon" href="../../images/favicon.png" />
     <script src="../../js/jquery-3.3.1.min.js"></script>
     <style>
-        .table th, .table td {
-            vertical-align: middle;
-            font-size: 0.875rem;
-            line-height: 1.5;
-            min-width: 90px;
-        }
         .navbar.default-layout-navbar .navbar-brand-wrapper .navbar-brand img {
             width: 200px;
             height: 65px;
         }
-        .grid-margin .card .view_img_main{
-            width: 50px;
-            height: 50px;
+        .form-control {
+            border: 1px solid #d3d6dd;
+            font-family: "ubuntu-regular", sans-serif;
+            font-size: 0.8125rem;
+            display: inline-block;
+            width: 80%;
+        }
+        .form-group label {
+            font-size: 0.875rem;
+            line-height: 1;
+            vertical-align: top;
+            margin-top: 0.8rem;
+        }
+        .form_card{
+            margin: 10px auto;
+            background: #ffffff;
+            border: 1px solid #cccccc;
             border-radius: 5px;
         }
-        .table-bordered thead th {
+        .forms-sample{
             text-align: center;
-        }
-        .table-bordered tbody td {
-            text-align: center;
-        }
-        .btn.btn-fw {
-            min-width: 75px;
-        }
-        .btn {
-            padding: 0.5rem;
-        }
-        .btn a{
-            color: white;
-        }
-        .btn a:hover{
-            color: white;
-            text-decoration: none;
+            margin-top: 5%;
         }
     </style>
 </head>
@@ -50,8 +43,8 @@
 <div class="container-scroller">
     <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style=" border-bottom: 1px solid #cccccc;">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo" href="../../index.html"><img src="../../images/logo.png" alt="logo"/></a>
-            <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="../images/logo-mini.svg" alt="logo"/></a>
+            <a class="navbar-brand brand-logo" href="../../index.jsp"><img src="../../images/logo.png" alt="logo"/></a>
+            <a class="navbar-brand brand-logo-mini" href="../../index.jsp"><img src="../images/logo-mini.svg" alt="logo"/></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
             <div class="search-field d-none d-md-block">
@@ -76,7 +69,7 @@
                         </div>
                     </a>
                     <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item" href="../login/login.html">
+                        <a class="dropdown-item" href="../login/login.jsp">
                             <i class="mdi mdi-cached mr-2 text-success"></i>
                             登录
                         </a>
@@ -155,7 +148,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../../index.html">
+                    <a class="nav-link" href="../../index.jsp">
                         <span class="menu-title">首页</span>
                         <i class="mdi mdi-home menu-icon"></i>
                     </a>
@@ -168,33 +161,32 @@
                     </a>
                     <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="list_view.html">景点列表</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="add_view.html">添加景点</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="modify_view.html">删改景点</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="list_view.jsp">景点列表</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="add_view.jsp">添加景点</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="modify_view.jsp">删改景点</a></li>
                         </ul>
                     </div>
                 </li>
-
                 <li class="nav-item">
-                    <a class="nav-link" href="../router/router_curd.html">
+                    <a class="nav-link" href="../router/router_curd.jsp">
                         <span class="menu-title">旅游路线管理</span>
                         <i class="mdi mdi-assistant menu-icon"></i>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../food/around_foods.html">
+                    <a class="nav-link" href="../food/around_foods.jsp">
                         <span class="menu-title">周边饮食管理</span>
                         <i class="mdi mdi-heart-box-outline menu-icon"></i>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../around_view/around_views.html">
+                    <a class="nav-link" href="../around_view/around_views.jsp">
                         <span class="menu-title">周边景点管理</span>
                         <i class="mdi mdi-assistant menu-icon"></i>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../hotel/around_hotel.html">
+                    <a class="nav-link" href="../hotel/around_hotel.jsp">
                         <span class="menu-title">周边住宿管理</span>
                         <i class="mdi mdi-apps menu-icon"></i>
                     </a>
@@ -209,42 +201,57 @@
                     </h3>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">景点列表</a></li>
+                            <li class="breadcrumb-item"><a href="#">添加景点</a></li>
                             <li class="breadcrumb-item active" aria-current="page">景点管理</li>
                         </ol>
                     </nav>
                 </div>
-                <div class="col-lg-12 grid-margin stretch-card" style="padding: 0;">
-                    <div class="card" >
-                        <div class="card-body">
-                            <h4 class="card-title">景点列表</h4>
+                <div class="col-12 grid-margin stretch-card form_card">
+                    <div class="card">
+                        <div class="card-body" style="background: #ffffff;">
+                            <h4 class="card-title">填写景点信息</h4>
+                            <h4 style="float: right;position: relative;top: -4%;"><a href="javascript:history.back(-1)">返回</a></h4>
                             <hr>
-                            <table class="table  table-bordered">
-                                <thead>
-                                <tr>
-                                    <th>图片</th>
-                                    <th>项目名称</th>
-                                    <th>景点位置</th>
-                                    <th>门票价钱</th>
-                                    <th>开发时间</th>
-                                    <th>景点类别</th>
-                                    <th>景点介绍</th>
-                                    <th>操作</th>
-                                </tr>
-                                </thead>
-                                <tbody id="view_list_all">
-                                    <tr>
-                                        <td><img src="../../images/dashboard/img_1.jpg" class="view_img_main"></td>
-                                        <td>西安秦岭野生动物园</td>
-                                        <td>西安市长安区秦岭北麓环山生态旅游带</td>
-                                        <td>100元</td>
-                                        <td>始建于1954</td>
-                                        <td><label class="badge badge-danger">动物园</label></td>
-                                        <td class="desc">西安秦岭野生动物园是集野生动物移地保护、科普教育、旅游观光、休闲度假等功能于一体的综合性园林项目</td>
-                                        <td><button type="button" class="btn btn-gradient-danger"><a href="detail_view.html?viewId=1">查看详情</a></button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <form class="forms-sample" action="http://localhost:8080/viewAdd" method="post">
+                                <div class="form-group">
+                                    <label for="exampleInputName">项目名称：</label>
+                                    <input type="text" value="" name="viewName" class="form-control" id="exampleInputName" placeholder="please write name ...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputAddress">景点位置：</label>
+                                    <input type="text"  value="" name="viewAddress" class="form-control" id="exampleInputAddress" placeholder="please write address ...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPrice">门票价钱：</label>
+                                    <input type="text"  value="" name="viewPrice" class="form-control" id="exampleInputPrice" placeholder="please write price ...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputTime">开发时间：</label>
+                                    <input type="text"  value="" name="viewDate" class="form-control" id="exampleInputTime" placeholder="please write time ...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputType">景点类别：</label>
+                                    <input type="text"  value="" name="viewType" class="form-control" id="exampleInputType" placeholder="please write type ...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleTextarea1">景点介绍：</label>
+                                    <textarea class="form-control"  value="" name="viewDesc" id="exampleTextarea1" rows="4" placeholder="please write about it ..."></textarea>
+                                </div>
+                                <div class="form-group" style="width: 87%;text-align: left;margin: 0 auto">
+                                    <label>上传景点图片:</label>
+                                    <input type="file" name="img[]" class="file-upload-default">
+                                    <div class="input-group col-xs-12" style="border: none;">
+                                        <input type="text"  value="" name="viewImg" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                        <span class="input-group-append">
+                                            <button class="file-upload-browse btn btn-gradient-danger btn-fw" type="button">上传</button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div style="text-align: center;margin-top: 10%;border-top: 1px solid #cccccc;padding-top: 20px">
+                                    <button type="submit" class="btn btn-gradient-danger btn-fw">提交</button>
+                                    <button class="btn btn-gradient-light btn-fw " style="margin-left: 10%">取消</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -252,36 +259,9 @@
         </div>
     </div>
 </div>
-<script>
-    //TODO  获取所有景点 包括所有景点信息
-    $(function () {
-        $.ajax({
-            type:'GET',
-            url:'http://localhost:8080/viewList',
-            dataType:"json",
-            success:function (data) {
-                load(data);//得到请求的页面数据  动态加载
-            }
-        });
-    });
-    //加载
-    function load(data) {
-        for(let i=0;i<data.length;i++) {
-            let con =  $(`<tr>
-                                <td><img src="${data[i].viewImg}" class="view_img_main"></td>
-                                <td>${data[i].viewName}</td>
-                                <td>${data[i].viewAddress}</td>
-                                <td>${data[i].viewPrice}元</td>
-                                <td>${data[i].viewDate}</td>
-                                <td><label class="badge badge-danger">${data[i].viewType}</label></td>
-                                <td class="desc">${data[i].viewDesc}</td>
-                                <td><button type="button" class="btn btn-gradient-danger"><a href="detail_view.html?viewId=${data[i].viewId}">查看详情</a></button></td>
-                           </tr>`);
-            $('#view_list_all').append(con);
-        }
-    }
-</script>
+
 <script src="../../vendors/js/vendor.bundle.base.js"></script>
 <script src="../../vendors/js/vendor.bundle.addons.js"></script>
+<script src="../../js/file-upload.js"></script>
 </body>
 </html>

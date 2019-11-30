@@ -1,80 +1,112 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.memory.mapper.ViewFoodMapper" >
+<mapper namespace="com.memory.mapper.ViewFoodMapper">
 
     <insert id="insert" parameterType="com.memory.pojo.ViewFood">
-           insert into view_food (food_id, view_id, food_name,
-      food_price, food_distance, food_address,
-      food_hot, food_desc, food_chinese_name,
-      food_locate, food_taste, food_origin,
-      food_recommend)
-    values (#{foodId,jdbcType=INTEGER}, #{viewId,jdbcType=INTEGER}, #{foodName,jdbcType=VARCHAR},
-      #{foodPrice,jdbcType=INTEGER}, #{foodDistance,jdbcType=VARCHAR}, #{foodAddress,jdbcType=VARCHAR},
-      #{foodHot,jdbcType=VARCHAR}, #{foodDesc,jdbcType=VARCHAR}, #{foodChineseName,jdbcType=VARCHAR},
-      #{foodLocate,jdbcType=VARCHAR}, #{foodTaste,jdbcType=VARCHAR}, #{foodOrigin,jdbcType=VARCHAR},
-      #{foodRecommend,jdbcType=VARCHAR})
-  </insert>
+        insert into view_food (food_id, view_id, food_name,
+                               food_price, food_distance, food_address,
+                               food_hot, food_desc, food_chinese_name,
+                               food_locate, food_taste, food_origin,
+                               food_recommend)
+        values (#{foodId,jdbcType=INTEGER}, #{viewId,jdbcType=INTEGER}, #{foodName,jdbcType=VARCHAR},
+                #{foodPrice,jdbcType=INTEGER}, #{foodDistance,jdbcType=VARCHAR}, #{foodAddress,jdbcType=VARCHAR},
+                #{foodHot,jdbcType=VARCHAR}, #{foodDesc,jdbcType=VARCHAR}, #{foodChineseName,jdbcType=VARCHAR},
+                #{foodLocate,jdbcType=VARCHAR}, #{foodTaste,jdbcType=VARCHAR}, #{foodOrigin,jdbcType=VARCHAR},
+                #{foodRecommend,jdbcType=VARCHAR})
+    </insert>
 
     <delete id="delete" parameterType="int">
-          delete from view_food where food_id=#{foodId}
+        delete
+        from view_food
+        where food_id = #{foodId}
     </delete>
 
-<!--    <update id="update" parameterType="viewFood">-->
-<!--        update view_food-->
-<!--        <set>-->
-<!--            <if test="viewFood.foodId != null">-->
-<!--                food_id = #{viewFood.foodId,jdbcType=INTEGER},-->
-<!--            </if>-->
-<!--            <if test="viewFood.viewId != null">-->
-<!--                view_id = #{viewFood.viewId,jdbcType=INTEGER},-->
-<!--            </if>-->
-<!--            <if test="viewFood.foodName != null">-->
-<!--                food_name = #{viewFood.foodName,jdbcType=VARCHAR},-->
-<!--            </if>-->
-<!--            <if test="viewFood.foodPrice != null">-->
-<!--                food_price = #{viewFood.foodPrice,jdbcType=INTEGER},-->
-<!--            </if>-->
-<!--            <if test="viewFood.foodDistance != null">-->
-<!--                food_distance = #{viewFood.foodDistance,jdbcType=VARCHAR},-->
-<!--            </if>-->
-<!--            <if test="viewFood.foodAddress != null">-->
-<!--                food_address = #{viewFood.foodAddress,jdbcType=VARCHAR},-->
-<!--            </if>-->
-<!--            <if test="viewFood.foodHot != null">-->
-<!--                food_hot = #{viewFood.foodHot,jdbcType=VARCHAR},-->
-<!--            </if>-->
-<!--            <if test="viewFood.foodDesc != null">-->
-<!--                food_desc = #{viewFood.foodDesc,jdbcType=VARCHAR},-->
-<!--            </if>-->
-<!--            <if test="viewFood.foodChineseName != null">-->
-<!--                food_chinese_name = #{viewFood.foodChineseName,jdbcType=VARCHAR},-->
-<!--            </if>-->
-<!--            <if test="viewFood.foodLocate != null">-->
-<!--                food_locate = #{viewFood.foodLocate,jdbcType=VARCHAR},-->
-<!--            </if>-->
-<!--            <if test="viewFood.foodTaste != null">-->
-<!--                food_taste = #{viewFood.foodTaste,jdbcType=VARCHAR},-->
-<!--            </if>-->
-<!--            <if test="viewFood.foodOrigin != null">-->
-<!--                food_origin = #{viewFood.foodOrigin,jdbcType=VARCHAR},-->
-<!--            </if>-->
-<!--            <if test="viewFood.foodRecommend != null">-->
-<!--                food_recommend = #{viewFood.foodRecommend,jdbcType=VARCHAR},-->
-<!--            </if>-->
-<!--        </set>-->
-<!--        <if test="_parameter != null">-->
-<!--            <include refid="Update_By_Example_Where_Clause" />-->
-<!--        </if>-->
-<!--    </update>-->
+    <!--    <update id="update" parameterType="viewFood">-->
+    <!--        update view_food-->
+    <!--        <set>-->
+    <!--            <if test="viewFood.foodId != null">-->
+    <!--                food_id = #{viewFood.foodId,jdbcType=INTEGER},-->
+    <!--            </if>-->
+    <!--            <if test="viewFood.viewId != null">-->
+    <!--                view_id = #{viewFood.viewId,jdbcType=INTEGER},-->
+    <!--            </if>-->
+    <!--            <if test="viewFood.foodName != null">-->
+    <!--                food_name = #{viewFood.foodName,jdbcType=VARCHAR},-->
+    <!--            </if>-->
+    <!--            <if test="viewFood.foodPrice != null">-->
+    <!--                food_price = #{viewFood.foodPrice,jdbcType=INTEGER},-->
+    <!--            </if>-->
+    <!--            <if test="viewFood.foodDistance != null">-->
+    <!--                food_distance = #{viewFood.foodDistance,jdbcType=VARCHAR},-->
+    <!--            </if>-->
+    <!--            <if test="viewFood.foodAddress != null">-->
+    <!--                food_address = #{viewFood.foodAddress,jdbcType=VARCHAR},-->
+    <!--            </if>-->
+    <!--            <if test="viewFood.foodHot != null">-->
+    <!--                food_hot = #{viewFood.foodHot,jdbcType=VARCHAR},-->
+    <!--            </if>-->
+    <!--            <if test="viewFood.foodDesc != null">-->
+    <!--                food_desc = #{viewFood.foodDesc,jdbcType=VARCHAR},-->
+    <!--            </if>-->
+    <!--            <if test="viewFood.foodChineseName != null">-->
+    <!--                food_chinese_name = #{viewFood.foodChineseName,jdbcType=VARCHAR},-->
+    <!--            </if>-->
+    <!--            <if test="viewFood.foodLocate != null">-->
+    <!--                food_locate = #{viewFood.foodLocate,jdbcType=VARCHAR},-->
+    <!--            </if>-->
+    <!--            <if test="viewFood.foodTaste != null">-->
+    <!--                food_taste = #{viewFood.foodTaste,jdbcType=VARCHAR},-->
+    <!--            </if>-->
+    <!--            <if test="viewFood.foodOrigin != null">-->
+    <!--                food_origin = #{viewFood.foodOrigin,jdbcType=VARCHAR},-->
+    <!--            </if>-->
+    <!--            <if test="viewFood.foodRecommend != null">-->
+    <!--                food_recommend = #{viewFood.foodRecommend,jdbcType=VARCHAR},-->
+    <!--            </if>-->
+    <!--        </set>-->
+    <!--        <if test="_parameter != null">-->
+    <!--            <include refid="Update_By_Example_Where_Clause" />-->
+    <!--        </if>-->
+    <!--    </update>-->
 
 
     <select id="findById" parameterType="int" resultType="com.memory.pojo.ViewFood">
-              select * from view_food where  food_id=#{foodId}
+        select *
+        from view_food
+        where food_id = #{foodId}
     </select>
 
-    <select id="findAll"  resultType="com.memory.pojo.ViewFood">
-             select * from view_food
+    <select id="findAll" resultType="com.memory.pojo.ViewFood">
+        select *
+        from view_food
     </select>
+    <select id="findByViewId" resultType="com.memory.pojo.ViewFood">
+        select *
+        from view_food
+        where view_id = #{viewId,jdbcType=INTEGER}
+    </select>
+    <update id="update">
+        update view_food
+        <set>
+            <if test="foodName!=null">
+                food_name = #{foodName,jdbcType=VARCHAR}
+            </if>
+            <if test="foodPrice!=null">
+                food_price = #{foodPrice,jdbcType=INTEGER},
+            </if>
+            <if test="foodDistance!=null">
+                food_distance = #{foodDistance,jdbcType=VARCHAR},
+            </if>
+            <if test="foodAddress!=null">
+                food_address=#{foodAddress,jdbcType=VARCHAR}
+            </if>
+            <if test="foodRecommend!=null">
+                food_recommend = #{foodRecommend,jdbcType=VARCHAR},
+            </if>
+            foodId = #{foodId,jdbcType=INTEGER}
+        </set>
+        where food_id=#{foodId,jdbcType=INTEGER}
+    </update>
 
 </mapper>
 

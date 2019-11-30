@@ -1,27 +1,25 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>周边美食</title>
+    <title>逛吃逛吃</title>
     <link rel="stylesheet" href="../../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="shortcut icon" href="../../images/favicon.png" />
     <script src="../../js/jquery-3.3.1.min.js"></script>
     <style>
-        .navbar.default-layout-navbar .navbar-brand-wrapper .navbar-brand img {
-            width: 200px;
-            height: 65px;
-        }
         .table th, .table td {
             vertical-align: middle;
             font-size: 0.875rem;
             line-height: 1.5;
             min-width: 90px;
         }
-        .table th:nth-child(5), .table td:nth-child(5){
-            text-align: center;
+        .navbar.default-layout-navbar .navbar-brand-wrapper .navbar-brand img {
+            width: 200px;
+            height: 65px;
         }
         .grid-margin .card .view_img_main{
             width: 50px;
@@ -40,11 +38,19 @@
         .btn {
             padding: 0.5rem;
         }
-        a:hover{
-            text-decoration: none;
-            color: white;
+        .btn i {
+            font-size: 21px;
+            font-weight: bolder;
         }
-        #cover_add{
+        .btn.btn-icon {
+            width: 35px;
+            height: 35px;
+            padding: 0;
+        }
+        .btn-inverse-info{
+            margin-right: 10px;
+        }
+        #cover_modify,#cover_del{
             width: 100%;
             height: 100%;
             background: #000;
@@ -56,7 +62,7 @@
             display: none;
             z-index: 2
         }
-        #alert_add{
+        #alert_modify{
             width: 100%;
             margin: 0 auto;
             height: 9.5rem;
@@ -68,14 +74,27 @@
             z-index: 3;
             background: transparent;
         }
+        #alert_del{
+            width: 100%;
+            margin: 0 auto;
+            height: 9.5rem;
+            border: 1px solid #999;
+            display: none;
+            position: fixed;
+            top: 40%;
+            left: 10%;
+            z-index: 3;
+            background: transparent;
+        }
     </style>
 </head>
 <body>
 <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
     <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style=" border-bottom: 1px solid #cccccc;">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
             <a class="navbar-brand brand-logo" href="../../index.html"><img src="../../images/logo.png" alt="logo"/></a>
-            <a class="navbar-brand brand-logo-mini" href="../../index.html"></a>
+            <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="../images/logo-mini.svg" alt="logo"/></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
             <div class="search-field d-none d-md-block">
@@ -106,7 +125,7 @@
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">
-                            <i class="mdi mdi-logout mr-2 text-success"></i>
+                            <i class="mdi mdi-logout mr-2 text-primary"></i>
                             退出
                         </a>
                     </div>
@@ -162,7 +181,9 @@
             </button>
         </div>
     </nav>
+    <!-- partial -->
     <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
                 <li class="nav-item nav-profile">
@@ -185,16 +206,16 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="../../static/view/list_view.html" aria-expanded="false" aria-controls="ui-basic">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                         <span class="menu-title">景点管理</span>
                         <i class="menu-arrow"></i>
                         <i class="mdi mdi-crosshairs-gps menu-icon"></i>
                     </a>
                     <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="../view/list_view.html">景点列表</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="../view/add_view.html">添加景点</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="../view/modify_view.html">删改景点</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="list_view.html">景点列表</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="add_view.html">添加景点</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="../static/modify_view.html">删改景点</a></li>
                         </ul>
                     </div>
                 </li>
@@ -205,20 +226,20 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="around_foods.html">
-                        <span class="menu-title">周边饮食管理</span>
+                    <a class="nav-link" href="../food/around_foods.jsp">
+                        <span class="menu-title">周边饮食</span>
                         <i class="mdi mdi-heart-box-outline menu-icon"></i>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../around_view/around_views.html">
-                        <span class="menu-title">周边景点管理</span>
+                    <a class="nav-link" href="../around_view/around_views.jsp">
+                        <span class="menu-title">周边景点</span>
                         <i class="mdi mdi-assistant menu-icon"></i>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../hotel/around_hotel.html">
-                        <span class="menu-title">周边住宿管理</span>
+                    <a class="nav-link" href="../hotel/around_hotel.jsp">
+                        <span class="menu-title">周边住宿</span>
                         <i class="mdi mdi-apps menu-icon"></i>
                     </a>
                 </li>
@@ -229,81 +250,35 @@
             <div class="content-wrapper">
                 <div class="page-header">
                     <h3 class="page-title">
-                        周边美食管理
+                        景点管理
                     </h3>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#"></a></li>
-                            <li class="breadcrumb-item active" aria-current="page">美食管理</li>
+                            <li class="breadcrumb-item"><a href="#">景点列表</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">景点管理</li>
                         </ol>
                     </nav>
                 </div>
                 <div class="col-lg-12 grid-margin stretch-card" style="padding: 0;">
                     <div class="card" >
                         <div class="card-body">
-                            <h4 class="card-title">周边美食管理</h4>
+                            <h4 class="card-title">景点列表</h4>
+                            <h4 style="float: right;position: relative;top: -13%;"><a href="javascript:history.back(-1)">返回</a></h4>
                             <hr>
-                            <table class="table">
+                            <table class="table  table-bordered">
                                 <thead>
                                 <tr>
                                     <th>图片</th>
                                     <th>项目名称</th>
-                                    <th>门票价钱</th>
                                     <th>景点位置</th>
-                                    <th>周边操作</th>
+                                    <th>门票价钱</th>
+                                    <th>开发时间</th>
+                                    <th>景点类别</th>
+                                    <th>操作</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr>
-                                    <td><img src="../../images/dashboard/img_1.jpg" class="view_img_main"></td>
-                                    <td>西安秦岭野生动物园</td>
-                                    <td>100元</td>
-                                    <td>西安市长安区秦岭北麓环山生态旅游带</td>
-                                    <td>
-                                        <a href="foods_details.html"><button type="button" class="btn btn-inverse-info btn-fw">美食</button></a>
-                                        <button type="button" class="btn btn-inverse-success btn-fw" onclick="showAddWindow(1)">增加</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><img src="../../images/dashboard/img_2.jpg" class="view_img_main"></td>
-                                    <td>陕西历史博物馆 </td>
-                                    <td>免费 </td>
-                                    <td>陕西省西安市雁塔区小寨东路91号带</td>
-                                    <td>
-                                        <a href="foods_details.html"><button type="button" class="btn btn-inverse-info btn-fw">美食</button></a>
-                                        <button type="button" class="btn btn-inverse-success btn-fw" onclick="showAddWindow(2)">增加</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><img src="../../images/dashboard/img_3.jpg" class="view_img_main"></td>
-                                    <td>回民街</td>
-                                    <td>免费</td>
-                                    <td>莲湖区北院门街道化觉巷社区</td>
-                                    <td>
-                                        <a href="foods_details.html"><button type="button" class="btn btn-inverse-info btn-fw">美食</button></a>
-                                        <button type="button" class="btn btn-inverse-success btn-fw" onclick="showAddWindow(3)">增加</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><img src="../../images/dashboard/img_4.jpg" class="view_img_main"></td>
-                                    <td>大雁塔</td>
-                                    <td>40元/人</td>
-                                    <td>陕西省西安市雁塔区大慈恩寺内</td>
-                                    <td>
-                                        <a href="foods_details.html"><button type="button" class="btn btn-inverse-info btn-fw">美食</button></a>
-                                        <button type="button" class="btn btn-inverse-success btn-fw" onclick="showAddWindow(4)">增加</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><img src="../../images/dashboard/img_1.jpg" class="view_img_main"></td>
-                                    <td>兵马俑</td>
-                                    <td>120元</td>
-                                    <td>陕西省西安市临潼区</td>
-                                    <td>
-                                        <a href="foods_details.html"><button type="button" class="btn btn-inverse-info btn-fw">美食</button></a>
-                                        <button type="button" class="btn btn-inverse-success btn-fw" onclick="showAddWindow(5)">增加</button>
-                                    </td>
-                                </tr>
+                                <tbody id="view_list_all">
+
                                 </tbody>
                             </table>
                         </div>
@@ -313,60 +288,175 @@
         </div>
     </div>
 </div>
-<!--增加弹框-->
+<!--删除弹框-->
+<div class="container-scroller" id="delete_view"></div>
+<!--修改弹框-->
 <div class="container-scroller">
-    <div id="cover_add"></div>
-    <div class="row" id="alert_add">
+    <div id="cover_modify"></div>
+    <div class="row" id="alert_modify">
         <div class="col-md-5 grid-margin stretch-card" style="margin: 0 auto">
             <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title" >增加内容</h4>
+                <div class="card-body" id="modify_view">
+                    <h4 class="card-title" >修改内容</h4>
                     <hr>
-                    <form class="forms-sample">
-                        <div class="form-group">
-                            <label for="InputName">美食名字</label>
-                            <input type="text" class="form-control" id="InputName" placeholder="name" value="">
-                        </div>
-                        <div class="form-group">
-                            <label for="InputPrice">人均消费</label>
-                            <input type="text" class="form-control" id="InputPrice" placeholder="price" value="">
-                        </div>
-                        <div class="form-group">
-                            <label for="InputDis">距离景点</label>
-                            <input type="text" class="form-control" id="InputDis" placeholder="distance" value="">
-                        </div>
-                        <div class="form-group">
-                            <label for="InputAddress">地址</label>
-                            <input type="text" class="form-control" id="InputAddress" placeholder="address" value="">
-                        </div>
-                        <div class="form-group">
-                            <label for="InputRecommend">推荐指数</label>
-                            <input type="text" class="form-control" id="InputRecommend" placeholder="recommend" value="">
-                        </div>
-                    </form>
-                    <hr>
-                    <div style="text-align: right">
-                        <button class="btn_sub btn btn-inverse-info btn-fw"  onclick="closeAddWindow()">取消</button>
-                        <button class="btn_sub btn btn-inverse-success btn-fw"  onclick="closeAddWindow()">确 定</button>
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 <script>
-    // 修改弹窗
-    function showAddWindow(index) {
-        console.log(index);
-        $('#alert_add').show();  //显示弹窗
-        $('#cover_add').css('display','block'); //显示遮罩层
-        $('#cover_add').css('height',document.body.clientHeight+'px'); //设置遮罩层的高度为当前页面高度
+
+    //TODO  获取所有景点
+    $(function () {
+        $.ajax({
+            type:'GET',
+            url:'http://localhost:8080/viewList',
+            dataType:"json",
+            success:function (data) {
+                viewListLoad(data);//得到请求的页面数据  动态加载
+            }
+        });
+    });
+
+    //点击删除 确定  TODO 删除景点
+    function DeleteView(id){
+        console.log(id);
+        $.ajax({
+            type:'GET',
+            url:'http://localhost:8080/viewDelete',
+            data:{
+                viewId:id
+            },
+            success:function () {
+                alert('删除成功');
+                closeDelWindow();
+            }
+        });
+    }
+
+    // TODO  打开修改弹窗   修改某个景点 获取景点信息
+    function showModWindow(id) {
+        console.log(id);
+        $.ajax({
+            type:'GET',
+            url:'http://localhost:8080/viewDetails',
+            data:{
+                viewId:id
+            },
+            dataType:"json",
+            success:function (data) {
+                viewModifyLoad(data);//删除弹框内容加载
+                //TODO  修改提交后 后台重定向
+            }
+        });
+        $('#alert_modify').show();  //显示弹窗
+        $('#cover_modify').css('display','block'); //显示遮罩层
+        $('#cover_modify').css('height',document.body.clientHeight+'px'); //设置遮罩层的高度为当前页面高度
     }
     // 关闭修改弹窗
-    function closeAddWindow() {
-        $('#alert_add').hide();  //隐藏弹窗
-        $('#cover_add').css('display','none');   //显示遮罩层
+    function closeModWindow() {
+        $('#modify_view form').remove();
+        $('#alert_modify').hide();  //隐藏弹窗
+        $('#cover_modify').css('display','none');   //显示遮罩层
+    }
+
+    //景点列表加载
+    function viewListLoad(data) {
+        for(let i=0;i<data.length;i++) {
+            let con =  $(`<tr>
+                                <td><img src="${data[i].viewImg}" class="view_img_main"></td>
+                                <td>${data[i].viewName}</td>
+                                <td>${data[i].viewAddress}</td>
+                                <td>${data[i].viewPrice}元</td>
+                                <td>${data[i].viewDate}</td>
+                                <td><label class="badge badge-danger">${data[i].viewType}</label></td>
+                                <td class="desc">${data[i].viewDesc}</td>
+                                <td>
+                                      <button type="button" class="btn btn-inverse-info btn-rounded btn-icon" onclick="showModWindow(${data[i].viewId})">
+                                         <i class="mdi mdi-table-edit"></i>
+                                      </button>
+                                      <button type="button" class="btn btn-inverse-danger btn-rounded btn-icon" onclick="showDelWindow(${data[i].viewId})">
+                                         <i class="mdi mdi-delete-forever"></i>
+                                      </button>
+                                 </td>
+                           </tr>`);
+            $('#view_list_all').append(con);
+        }
+    }
+    //修改的弹框加载
+    function viewModifyLoad(data) {
+        let con = $(`<form class="forms-sample" action="http://localhost:8080/viewModify" method="post">
+                        <input type="hidden" name="viewId" value="${data.viewId}">
+                        <div class="form-group">
+                            <label for="InputName">景点名字</label>
+                            <input type="text" name="viewName" class="form-control" id="InputName" placeholder="name" value="${data.viewName}">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputPrice">门票价格</label>
+                            <input type="text" name="viewPrice" class="form-control" id="InputPrice" placeholder="price" value="${data.viewPrice}元">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputTime">开发时间</label>
+                            <input type="text" name="viewDate" class="form-control" id="InputTime" placeholder="time" value="${data.viewDate}">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputAddress">景点位置</label>
+                            <input type="text" name="viewAddress" class="form-control" id="InputAddress" placeholder="address" value="${data.viewAddress}">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputType">景点类别</label>
+                            <input type="text" name="viewType" class="form-control" id="InputType" placeholder="recommend" value="${data.viewType}">
+                        </div>
+                         <hr>
+                        <div style="text-align: right;display: inline-block;">
+                            <button type="submit" class="btn_sub btn btn-inverse-success btn-fw" >确 定</button>
+                        </div>
+                    </form>
+                    <div style="text-align: right;display: inline-block;position: absolute;right: 30px;bottom: 15px;">
+                        <button class="btn_sub btn btn-inverse-info btn-fw"  onclick="closeModWindow()">取消</button>
+                    </div>
+               `);
+        $(`#modify_view`).append(con);
+    }
+    //删除的弹框加载
+    function viewDeleteLoad(viewId) {
+        console.log(viewId);
+        let con = $(` <div id="cover_del"></div>
+                        <div class="row" id="alert_del">
+                            <div class="col-md-5 grid-margin stretch-card" style="margin: 0 auto">
+                                <div class="card">
+                                 <div class="card-body" >
+                                <h4 class="card-title" >提示</h4>
+                                <p>确认要删除吗?</p>
+                                <hr>
+                                <div style="text-align: right">
+                                    <button class="btn_sub btn btn-inverse-info btn-fw"  onclick="closeDelWindow()">取消</button>
+                                    <button class="btn_sub btn btn-inverse-success btn-fw"  onclick="DeleteView(${viewId})">确 定</button>
+                                </div>
+                            </div>
+                         </div>
+                        </div>
+                 </div>`);
+        $('#delete_view').append(con);
+    }
+
+    // TODO 打开删除弹窗
+    function showDelWindow(id) {
+        console.log(id);
+        viewDeleteLoad(id);  //加载 删除框
+        $('#alert_del').show();  //显示弹窗
+        $('#cover_del').css('display','block'); //显示遮罩层
+        $('#cover_del').css('height',document.body.clientHeight+'px'); //设置遮罩层的高度为当前页面高度
+    }
+    // 关闭删除弹窗  点击取消
+    function closeDelWindow() {
+        $('#alert_del').hide();  //隐藏弹窗
+        $('#cover_del').css('display','none');   //显示遮罩层
     }
 </script>
+<script src="../../vendors/js/vendor.bundle.base.js"></script>
+<script src="../../vendors/js/vendor.bundle.addons.js"></script>
+
 </body>
 </html>

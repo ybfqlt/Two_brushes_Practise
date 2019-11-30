@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>所有美食</title>
+    <title>周边住宿详情</title>
     <link rel="stylesheet" href="../../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="../../css/style.css">
@@ -23,6 +23,12 @@
         }
         .table th{
             text-align: left;
+        }
+        .table th:nth-child(2), .table td:nth-child(2) {
+            width: 180px;
+        }
+        .table th:nth-child(5), .table td:nth-child(5) {
+            width: 250px;
         }
         .table th:nth-child(7), .table td:nth-child(7) {
             text-align: center;
@@ -78,7 +84,7 @@
             height: 9.5rem;
             border: 1px solid #999;
             display: none;
-            position:fixed;
+            position: fixed;
             top: 17%;
             left: 10%;
             z-index: 3;
@@ -102,8 +108,8 @@
 <div class="container-scroller">
     <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style=" border-bottom: 1px solid #cccccc;">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo" href="../../index.html"><img src="../../images/logo.png" alt="logo"/></a>
-            <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="../images/logo-mini.svg" alt="logo"/></a>
+            <a class="navbar-brand brand-logo" href="../../index.jsp"><img src="../../images/logo.png" alt="logo"/></a>
+            <a class="navbar-brand brand-logo-mini" href="../../index.jsp"><img src="../images/logo-mini.svg" alt="logo"/></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
             <div class="search-field d-none d-md-block">
@@ -128,7 +134,7 @@
                         </div>
                     </a>
                     <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item" href="../login/login.html">
+                        <a class="dropdown-item" href="../login/login.jsp">
                             <i class="mdi mdi-cached mr-2 text-success"></i>
                             登录
                         </a>
@@ -207,46 +213,46 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../../index.html">
+                    <a class="nav-link" href="../../index.jsp">
                         <span class="menu-title">首页</span>
                         <i class="mdi mdi-home menu-icon"></i>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="../../static/view/list_view.html" aria-expanded="false" aria-controls="ui-basic">
+                    <a class="nav-link" data-toggle="collapse" href="../../static/view/list_view.jsp" aria-expanded="false" aria-controls="ui-basic">
                         <span class="menu-title">景点管理</span>
                         <i class="menu-arrow"></i>
                         <i class="mdi mdi-crosshairs-gps menu-icon"></i>
                     </a>
                     <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="../view/list_view.html">景点列表</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="../view/add_view.html">添加景点</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="../view/modify_view.html">删改景点</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="../view/list_view.jsp">景点列表</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="../view/add_view.jsp">添加景点</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="../view/modify_view.jsp">删改景点</a></li>
                         </ul>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../router/router_curd.html">
+                    <a class="nav-link" href="../router/router_curd.jsp">
                         <span class="menu-title">旅游路线管理</span>
                         <i class="mdi mdi-assistant menu-icon"></i>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="around_foods.html">
-                        <span class="menu-title">周边饮食</span>
+                    <a class="nav-link" href="../food/around_foods.jsp">
+                        <span class="menu-title">周边饮食管理</span>
                         <i class="mdi mdi-heart-box-outline menu-icon"></i>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../around_view/around_views.html">
-                        <span class="menu-title">周边景点</span>
+                    <a class="nav-link" href="../around_view/around_views.jsp">
+                        <span class="menu-title">周边景点管理</span>
                         <i class="mdi mdi-assistant menu-icon"></i>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../hotel/around_hotel.html">
-                        <span class="menu-title">周边住宿</span>
+                    <a class="nav-link" href="around_hotel.jsp">
+                        <span class="menu-title">周边住宿管理</span>
                         <i class="mdi mdi-apps menu-icon"></i>
                     </a>
                 </li>
@@ -257,123 +263,45 @@
             <div class="content-wrapper">
                 <div class="page-header">
                     <h3 class="page-title">
-                        周边美食详情
+                        周边住宿详情
                     </h3>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">所有推荐美食</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">美食管理</li>
+                            <li class="breadcrumb-item"><a href="#">所有推荐住宿</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">住宿管理</li>
                         </ol>
                     </nav>
                 </div>
                 <div class="col-lg-12 grid-margin stretch-card" style="padding: 0;">
                     <div class="card" >
                         <div class="card-body">
-                            <h4 class="card-title">所有推荐美食</h4>
+                            <h4 class="card-title">所有推荐住宿</h4>
                             <h4 style="float: right;position: relative;top: -5%;"><a href="javascript:history.back(-1)">返回</a></h4>
                             <hr>
                             <div class="col-lg-12 grid-margin stretch-card">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">大雁塔</h4>
+                                        <h4 class="card-title" id="view_name">
+                                            <!--动态加载-->
+                                        </h4>
                                         <p class="card-description">
                                             需要注意：<code>系统只提供推荐</code>
                                         </p>
-                                        <p class="text-danger points">点击可查看详情哦</p>
                                         <hr>
                                         <table class="table">
                                             <thead>
                                             <tr>
                                                 <th>图片</th>
                                                 <th>项目名称</th>
-                                                <th>人均消费</th>
+                                                <th>价格</th>
                                                 <th>距离景点</th>
                                                 <th>地址</th>
-                                                <th>推荐指数</th>
+                                                <th>评分</th>
                                                 <th>周边操作</th>
                                             </tr>
                                             </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td><img src="../../images/dashboard/img_1.jpg" class="view_img_main"></td>
-                                                <td><a href="food_info.html">竹园村火锅</a></td>
-                                                <td>100元</td>
-                                                <td>1.2km</td>
-                                                <td>西安市雁塔区小寨东路8号慈恩真A区(大雁塔北广场西侧)</td>
-                                                <td><code class="text-warning">★★★</code></td>
-                                                <td>
-                                                    <button type="button" class="btn btn-inverse-info btn-rounded btn-icon" onclick="showModWindow(1)">
-                                                        <i class="mdi mdi-table-edit"></i>
-                                                    </button>
-                                                    <button type="button" class="btn btn-inverse-danger btn-rounded btn-icon" onclick="showDelWindow(1)">
-                                                        <i class="mdi mdi-delete-forever"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><img src="../../images/dashboard/img_2.jpg" class="view_img_main"></td>
-                                                <td><a href="food_info.html">福客福厨</a></td>
-                                                <td>40元</td>
-                                                <td>3.2km</td>
-                                                <td>大雁塔北广场肯德基旁边</td>
-                                                <td><code class="text-warning">★★★</code></td>
-                                                <td>
-                                                    <button type="button" class="btn btn-inverse-info btn-rounded btn-icon" onclick="showModWindow(2)">
-                                                        <i class="mdi mdi-table-edit"></i>
-                                                    </button>
-                                                    <button type="button" class="btn btn-inverse-danger btn-rounded btn-icon" onclick="showDelWindow(2)">
-                                                        <i class="mdi mdi-delete-forever"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><img src="../../images/dashboard/img_3.jpg" class="view_img_main"></td>
-                                                <td><a href="food_info.html">牛羊肉泡馍</a></td>
-                                                <td>50元</td>
-                                                <td>1.5km</td>
-                                                <td>大雁塔北广场</td>
-                                                <td><code class="text-warning">★★★★★</code></td>
-                                                <td>
-                                                    <button type="button" class="btn btn-inverse-info btn-rounded btn-icon" onclick="showModWindow(3)">
-                                                        <i class="mdi mdi-table-edit"></i>
-                                                    </button>
-                                                    <button type="button" class="btn btn-inverse-danger btn-rounded btn-icon" onclick="showDelWindow(3)">
-                                                        <i class="mdi mdi-delete-forever"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><img src="../../images/dashboard/img_4.jpg" class="view_img_main"></td>
-                                                <td><a href="food_info.html">biangbiang面</a></td>
-                                                <td>20元</td>
-                                                <td>1.2km</td>
-                                                <td>大雁塔北广场西侧</td>
-                                                <td><code class="text-warning">★★</code></td>
-                                                <td>
-                                                    <button type="button" class="btn btn-inverse-info btn-rounded btn-icon" onclick="showModWindow(4)">
-                                                        <i class="mdi mdi-table-edit"></i>
-                                                    </button>
-                                                    <button type="button" class="btn btn-inverse-danger btn-rounded btn-icon" onclick="showDelWindow(4)">
-                                                        <i class="mdi mdi-delete-forever"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><img src="../../images/dashboard/img_1.jpg" class="view_img_main"></td>
-                                                <td><a href="food_info.html">正宗陕菜馆</a></td>
-                                                <td>80元</td>
-                                                <td>2.2km</td>
-                                                <td>大雁塔南广场</td>
-                                                <td><code class="text-warning">★★★★</code></td>
-                                                <td>
-                                                    <button type="button" class="btn btn-inverse-info btn-rounded btn-icon" onclick="showModWindow(5)">
-                                                        <i class="mdi mdi-table-edit"></i>
-                                                    </button>
-                                                    <button type="button" class="btn btn-inverse-danger btn-rounded btn-icon" onclick="showDelWindow(5)">
-                                                        <i class="mdi mdi-delete-forever"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
+                                            <tbody id="hotel_list_all">
+                                                <!--动态加载-->
                                             </tbody>
                                         </table>
                                     </div>
@@ -387,23 +315,8 @@
     </div>
 </div>
 <!--删除弹框-->
-<div class="container-scroller">
-    <div id="cover_del"></div>
-    <div class="row" id="alert_del">
-        <div class="col-md-5 grid-margin stretch-card" style="margin: 0 auto">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title" >提示</h4>
-                    <p>确认要删除吗?</p>
-                    <hr>
-                    <div style="text-align: right">
-                        <button class="btn_sub btn btn-inverse-info btn-fw"  onclick="closeDelWindow()">取消</button>
-                        <button class="btn_sub btn btn-inverse-success btn-fw"  onclick="closeDelWindow()">确 定</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="container-scroller" id="delete_hotel">
+    <!--动态加载-->
 </div>
 <!--修改弹框-->
 <div class="container-scroller">
@@ -411,45 +324,149 @@
     <div class="row" id="alert_modify">
         <div class="col-md-5 grid-margin stretch-card" style="margin: 0 auto">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body" id="hotel_modify">
                     <h4 class="card-title" >修改内容</h4>
                     <hr>
-                    <form class="forms-sample">
-                        <div class="form-group">
-                            <label for="InputName">美食名字</label>
-                            <input type="text" class="form-control" id="InputName" placeholder="name" value="竹园村火锅">
-                        </div>
-                        <div class="form-group">
-                            <label for="InputPrice">人均消费</label>
-                            <input type="text" class="form-control" id="InputPrice" placeholder="price" value="100元">
-                        </div>
-                        <div class="form-group">
-                            <label for="InputDis">距离景点</label>
-                            <input type="text" class="form-control" id="InputDis" placeholder="distance" value="1.2km">
-                        </div>
-                        <div class="form-group">
-                            <label for="InputAddress">地址</label>
-                            <input type="text" class="form-control" id="InputAddress" placeholder="address" value="西安市雁塔区小寨东路8号慈恩真A区(大雁塔北广场西侧)">
-                        </div>
-                        <div class="form-group">
-                            <label for="InputRecommend">推荐指数</label>
-                            <input type="text" class="form-control" id="InputRecommend" placeholder="recommend" value="★★★★">
-                        </div>
-                    </form>
-                    <hr>
-                    <div style="text-align: right">
-                        <button class="btn_sub btn btn-inverse-info btn-fw"  onclick="closeModWindow()">取消</button>
-                        <button class="btn_sub btn btn-inverse-success btn-fw"  onclick="closeModWindow()">确 定</button>
-                    </div>
+                    <!--动态加载-->
                 </div>
             </div>
         </div>
     </div>
 </div>
 <script>
+
+    //TODO  获取所有酒店
+    $(function () {
+        $.ajax({
+            type:'GET',
+            url:'http://localhost:8080/hotelList'+window.location.search,
+            dataType:"json",
+            success:function (data) {
+                //TODO  返回 列表 及 当前景点的名字
+                hotelListLoad(data);//得到请求的页面数据  动态加载
+            }
+        });
+    });
+    // 景点周边酒店列表加载
+    function hotelListLoad(data) {
+        $('#view_name').text(`${data.viewName}`);
+        for(var i=0;i<data.hotel.length;i++) {
+        let con = $(` <tr>
+                          <td><img src="${data.hotel[i].hotelImg}" class="view_img_main"></td>
+                          <td>${data.hotel[i].hotelName}</td>
+                          <td>${data.hotel[i].hotelPrice	}</td>
+                          <td>${data.hotel[i].hotelDistance}</td>
+                          <td>${data.hotel[i].hotelAddress}</td>
+                          <td><code class="text-danger">${data.hotel[i].hotelScore}</code>/5分</td>
+                          <td>
+                          <button type="button" class="btn btn-inverse-info btn-rounded btn-icon" onclick="showModWindow(${data.hotel[i].hotelId})">
+                               <i class="mdi mdi-table-edit"></i>
+                          </button>
+                          <button type="button" class="btn btn-inverse-danger btn-rounded btn-icon" onclick="showDelWindow(${data.hotel[i].hotelId})">
+                               <i class="mdi mdi-delete-forever"></i>
+                           </button>
+                          </td>
+                     </tr>`);
+            $('#hotel_list_all').append(con);
+        }
+    }
+
+    //点击删除 确定  TODO 删除景点
+    function DeleteHotel(id){
+        console.log(id);
+        $.ajax({
+            type:'GET',
+            url:'http://localhost:8080/hotelDelete',
+            data:{
+                hotelId:id
+            },
+            success:function () {
+                alert('删除成功');
+                closeDelWindow();
+            }
+        });
+    }
+
+    // TODO  打开修改弹窗   修改某个酒店 获取酒店信息
+    function showModWindow(id) {
+        console.log(id);
+        // hotelModifyLoad(1);
+        $.ajax({
+            type:'GET',
+            url:'http://localhost:8080/hotelDetails',
+            data:{
+                hotelId:id
+            },
+            dataType:"json",
+            success:function (data) {
+                hotelModifyLoad(data);//修改弹框内容加载
+                //TODO  修改提交后 后台重定向
+            }
+        });
+        $('#alert_modify').show();  //显示弹窗
+        $('#cover_modify').css('display','block'); //显示遮罩层
+        $('#cover_modify').css('height',document.body.clientHeight+'px'); //设置遮罩层的高度为当前页面高度
+    }
+    //修改弹窗的加载
+    function hotelModifyLoad(data){
+        let con = $(`<form class="forms-sample" action="http://localhost:8080/hotelModify" method="post">
+                        <input type="hidden" name="hotelId" value="${data.hotelId}">
+                        <div class="form-group">
+                            <label for="InputName">酒店名字</label>
+                            <input type="text" name="hotelName" class="form-control" id="InputName" placeholder="name" value="${data.hotelName}">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputPrice">价格</label>
+                            <input type="text" name="hotelPrice"   class="form-control" id="InputPrice" placeholder="price" value="${data.hotelPrice}">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputDis">距离景点</label>
+                            <input type="text" name="hotelDistance"  class="form-control" id="InputDis" placeholder="distance" value="${data.hotelDistance}">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputAddress">地址</label>
+                            <input type="text" name="hotelAddress"  class="form-control" id="InputAddress" placeholder="address" value="${data.hotelAddress}">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputRecommend">评分</label>
+                            <input type="text" name="hotelScore"  class="form-control" id="InputRecommend" placeholder="recommend" value="${data.hotelScore}">
+                        </div>
+                        <hr>
+                        <div style="text-align: right;display: inline-block;">
+                            <button type="submit" class="btn_sub btn btn-inverse-success btn-fw" >确 定</button>
+                        </div>
+                    </form>
+                    <div style="text-align: right;display: inline-block;position: absolute;right: 30px;bottom: 15px;">
+                        <button class="btn_sub btn btn-inverse-info btn-fw"  onclick="closeModWindow()">取消</button>
+                    </div>`);
+        $('#hotel_modify').append(con);
+    }
+
+    //删除的弹框加载
+    function hotelDeleteLoad(hotelId) {
+        console.log(hotelId);
+        let con = $(` <div id="cover_del"></div>
+                        <div class="row" id="alert_del">
+                            <div class="col-md-5 grid-margin stretch-card" style="margin: 0 auto">
+                                <div class="card">
+                                 <div class="card-body" >
+                                <h4 class="card-title" >提示</h4>
+                                <p>确认要删除吗?</p>
+                                <hr>
+                                <div style="text-align: right">
+                                    <button class="btn_sub btn btn-inverse-info btn-fw"  onclick="closeDelWindow()">取消</button>
+                                    <button class="btn_sub btn btn-inverse-success btn-fw"  onclick="DeleteHotel(${hotelId})">确 定</button>
+                                </div>
+                            </div>
+                         </div>
+                        </div>
+                 </div>`);
+        $('#delete_hotel').append(con);
+    }
     // 删除弹窗
-    function showDelWindow(index) {
-        console.log(index);
+    function showDelWindow(hotelId) {
+        console.log(hotelId);
+        hotelDeleteLoad(hotelId);
         $('#alert_del').show();  //显示弹窗
         $('#cover_del').css('display','block'); //显示遮罩层
         $('#cover_del').css('height',document.body.clientHeight+'px'); //设置遮罩层的高度为当前页面高度
@@ -459,16 +476,9 @@
         $('#alert_del').hide();  //隐藏弹窗
         $('#cover_del').css('display','none');   //显示遮罩层
     }
-
-    // 修改弹窗
-    function showModWindow(index) {
-        console.log(index);
-        $('#alert_modify').show();  //显示弹窗
-        $('#cover_modify').css('display','block'); //显示遮罩层
-        $('#cover_modify').css('height',document.body.clientHeight+'px'); //设置遮罩层的高度为当前页面高度
-    }
     // 关闭修改弹窗
     function closeModWindow() {
+        $('#hotel_modify form').remove();
         $('#alert_modify').hide();  //隐藏弹窗
         $('#cover_modify').css('display','none');   //显示遮罩层
     }

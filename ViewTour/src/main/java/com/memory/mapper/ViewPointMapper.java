@@ -21,4 +21,13 @@ public interface ViewPointMapper {
 
     //查询全部景点
     List<ViewPoint> findAll();
+
+    List<ViewPoint> findAllByRouter();
+
+    List<ViewPoint> findAllByFood();
+
+    List<ViewPoint> findAllByArView();
+
+    List<ViewPoint> findAllByHotel();
+
 }

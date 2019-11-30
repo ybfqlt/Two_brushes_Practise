@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>路线管理</title>
+    <title>周边美食</title>
     <link rel="stylesheet" href="../../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="../../css/style.css">
@@ -48,7 +48,7 @@
             width: 100%;
             height: 100%;
             background: #000;
-            position: fixed;
+            position: absolute;
             left: 0;
             top: 0;
             filter: alpha(opacity=30);
@@ -63,13 +63,10 @@
             border: 1px solid #999;
             display: none;
             position:fixed;
-            top: 40%;
+            top: 17%;
             left: 10%;
             z-index: 3;
             background: transparent;
-        }
-        #exampleTextarea1{
-            text-align: left;
         }
     </style>
 </head>
@@ -77,8 +74,8 @@
 <div class="container-scroller">
     <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style=" border-bottom: 1px solid #cccccc;">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo" href="../../index.html"><img src="../../images/logo.png" alt="logo"/></a>
-            <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="../images/logo-mini.svg" alt="logo"/></a>
+            <a class="navbar-brand brand-logo" href="../../index.jsp"><img src="../../images/logo.png" alt="logo"/></a>
+            <a class="navbar-brand brand-logo-mini" href="../../index.jsp"></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
             <div class="search-field d-none d-md-block">
@@ -103,13 +100,13 @@
                         </div>
                     </a>
                     <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item" href="../login/login.html">
+                        <a class="dropdown-item" href="../login/login.jsp">
                             <i class="mdi mdi-cached mr-2 text-success"></i>
                             登录
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">
-                            <i class="mdi mdi-logout mr-2 text-primary"></i>
+                            <i class="mdi mdi-logout mr-2 text-success"></i>
                             退出
                         </a>
                     </div>
@@ -182,90 +179,82 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../../index.html">
+                    <a class="nav-link" href="../../index.jsp">
                         <span class="menu-title">首页</span>
                         <i class="mdi mdi-home menu-icon"></i>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="../../static/view/list_view.html" aria-expanded="false" aria-controls="ui-basic">
+                    <a class="nav-link" data-toggle="collapse" href="../../static/view/list_view.jsp" aria-expanded="false" aria-controls="ui-basic">
                         <span class="menu-title">景点管理</span>
                         <i class="menu-arrow"></i>
                         <i class="mdi mdi-crosshairs-gps menu-icon"></i>
                     </a>
                     <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="../view/list_view.html">景点列表</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="../view/add_view.html">添加景点</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="../view/add_view.html">删改景点</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="../view/list_view.jsp">景点列表</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="../view/add_view.jsp">添加景点</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="../view/modify_view.jsp">删改景点</a></li>
                         </ul>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="router_curd.html">
+                    <a class="nav-link" href="../router/router_curd.jsp">
                         <span class="menu-title">旅游路线管理</span>
                         <i class="mdi mdi-assistant menu-icon"></i>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../food/around_foods.html">
+                    <a class="nav-link" href="around_foods.jsp">
                         <span class="menu-title">周边饮食管理</span>
                         <i class="mdi mdi-heart-box-outline menu-icon"></i>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../around_view/around_views.html">
+                    <a class="nav-link" href="../around_view/around_views.jsp">
                         <span class="menu-title">周边景点管理</span>
                         <i class="mdi mdi-assistant menu-icon"></i>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../hotel/around_hotel.html">
+                    <a class="nav-link" href="../hotel/around_hotel.jsp">
                         <span class="menu-title">周边住宿管理</span>
                         <i class="mdi mdi-apps menu-icon"></i>
                     </a>
                 </li>
+
             </ul>
         </nav>
         <div class="main-panel">
             <div class="content-wrapper">
                 <div class="page-header">
                     <h3 class="page-title">
-                        旅游路线管理
+                        周边美食管理
                     </h3>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#"></a></li>
-                            <li class="breadcrumb-item active" aria-current="page">旅游路线管理</li>
+                            <li class="breadcrumb-item active" aria-current="page">美食管理</li>
                         </ol>
                     </nav>
                 </div>
                 <div class="col-lg-12 grid-margin stretch-card" style="padding: 0;">
                     <div class="card" >
                         <div class="card-body">
-                            <h4 class="card-title">景点路线管理</h4>
+                            <h4 class="card-title">周边美食管理</h4>
                             <hr>
                             <table class="table">
-                                <thead >
+                                <thead>
                                 <tr>
                                     <th>图片</th>
                                     <th>项目名称</th>
                                     <th>门票价钱</th>
                                     <th>景点位置</th>
-                                    <th>路线操作</th>
+                                    <th>周边操作</th>
                                 </tr>
                                 </thead>
-                                <tbody id="view_list_all">
-                                    <tr>
-                                        <td><img src="../../images/dashboard/img_1.jpg" class="view_img_main"></td>
-                                        <td>西安秦岭野生动物园</td>
-                                        <td>100元</td>
-                                        <td>西安市长安区秦岭北麓环山生态旅游带</td>
-                                        <td>
-                                            <a href="router_details.html"><button type="button" class="btn btn-inverse-danger btn-fw">路线</button></a>
-                                            <button type="button" class="btn btn-inverse-success btn-fw" onclick="showAddWindow(1)">增加</button>
-                                        </td>
-                                    </tr>
+                                <tbody id="around_view_list">
+                                    <!--动态加载-->
                                 </tbody>
                             </table>
                         </div>
@@ -281,71 +270,92 @@
     <div class="row" id="alert_add">
         <div class="col-md-5 grid-margin stretch-card" style="margin: 0 auto">
             <div class="card">
-                <div class="card-body"  id="add_router">
+                <div class="card-body" id="add_food">
                     <h4 class="card-title" >增加内容</h4>
                     <hr>
-                     <!--动态加载-->
+                    <!--动态加载-->
                 </div>
             </div>
         </div>
     </div>
 </div>
 <script>
-
-    //TODO  获取所有景点  只包括（图片，名称，门票价钱，景点位置）
+    //TODO  获取所有景点
     $(function () {
         $.ajax({
             type:'GET',
-            url:'http://localhost:8080/viewListAll',
+            url:'http://localhost:8080/viewList',
+            data:{
+                flag:2
+            },
             dataType:"json",
             success:function (data) {
-                loadList(data);//得到请求的页面数据  动态加载
+                viewListLoad(data);//得到请求的页面数据  动态加载
             }
         });
     });
-    //加载 景点列表
-    function loadList(data) {
-        for(let i=0;i<data.length;i++) {
-            let con =  $(` <tr>
-                                    <td><img src="${data.viewImg}" class="view_img_main"></td>
-                                    <td>${data.viewName}</td>
-                                    <td>${data.viewName}元/人</td>
-                                    <td>${data.viewName}</td>
-                                    <td>
-                                        <a href="router_details.html"><button type="button" class="btn btn-inverse-danger btn-fw">查看</button></a>
-                                        <button type="button" class="btn btn-inverse-success btn-fw" onclick="showAddWindow(${data.viewId})">增加</button>
-                                    </td>
-                                </tr>`);
-            $('#view_list_all').append(con);
+    //景点列表加载
+    function viewListLoad(data) {
+        for(let i=0;i<data.length;i++){
+            let con =$(` <tr>
+                              <td><img src="${data[i].viewImg}" class="view_img_main"></td>
+                              <td>${data[i].viewName}</td>
+                              <td>${data[i].viewPrice}元</td>
+                              <td>${data[i].viewAddress}</td>
+                              <td>
+                                   <a href="food_details.jsp?viewId=${data[i].viewId}""><button type="button" class="btn btn-inverse-info btn-fw">景点</button></a>
+                                   <button type="button" class="btn btn-inverse-success btn-fw" onclick="showAddWindow(${data[i].viewId})">增加</button>
+                              </td>
+                         </tr>`);
+            $('#around_view_list').append(con);
         }
     }
-    //加载 弹框 TODO 表单提交  增加内容  后台重定向 刷新当前页面
-    function loadAddAlert(viewId) {
-        let con =  $(`<form class="forms-sample" action="http://localhost:8080/addRouter?viewId=${viewId}" method="post" >
+    //增加的弹框加载
+    function foodAddLoad(data) {
+        let con = $(`
+                    <form class="forms-sample" action="http://localhost:8080/foodAdd" method="post">
+                        <input type="hidden" name="viewId" value="${data}">
                         <div class="form-group">
-                            <label for="routerLine">增加路线:</label>
-                            <textarea class="form-control" name="routerLine	" id="routerLine" rows="4"></textarea>
+                            <label for="InputName">美食名字</label>
+                            <input type="text" name="foodName" class="form-control" id="InputName" placeholder="name" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputPrice">人均消费</label>
+                            <input type="text" name="foodPrice" class="form-control" id="InputPrice" placeholder="price" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputDis">距离景点</label>
+                            <input type="text" name="foodDistance" class="form-control" id="InputDis" placeholder="distance" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputAddress">地址</label>
+                            <input type="text" name="foodAddress" class="form-control" id="InputAddress" placeholder="address" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputRecommend">推荐指数</label>
+                            <input type="text" name="foodRecommend" class="form-control" id="InputRecommend" placeholder="recommend" value="">
                         </div>
                         <hr>
-                        <div style="text-align: right">
-                            <button class="btn_sub btn btn-inverse-info btn-fw"  onclick="closeAddWindow()">取消</button>
-                            <button type="submit" class="btn_sub btn btn-inverse-success btn-fw" >确 定</button>
+                        <div style="text-align: right;display: inline-block;">
+                            <button type="submit"  class="btn_sub btn btn-inverse-success btn-fw" >确 定</button>
                         </div>
-                    </form>`);
-        $('#add_router').append(con);
+                    </form>
+                    <div style="text-align: right;display: inline-block;position: absolute;right: 30px;bottom: 15px;">
+                        <button class="btn_sub btn btn-inverse-info btn-fw"  onclick="closeAddWindow()">取消</button>
+                    </div>`);
+            $('#add_food').append(con);
     }
-
-
-    //增加弹窗
-    function showAddWindow(viewId) {
-        console.log(viewId);
-        loadAddAlert(viewId);
+    // 修改弹窗
+    function showAddWindow(id) {
+        console.log(id);
+        foodAddLoad(id);//加载 增加框
         $('#alert_add').show();  //显示弹窗
         $('#cover_add').css('display','block'); //显示遮罩层
         $('#cover_add').css('height',document.body.clientHeight+'px'); //设置遮罩层的高度为当前页面高度
     }
-    // 关闭增加弹窗
+    // 关闭修改弹窗
     function closeAddWindow() {
+        $('#add_food form').remove();
         $('#alert_add').hide();  //隐藏弹窗
         $('#cover_add').css('display','none');   //显示遮罩层
     }

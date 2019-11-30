@@ -1,6 +1,8 @@
 package com.memory.pojo;
 
 public class ViewFood {
+
+
     private Integer foodId;
 
     private Integer viewId;
@@ -26,6 +28,16 @@ public class ViewFood {
     private String foodOrigin;
 
     private String foodRecommend;
+
+    public String getFoodImg() {
+        return foodImg;
+    }
+
+    public void setFoodImg(String foodImg) {
+        this.foodImg = foodImg;
+    }
+
+    private String foodImg;
 
     public Integer getFoodId() {
         return foodId;

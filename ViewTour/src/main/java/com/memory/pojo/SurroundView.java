@@ -1,6 +1,7 @@
 package com.memory.pojo;
 
 public class SurroundView {
+
     private Integer arViewId;
 
     private Integer viewId;

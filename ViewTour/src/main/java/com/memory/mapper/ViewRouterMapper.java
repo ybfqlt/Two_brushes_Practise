@@ -12,7 +12,7 @@ public interface ViewRouterMapper {
     int insert(ViewRouter viewRouter);
 
     //删除指定的景点的某条旅游路线
-    int delete(int viewId, int routerId);
+    int delete(int routerId);
 
     //删除指定的景点的所有旅游路线
     int   deleteAll(int viewId);
@@ -23,4 +23,17 @@ public interface ViewRouterMapper {
     //查询某个景点的所有旅游路线
     List<ViewRouter>  findByViewId(int viewId);
 
+    /**
+     * 更新
+     * @param viewRouter
+     * @return
+     */
+    int update(ViewRouter viewRouter);
+
+    /**
+     * 根据路线id返回路线信息
+     * @param routerId
+     * @return
+     */
+    ViewRouter findByRouterId(Integer routerId);
 }

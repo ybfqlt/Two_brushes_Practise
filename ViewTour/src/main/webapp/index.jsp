@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,6 +8,7 @@
   <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="shortcut icon" href="images/favicon.png" />
+  <script src="js/jquery-3.3.1.min.js"></script>
   <style>
     .navbar.default-layout-navbar .navbar-brand-wrapper .navbar-brand img {
       width: 200px;
@@ -23,7 +23,7 @@
 </head>
 <body>
     <div class="container-scroller">
-      <!-- partial:partials/_navbar.html -->
+      <!-- partial:partials/_navbar -->
       <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style=" border-bottom: 1px solid #cccccc;">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
           <a class="navbar-brand brand-logo" href="index.jsp"><img src="images/logo.png" alt="logo"/></a>
@@ -115,7 +115,7 @@
       </nav>
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
-        <!-- partial:partials/_sidebar.html -->
+        <!-- partial:partials/_sidebar.jsp -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item nav-profile">
@@ -145,32 +145,32 @@
               </a>
               <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="static/view/list_view.html">景点列表</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="static/view/add_view.html">添加景点</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="static/view/modify_view.html">删改景点</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="static/view/list_view.jsp">景点列表</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="static/view/add_view.jsp">添加景点</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="static/view/modify_view.jsp">删改景点</a></li>
                 </ul>
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="static/router/router_curd.html">
+              <a class="nav-link" href="static/router/router_curd.jsp">
                 <span class="menu-title">旅游路线管理</span>
                 <i class="mdi mdi-assistant menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="static/food/around_foods.html">
+              <a class="nav-link" href="static/food/around_foods.jsp">
                 <span class="menu-title">周边饮食管理</span>
                 <i class="mdi mdi-heart-box-outline menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="static/around_view/around_views.html">
+              <a class="nav-link" href="static/around_view/around_views.jsp">
                 <span class="menu-title">周边景点管理</span>
                 <i class="mdi mdi-assistant menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="static/hotel/around_hotel.html">
+              <a class="nav-link" href="static/hotel/around_hotel.jsp">
                 <span class="menu-title">周边住宿管理</span>
                 <i class="mdi mdi-apps menu-icon"></i>
               </a>
@@ -204,7 +204,7 @@
                   <h4 class="font-weight-normal mb-3">景点数
                     <i class="mdi mdi-chart-line mdi-24px float-right"></i>
                   </h4>
-                  <h4 class="mb-5"> 1500</h4>
+                  <h4 class="mb-5" id="view_number"> </h4>
                 </div>
               </div>
             </div>
@@ -215,7 +215,7 @@
                   <h4 class="font-weight-normal mb-3">周边数
                     <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
                   </h4>
-                  <h4 class="mb-5">4563</h4>
+                  <h4 class="mb-5" id="around_number"></h4>
                 </div>
               </div>
             </div>
@@ -258,79 +258,8 @@
                           </th>
                         </tr>
                       </thead>
-                      <tbody>
-                        <tr>
-                          <td>
-                            <img src="images/dashboard/img_1.jpg" class="mr-2" alt="image">
-                            太行山
-                          </td>
-                          <td>
-                           太行山
-                          </td>
-                          <td>
-                            <label class="badge badge-gradient-success">山高</label>
-                          </td>
-                          <td>
-                            20232
-                          </td>
-                          <td>
-                            232
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <img src="images/dashboard/img_2.jpg" class="mr-2" alt="image">
-                            回民街
-                          </td>
-                          <td>
-                            雁塔区
-                          </td>
-                          <td>
-                            <label class="badge badge-gradient-warning">好吃</label>
-                          </td>
-                          <td>
-                            2066
-                          </td>
-                          <td>
-                            2321
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <img src="images/dashboard/img_3.jpg" class="mr-2" alt="image">
-                            秦岭动物园
-                          </td>
-                          <td>
-                            秦岭
-                          </td>
-                          <td>
-                            <label class="badge badge-gradient-info">好玩</label>
-                          </td>
-                          <td>
-                            2017
-                          </td>
-                          <td>
-                            232
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <img src="images/dashboard/img_4.jpg" class="mr-2" alt="image">
-                            陕西历史博物馆
-                          </td>
-                          <td>
-                            碑林区
-                          </td>
-                          <td>
-                            <label class="badge badge-gradient-danger">历史</label>
-                          </td>
-                          <td>
-                            99999
-                          </td>
-                          <td>
-                            3332
-                          </td>
-                        </tr>
+                      <tbody id="view_hot">
+                         <!--动态加载-->
                       </tbody>
                     </table>
                   </div>
@@ -424,103 +353,8 @@
                           </th>
                         </tr>
                       </thead>
-                      <tbody>
-                        <tr>
-                          <td>
-                            1
-                          </td>
-                          <td>
-                            西安邮电大学
-                          </td>
-                          <td>
-                            长安区
-                          </td>
-                          <td>
-                            <div class="progress">
-                              <div class="progress-bar bg-gradient-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            2
-                          </td>
-                          <td>
-                            如家酒店
-                          </td>
-                          <td>
-                            智慧城
-                          </td>
-                          <td>
-                            <div class="progress">
-                              <div class="progress-bar bg-gradient-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            3
-                          </td>
-                          <td>
-                            GOGO街区
-                          </td>
-                          <td>
-                            长安区
-                          </td>
-                          <td>
-                            <div class="progress">
-                              <div class="progress-bar bg-gradient-warning" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            4
-                          </td>
-                          <td>
-                            杨铭宇黄焖鸡
-                          </td>
-                          <td>
-                            航天城
-                          </td>
-                          <td>
-                            <div class="progress">
-                              <div class="progress-bar bg-gradient-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            5
-                          </td>
-                          <td>
-                            蜜雪冰城
-                          </td>
-                          <td>
-                            GOGO街区
-                          </td>
-                          <td>
-                            <div class="progress">
-                              <div class="progress-bar bg-gradient-danger" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            6
-                          </td>
-                          <td>
-                            永辉超市
-                          </td>
-                          <td>
-                            西北政法大学对面
-                          </td>
-                          <td>
-                            <div class="progress">
-                              <div class="progress-bar bg-gradient-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </td>
-                        </tr>
+                      <tbody id="around_hot">
+                       <!--动态加载-->
                       </tbody>
                     </table>
                   </div>
@@ -529,21 +363,80 @@
             </div>
           </div>
         </div>
-        <!-- content-wrapper ends -->
-        <!-- partial:partials/_footer.html -->
+
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
             <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2019 <a href="" target="_blank">逛吃去哪儿</a>. All rights reserved. </span>
             <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">welcome you</span>
           </div>
         </footer>
-        <!-- partial -->
       </div>
-      <!-- main-panel ends -->
     </div>
-    <!-- page-body-wrapper ends -->
   </div>
+  <script>
+    $(function () {
+        $.ajax({
+            url:'http://localhost:8080/',
+            type:'get',
+            dataType:'json',
+            success:function (data) {
+                loadIndexAll(data);
+                /**
+                 * viewNumber 景点个数
+                 * aroundNumber 周边个数
+                 * viewHot 景点热度排行数组
+                 * aroundHot 周边热度排行数组
+                 **/
+            }
+        })
+    });
+    function loadIndexAll(data) {
+        $('#view_number').text(`${data.viewNumber}`); //景点个数
+        $(`#around_number`).text(`${data.aroundNumber}`);//周边个数
+        for(let i=0;i<data.viewHot.length;i++) {
+            let con = $(` <tr>
+                          <td>
+                            <img src="${data.viewHot[i].viewImg}" class="mr-2" alt="image">
+                            ${data.viewHot[i].viewName}
+                          </td>
+                          <td>
+                            ${data.viewHot[i].viewAddress}
+                          </td>
+                          <td>
+                            <label class="badge badge-gradient-danger">${data.viewHot[i].viewType}</label>
+                          </td>
+                          <td>
+                            ${1000+i*6}
+                          </td>
+                          <td>
+                            ${data.viewHot[i].viewNumber}
+                          </td>
+                        </tr>`);
+            $('#view_hot').append(con);
+        }
+        for(let i=0;i<data.aroundHot.length;i++) {
+            let con = $(`
+                    <tr>
+                          <td>
+                            ${i}
+                          </td>
+                          <td>
+                             ${data.aroundHot[i].aroundName}
+                          </td>
+                          <td>
+                             ${data.aroundHot[i].aroundAddress}
+                          </td>
+                          <td>
+                            <div class="progress">
+                              <div class="progress-bar bg-gradient-primary" role="progressbar" style="width: ${(i+1)*10}%" aria-valuenow="${(i+1)*10}" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                          </td>
+                        </tr>`);
+            $('#around_hot').append(con);
+        }
 
+    }
+  </script>
   <script src="vendors/js/vendor.bundle.base.js"></script>
   <script src="vendors/js/vendor.bundle.addons.js"></script>
 

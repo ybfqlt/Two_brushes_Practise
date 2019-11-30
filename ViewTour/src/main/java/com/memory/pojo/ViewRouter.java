@@ -1,6 +1,8 @@
 package com.memory.pojo;
 
 public class ViewRouter {
+
+
     private Integer routerId;
 
     private Integer viewId;
