@@ -27,6 +27,9 @@ public class ViewPoint {
 
     private String connectAddress;
 
+    public ViewPoint(){
+    }
+
     public Integer getViewId() {
         return viewId;
     }

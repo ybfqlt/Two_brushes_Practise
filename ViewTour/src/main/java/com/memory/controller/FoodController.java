@@ -84,7 +84,7 @@ public class FoodController {
         return res;
     }
 
-    @GetMapping("/foodDetails")
+    @GetMapping("/foodInfo")
     public ViewFood foodDetails(@RequestParam("foodId")Integer foodId){
         ViewFood viewFood = foodService.getOneFood(foodId);
         return viewFood;
