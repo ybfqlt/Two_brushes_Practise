@@ -8,7 +8,7 @@ package com.memory.pojo;
  */
 public class viewStatistic {
 
-    private String viewName;
+    private Integer viewId;
 
     private Integer routerCount;
 
@@ -18,12 +18,12 @@ public class viewStatistic {
 
     private Integer arViewCount;
 
-    public String getViewName() {
-        return viewName;
+    public Integer getViewId() {
+        return viewId;
     }
 
-    public void setViewName(String viewName) {
-        this.viewName = viewName;
+    public void setViewName(Integer viewId) {
+        this.viewId = viewId;
     }
 
     public Integer getRouterCount() {

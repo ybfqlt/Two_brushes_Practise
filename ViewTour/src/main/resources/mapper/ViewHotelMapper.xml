@@ -2,6 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.memory.mapper.ViewHotelMapper">
 
+
+    <resultMap id="BaseResultMap" type="com.memory.pojo.ViewHotel">
+        <id column="hotel_id" property="hotelId"/>
+        <result column="view_id" property="viewId"/>
+        <result column="hotel_name" property="hotelName"/>
+        <result column="hotel_price" property="hotelPrice"/>
+        <result column="hotel_distance" property="hotelDistance"/>
+        <result column="hotel_address" property="hotelAddress"/>
+        <result column="hotel_score" property="hotelScore"/>
+        <result column="hotel_img" property="hotelImg"/>
+    </resultMap>
+
     <insert id="insert" parameterType="com.memory.pojo.ViewHotel">
         insert into view_hotel (hotel_id, view_id, hotel_name,
                                 hotel_price, hotel_distance, hotel_address,
@@ -18,17 +30,17 @@
     </delete>
 
 
-    <select id="findById" parameterType="int" resultType="com.memory.pojo.ViewHotel">
+    <select id="findById" parameterType="int" resultMap="BaseResultMap">
         select *
         from view_hotel
         where hotel_id = #{hotelId}
     </select>
 
-    <select id="findAll" resultType="com.memory.pojo.ViewHotel">
+    <select id="findAll" resultMap="BaseResultMap">
         select *
         from view_hotel
     </select>
-    <select id="findByViewId" resultType="com.memory.pojo.ViewHotel">
+    <select id="findByViewId" resultMap="BaseResultMap">
         select *
         from view_hotel
         where view_id = #{viewId,jdbcType=INTEGER}

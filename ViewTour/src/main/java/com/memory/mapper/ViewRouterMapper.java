@@ -1,6 +1,8 @@
 package com.memory.mapper;
 
 import com.memory.pojo.ViewRouter;
+import org.apache.ibatis.annotations.Param;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -9,7 +11,7 @@ import java.util.List;
 public interface ViewRouterMapper {
 
     //增加一条旅游路线
-    int insert(ViewRouter viewRouter);
+    int insert(@Param("viewId") Integer viewId, @Param("routerLine") String routerLine);
 
     //删除指定的景点的某条旅游路线
     int delete(int routerId);

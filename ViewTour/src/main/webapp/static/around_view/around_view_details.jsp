@@ -353,17 +353,17 @@
         for (let i = 0; i < data.length; i++) {
             let con = $(`
                   <tr>
-                      <td><img src="${data.arView[i].arViewImg}" class="view_img_main"></td>
-                      <td>${data.arView[i].arViewName}</td>
-                      <td>${data.arView[i].arViewPrcie}元</td>
-                      <td>${data.arView[i].arViewDesc}</td>
-                      <td>${data.arView[i].arViewAddress}</td>
-                      <td><code class="text-warning">>${data.arView[i].arViewRecommend}</code></td>
+                      <td><img src="${'${data.arView[i].arViewImg}'}" class="view_img_main"></td>
+                      <td>${'${data.arView[i].arViewName}'}</td>
+                      <td>${'$data.arView[i].arViewPrice}'}元</td>
+                      <td>${'$data.arView[i].arViewDesc}'}</td>
+                      <td>${'$data.arView[i].arViewAddress}'}</td>
+                      <td><code class="text-warning">>${'$data.arView[i].arViewRecommend}'}</code></td>
                       <td>
-                          <button type="button" class="btn btn-inverse-info btn-rounded btn-icon" onclick="showModWindow(${data.arView[i].arViewId})">
+                          <button type="button" class="btn btn-inverse-info btn-rounded btn-icon" onclick="showModWindow(${'$data.arView[i].arViewId}'})">
                               <i class="mdi mdi-table-edit"></i>
                           </button>
-                          <button type="button" class="btn btn-inverse-danger btn-rounded btn-icon" onclick="showDelWindow(${data.arView[i].arViewId})">
+                          <button type="button" class="btn btn-inverse-danger btn-rounded btn-icon" onclick="showDelWindow(${'$data.arView[i].arViewId}'})">
                               <i class="mdi mdi-delete-forever"></i>
                          </button>
                       </td>
@@ -411,26 +411,26 @@
     function arViewModifyLoad(data){
         let con = $(`
          <form class="forms-sample" action="http://localhost:8080/arViewModify" method="post">
-                        <input type="hidden" name="arViewId" value="${data.arViewId}">
+                        <input type="hidden" name="arViewId" value="${'$data.arViewId}'}">
                         <div class="form-group">
                             <label for="InputName">景点名字</label>
-                            <input type="text" name="arViewName" class="form-control" id="InputName" placeholder="name" value="${data.arViewName}">
+                            <input type="text" name="arViewName" class="form-control" id="InputName" placeholder="name" value="${'$data.arViewName}'}">
                         </div>
                         <div class="form-group">
                             <label for="InputPrice">门票价格</label>
-                            <input type="text" name="arViewPrice" class="form-control" id="InputPrice" placeholder="price" value="${data.arViewPrice}">
+                            <input type="text" name="arViewPrice" class="form-control" id="InputPrice" placeholder="price" value="${'$data.arViewPrice}'}">
                         </div>
                         <div class="form-group">
                             <label for="InputDis">距离景点</label>
-                            <input type="text" name="arViewDistance" class="form-control" id="InputDis" placeholder="distance" value="${data.arViewDistance}">
+                            <input type="text" name="arViewDistance" class="form-control" id="InputDis" placeholder="distance" value="${'$data.arViewDistance}'}">
                         </div>
                         <div class="form-group">
                             <label for="InputAddress">地址</label>
-                            <input type="text" name="arViewAddress" class="form-control" id="InputAddress" placeholder="address" value="${data.arViewAddress}">
+                            <input type="text" name="arViewAddress" class="form-control" id="InputAddress" placeholder="address" value="${'$data.arViewAddress}'}">
                         </div>
                         <div class="form-group">
                             <label for="InputRecommend">推荐指数</label>
-                            <input type="text" name="arViewRecommend" class="form-control" id="InputRecommend" placeholder="recommend" value="${data.arViewRecommend}">
+                            <input type="text" name="arViewRecommend" class="form-control" id="InputRecommend" placeholder="recommend" value="${'$data.arViewRecommend}'}">
                         </div>
                         <hr>
                         <div style="text-align: right;display: inline-block;">
@@ -464,7 +464,7 @@
                             <hr>
                             <div style="text-align: right">
                                 <button class="btn_sub btn btn-inverse-info btn-fw"  onclick="closeDelWindow()">取消</button>
-                                <button class="btn_sub btn btn-inverse-success btn-fw"  onclick="DeleteArView(${arViewId})">确 定</button>
+                                <button class="btn_sub btn btn-inverse-success btn-fw"  onclick="DeleteArView(${'$arViewId}'})">确 定</button>
                             </div>
                         </div>
                     </div>

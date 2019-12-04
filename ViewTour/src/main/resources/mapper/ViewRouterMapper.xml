@@ -3,10 +3,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.memory.mapper.ViewRouterMapper">
 
+    <resultMap id="BaseResultMap" type="com.memory.pojo.ViewRouter">
+        <id column="router_id" property="routerId"/>
+        <result column="view_id" property="viewId"/>
+        <result column="router_line" property="routerLine"/>
+        <result column="router_recommend" property="routerRecommend"/>
+    </resultMap>
+
     <insert id="insert" parameterType="com.memory.pojo.ViewRouter">
-        insert into view_router (router_id, view_id, router_line, router_recommend)
-        values (#{routerId,jdbcType=INTEGER}, #{viewId,jdbcType=INTEGER}, #{routerLine,jdbcType=VARCHAR},
-                #{routerRecommend,jdbcType=VARCHAR})
+        insert into view_router (view_id, router_line)
+        values (#{viewId,jdbcType=INTEGER}, #{routerLine,jdbcType=VARCHAR})
     </insert>
 
     <delete id="delete" parameterType="int">
@@ -44,7 +50,7 @@
     <!--    </update>-->
 
 
-    <select id="findByViewId" parameterType="int" resultType="com.memory.pojo.ViewRouter">
+    <select id="findByViewId" parameterType="int" resultMap="BaseResultMap">
         select *
         from view_router
         where view_id = #{viewId}
@@ -54,7 +60,7 @@
         set router_line = #{routerLine,jdbcType=VARCHAR}
         where router_id = #{routerId}
     </update>
-    <select id="findByRouterId" resultType="com.memory.pojo.ViewRouter">
+    <select id="findByRouterId" resultMap="BaseResultMap">
         select *
         from view_router
         where router_id = #{routerId,jdbcType=INTEGER}

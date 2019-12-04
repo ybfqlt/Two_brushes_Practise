@@ -7,44 +7,53 @@
     <link rel="stylesheet" href="../../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="../../css/style.css">
-    <link rel="shortcut icon" href="../../images/favicon.png" />
+    <link rel="shortcut icon" href="../../images/favicon.png"/>
     <script src="../../js/jquery-3.3.1.min.js"></script>
     <style>
         .navbar.default-layout-navbar .navbar-brand-wrapper .navbar-brand img {
             width: 200px;
             height: 65px;
         }
+
         .table th, .table td {
             vertical-align: middle;
             font-size: 0.875rem;
             line-height: 1.5;
             min-width: 90px;
         }
-        .table th:nth-child(5), .table td:nth-child(5){
+
+        .table th:nth-child(5), .table td:nth-child(5) {
             text-align: center;
         }
-        .grid-margin .card .view_img_main{
+
+        .grid-margin .card .view_img_main {
             width: 50px;
             height: 50px;
             border-radius: 5px;
         }
+
         .table-bordered thead th {
             text-align: center;
         }
+
         .table-bordered tbody td {
             text-align: center;
         }
+
         .btn.btn-fw {
             min-width: 75px;
         }
+
         .btn {
             padding: 0.5rem;
         }
-        a:hover{
+
+        a:hover {
             text-decoration: none;
             color: white;
         }
-        #cover_add{
+
+        #cover_add {
             width: 100%;
             height: 100%;
             background: #000;
@@ -56,29 +65,33 @@
             display: none;
             z-index: 2
         }
-        #alert_add{
+
+        #alert_add {
             width: 100%;
             margin: 0 auto;
             height: 9.5rem;
             border: 1px solid #999;
             display: none;
-            position:fixed;
+            position: fixed;
             top: 40%;
             left: 10%;
             z-index: 3;
             background: transparent;
         }
-        #exampleTextarea1{
+
+        #exampleTextarea1 {
             text-align: left;
         }
     </style>
 </head>
 <body>
 <div class="container-scroller">
-    <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style=" border-bottom: 1px solid #cccccc;">
+    <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row"
+         style=" border-bottom: 1px solid #cccccc;">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
             <a class="navbar-brand brand-logo" href="../../index.jsp"><img src="../../images/logo.png" alt="logo"/></a>
-            <a class="navbar-brand brand-logo-mini" href="../../index.jsp"><img src="../images/logo-mini.svg" alt="logo"/></a>
+            <a class="navbar-brand brand-logo-mini" href="../../index.jsp"><img src="../images/logo-mini.svg"
+                                                                                alt="logo"/></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
             <div class="search-field d-none d-md-block">
@@ -93,7 +106,8 @@
             </div>
             <ul class="navbar-nav navbar-nav-right">
                 <li class="nav-item nav-profile dropdown">
-                    <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown"
+                       aria-expanded="false">
                         <div class="nav-profile-img">
                             <img src="../../images/faces/face1.jpg" alt="image">
                             <span class="availability-status online"></span>
@@ -120,11 +134,13 @@
                     </a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#"
+                       data-toggle="dropdown" aria-expanded="false">
                         <i class="mdi mdi-email-outline"></i>
                         <span class="count-symbol bg-warning"></span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
+                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                         aria-labelledby="messageDropdown">
                         <h6 class="p-3 mb-0">消息中心</h6>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item preview-item">
@@ -160,7 +176,8 @@
                     </a>
                 </li>
             </ul>
-            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                    data-toggle="offcanvas">
                 <span class="mdi mdi-menu"></span>
             </button>
         </div>
@@ -188,16 +205,17 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="../../static/view/list_view.jsp" aria-expanded="false" aria-controls="ui-basic">
+                    <a class="nav-link" data-toggle="collapse" href="../../static/view/list_view.jsp"
+                       aria-expanded="false" aria-controls="ui-basic">
                         <span class="menu-title">景点管理</span>
                         <i class="menu-arrow"></i>
                         <i class="mdi mdi-crosshairs-gps menu-icon"></i>
                     </a>
                     <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="../view/list_view.jsp">景点列表</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="../view/add_view.jsp">添加景点</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="../view/add_view.jsp">删改景点</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../view/list_view.jsp">景点列表</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../view/add_view.jsp">添加景点</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../view/add_view.jsp">删改景点</a></li>
                         </ul>
                     </div>
                 </li>
@@ -241,12 +259,12 @@
                     </nav>
                 </div>
                 <div class="col-lg-12 grid-margin stretch-card" style="padding: 0;">
-                    <div class="card" >
+                    <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">景点路线管理</h4>
                             <hr>
                             <table class="table">
-                                <thead >
+                                <thead>
                                 <tr>
                                     <th>图片</th>
                                     <th>项目名称</th>
@@ -273,10 +291,10 @@
     <div class="row" id="alert_add">
         <div class="col-md-5 grid-margin stretch-card" style="margin: 0 auto">
             <div class="card">
-                <div class="card-body"  id="add_router">
-                    <h4 class="card-title" >增加内容</h4>
+                <div class="card-body" id="add_router">
+                    <h4 class="card-title">增加内容</h4>
                     <hr>
-                     <!--动态加载-->
+                    <!--动态加载-->
                 </div>
             </div>
         </div>
@@ -287,40 +305,42 @@
     //TODO  获取所有景点
     $(function () {
         $.ajax({
-            type:'GET',
-            url:'http://localhost:8080/viewList',
-            data:{
-              flag:1
+            type: 'GET',
+            url: 'http://localhost:8080/viewList',
+            data: {
+                flag: 1
             },
-            dataType:"json",
-            success:function (data) {
+            dataType: "json",
+            success: function (data) {
                 loadList(data);//得到请求的页面数据  动态加载
             }
         });
     });
+
     //加载 景点列表
     function loadList(data) {
-        for(var i=0;i<data.length;i++) {
-            let con =  $(` <tr>
-                                    <td><img src="${data[i].viewImg}" class="view_img_main"></td>
-                                    <td>${data[i].viewName}</td>
-                                    <td>${data[i].viewName}元/人</td>
-                                    <td>${data[i].viewName}</td>
+        for (let i = 0; i < data.length; i++) {
+            let con = $(` <tr>
+                                    <td><img src="${'${data[i].viewImg}'}" class="view_img_main"></td>
+                                    <td>${'${data[i].viewName}'}</td>
+                                    <td>${'${data[i].viewPrice}'}元</td>
+                                    <td>${'${data[i].viewAddress}'}</td>
                                     <td>
-                                        <a href="router_details.jsp?viewId=${data[i].viewId}"><button type="button" class="btn btn-inverse-danger btn-fw">查看</button></a>
-                                        <button type="button" class="btn btn-inverse-success btn-fw" onclick="showAddWindow(${data[i].viewId})">增加</button>
+                                        <a href="router_details.jsp?viewId=${'${data[i].viewId}'}"><button type="button" class="btn btn-inverse-danger btn-fw">查看</button></a>
+                                        <button type="button" class="btn btn-inverse-success btn-fw" onclick="showAddWindow(${'${data[i].viewId}'})">增加</button>
                                     </td>
                                 </tr>`);
             $('#view_list_all').append(con);
         }
     }
+
     //加载 弹框 TODO 表单提交  增加内容  后台重定向 刷新当前页面
     function loadAddAlert(viewId) {
-        let con =  $(`<form class="forms-sample" action="http://localhost:8080/routerAdd" method="post" >
-                        <input type="hidden" name="viewId" value="${viewId}">
+        let con = $(`<form class="forms-sample" action="http://localhost:8080/routerAdd" method="post" >
+                        <input type="hidden" name="viewId" value="${'${viewId}'}">
                         <div class="form-group">
                             <label for="routerLine">增加路线:</label>
-                            <textarea class="form-control" name="routerLine	" id="routerLine" rows="4"></textarea>
+                            <textarea class="form-control" name="routerLine" id="routerLine" rows="4"></textarea>
                         </div>
                         <hr>
                         <div style="text-align: right">
@@ -337,13 +357,14 @@
         console.log(viewId);
         loadAddAlert(viewId);
         $('#alert_add').show();  //显示弹窗
-        $('#cover_add').css('display','block'); //显示遮罩层
-        $('#cover_add').css('height',document.body.clientHeight+'px'); //设置遮罩层的高度为当前页面高度
+        $('#cover_add').css('display', 'block'); //显示遮罩层
+        $('#cover_add').css('height', document.body.clientHeight + 'px'); //设置遮罩层的高度为当前页面高度
     }
+
     // 关闭增加弹窗
     function closeAddWindow() {
         $('#alert_add').hide();  //隐藏弹窗
-        $('#cover_add').css('display','none');   //显示遮罩层
+        $('#cover_add').css('display', 'none');   //显示遮罩层
     }
 </script>
 </body>

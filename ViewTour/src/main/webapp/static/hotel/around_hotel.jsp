@@ -300,14 +300,14 @@
         for(let i=0;i<data.length;i++) {
             let con =  $(`
                             <tr>
-                                <td><img src="${data[i].viewImg}" class="view_img_main"></td>
-                                <td>${data[i].viewName}</td>
+                                <td><img src="${'${data[i].viewImg}'}" class="view_img_main"></td>
+                                <td>${'${data[i].viewName}'}</td>
 
-                                <td>${data[i].viewPrice}元</td>
-                                <td>${data[i].viewAddress}</td>
+                                <td>${'${data[i].viewPrice}'}元</td>
+                                <td>${'${data[i].viewAddress}'}</td>
                                 <td>
-                                     <a href="hotel_details.jsp?viewId=${data[i].viewId}"><button type="button" class="btn btn-inverse-info btn-fw">住宿</button></a>
-                                     <button type="button" class="btn btn-inverse-success btn-fw" onclick="showAddWindow(${data[i].viewId})">增加</button>
+                                     <a href="hotel_details.jsp?viewId=${'${data[i].viewId}'}"><button type="button" class="btn btn-inverse-info btn-fw">住宿</button></a>
+                                     <button type="button" class="btn btn-inverse-success btn-fw" onclick="showAddWindow(${'${data[i].viewId}'})">增加</button>
                                 </td>
                            </tr>`);
             $('#view_list_all').append(con);
@@ -316,7 +316,7 @@
     //增加的弹框加载
     function hotelAddLoad(data) {
         let con = $(`<form class="forms-sample" action="http://localhost:8080/hotelAdd" method="post">
-                        <input type="hidden" name="viewId" value="${data}">
+                        <input type="hidden" name="viewId" value="${'${data}'}">
                         <div class="form-group">
                             <label for="InputName">酒店名字</label>
                             <input type="text" name="HotelName" class="form-control" id="InputName" placeholder="name" value="">

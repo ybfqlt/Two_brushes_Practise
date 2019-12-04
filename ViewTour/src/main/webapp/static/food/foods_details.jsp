@@ -343,20 +343,20 @@
     });
     //  所有周边美食列表加载
     function foodListLoad(data) {
-        $('#view_name').text(`${data.viewName}`);
+        $('#view_name').text(`${'${data.viewName}'}`);
         for (let i = 0; i < data.food.length; i++) {
             let con = $(`  <tr>
-                               <td><img src="${data.food[i].foodImg}" class="view_img_main"></td>
-                               <td><a href="food_info.jsp?foodId=${data.food[i].foodId}">${data.food[i].foodName}</a></td>
-                               <td>${data.food[i].foodPrice}元</td>
-                               <td>${data.food[i].foodDistance}</td>
-                               <td>${data.food[i].foodAddress}</td>
-                               <td><code class="text-warning">${data.food[i].foodRecommend}</code></td>
+                               <td><img src="${'${data.food[i].foodImg}'}" class="view_img_main"></td>
+                               <td><a href="food_info.jsp?foodId=${'${data.food[i].foodId}'}">${'${data.food[i].foodName}'}</a></td>
+                               <td>${'${data.food[i].foodPrice}'}元</td>
+                               <td>${'${data.food[i].foodDistance}'}</td>
+                               <td>${'${data.food[i].foodAddress}'}</td>
+                               <td><code class="text-warning">${'${data.food[i].foodRecommend}'}</code></td>
                                <td>
-                               <button type="button" class="btn btn-inverse-info btn-rounded btn-icon" onclick="showModWindow(${data.food[i].foodId})">
+                               <button type="button" class="btn btn-inverse-info btn-rounded btn-icon" onclick="showModWindow(${'${data.food[i].foodId}'})">
                                    <i class="mdi mdi-table-edit"></i>
                                </button>
-                               <button type="button" class="btn btn-inverse-danger btn-rounded btn-icon" onclick="showDelWindow(${data.food[i].foodId})">
+                               <button type="button" class="btn btn-inverse-danger btn-rounded btn-icon" onclick="showDelWindow(${'${data.food[i].foodId}'})">
                                    <i class="mdi mdi-delete-forever"></i>
                                </button>
                                </td>
@@ -403,7 +403,7 @@
     //修改 弹窗的加载
     function FoodModifyLoad(data) {
         let con = $(`<form class="forms-sample" action="http://localhost:8080/foodModify" method="post">
-                        <input type="hidden" name="foodId" value="${data.foodId}">
+                        <input type="hidden" name="foodId" value="${'${data.foodId}'}">
                         <div class="form-group">
                             <label for="InputName">美食名字</label>
                             <input type="text" name="foodName" class="form-control" id="InputName" placeholder="name" value="${data.foodName}">
@@ -447,7 +447,7 @@
                     <hr>
                     <div style="text-align: right">
                         <button class="btn_sub btn btn-inverse-info btn-fw"  onclick="closeDelWindow()">取消</button>
-                        <button class="btn_sub btn btn-inverse-success btn-fw"  onclick="DeleteFood(${foodId})">确 定</button>
+                        <button class="btn_sub btn btn-inverse-success btn-fw"  onclick="DeleteFood(${'${foodId}'})">确 定</button>
                     </div>
                 </div>
             </div>

@@ -260,7 +260,7 @@
     });
     //加载介绍部分
     function container_load(data) {
-        let con = $(`   <h4 class="card-title text-info">${data.viewName}</h4>
+        let con = $(`   <h4 class="card-title text-info">${'${data.viewName}'}</h4>
                 <h4 style="float: right;position: relative;top: -10%;"><a href="javascript:history.back(-1)">返回</a></h4>
                 <hr>
                 <div class="desc_more">

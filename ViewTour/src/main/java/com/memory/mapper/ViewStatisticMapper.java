@@ -4,6 +4,7 @@ import com.memory.pojo.ViewRouter;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 /**
@@ -20,4 +21,7 @@ public interface ViewStatisticMapper {
 
     //对应加１
     int increse(@Param("viewId") Integer viewId,@Param("flag") Integer flag);
+
+    //对应减1
+    int decrease(@Param("viewId") Integer viewId,@Param("flag") Integer flag);
 }

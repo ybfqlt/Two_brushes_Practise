@@ -2,7 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.memory.mapper.ViewFoodMapper">
 
-    <insert id="insert" parameterType="com.memory.pojo.ViewFood">
+    <resultMap id="BaseResultMap" type="com.memory.pojo.ViewFood">
+        <id column="food_id" property="foodId"/>
+        <result column="view_id" property="viewId"/>
+        <result column="food_name" property="foodName"/>
+        <result column="food_price" property="foodPrice"/>
+        <result column="food_distance" property="foodDistance"/>
+        <result column="food_address" property="foodAddress"/>
+        <result column="food_hot" property="foodHot"/>
+        <result column="food_desc" property="foodDesc"/>
+        <result column="food_chinese_name" property="foodChineseName"/>
+        <result column="food_locate" property="foodLocate"/>
+        <result column="food_taste" property="foodTaste"/>
+        <result column="food_origin" property="foodOrigin"/>
+        <result column="food_recommend" property="foodRecommend"/>
+        <result column="food_img" property="foodImg"/>
+    </resultMap>
+
+    <insert id="insert" >
         insert into view_food (food_id, view_id, food_name,
                                food_price, food_distance, food_address,
                                food_hot, food_desc, food_chinese_name,
@@ -76,11 +93,11 @@
         where food_id = #{foodId}
     </select>
 
-    <select id="findAll" resultType="com.memory.pojo.ViewFood">
+    <select id="findAll" resultMap="BaseResultMap">
         select *
         from view_food
     </select>
-    <select id="findByViewId" resultType="com.memory.pojo.ViewFood">
+    <select id="findByViewId" resultMap="BaseResultMap">
         select *
         from view_food
         where view_id = #{viewId,jdbcType=INTEGER}

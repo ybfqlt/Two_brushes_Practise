@@ -99,7 +99,7 @@
     <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style=" border-bottom: 1px solid #cccccc;">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
             <a class="navbar-brand brand-logo" href="../../index.jsp"><img src="../../images/logo.png" alt="logo"/></a>
-            <a class="navbar-brand brand-logo-mini" href="../../index.jsp"><img src="../images/logo-mini.svg" alt="logo"/></a>
+            <a class="navbar-brand brand-logo-mini" href="../../index.jsp"></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
             <div class="search-field d-none d-md-block">
@@ -336,17 +336,17 @@
     });
     //加载 路线列表
     function loadList(data) {
-        $('#view_name').text(`${data.viewName}`);
+        $('#view_name').text(`${'${data.viewName}'}`);
         for (let i = 0; i < data.router.length; i++) {
             let con = $(`  <tr>
-                                  <th>${i}</th>
-                                  <td>${data.router[i].routerLine}</td>
-                                  <td><label class="badge badge-warning">${data.router[i].routeRecommend}</label></td>
+                                  <th>${'${i}'}</th>
+                                  <td>${'${data.router[i].routerLine}'}</td>
+                                  <td><label class="badge badge-success">${'${data.router[i].routerRecommend}'}</label></td>
                                   <td>
-                                      <button type="button" class="btn btn-inverse-info btn-rounded btn-icon" onclick="showModWindow(${data.router[i].routerId})">
+                                      <button type="button" class="btn btn-inverse-info btn-rounded btn-icon" onclick="showModWindow(${'${data.router[i].routerId}'})">
                                           <i class="mdi mdi-table-edit"></i>
                                       </button>
-                                      <button type="button" class="btn btn-inverse-danger btn-rounded btn-icon" onclick="showDelWindow(${data.router[i].routerId})">
+                                      <button type="button" class="btn btn-inverse-danger btn-rounded btn-icon" onclick="showDelWindow(${'${data.router[i].routerId}'})">
                                           <i class="mdi mdi-delete-forever"></i>
                                       </button>
                                   </td>
@@ -368,7 +368,7 @@
                                 <hr>
                                 <div style="text-align: right">
                                     <button class="btn_sub btn btn-inverse-info btn-fw"  onclick="closeDelWindow()">取消</button>
-                                    <button class="btn_sub btn btn-inverse-success btn-fw"  onclick="deleteRouter(${routerId})">确 定</button>
+                                    <button class="btn_sub btn btn-inverse-success btn-fw"  onclick="deleteRouter(${'${routerId}'})">确 定</button>
                                 </div>
                              </div>
                         </div>
@@ -379,11 +379,11 @@
     //修改的弹框加载
     function routerModifyLoad(data) {
         let con = $(`<form class="forms-sample" action="http://localhost:8080/routerModify" method="post">
-                        <input type="hidden" name="routerId" value="${data.routerId}">
+                        <input type="hidden" name="routerId" value="${'${data.routerId}'}">
                         <div class="form-group">
                             <label for="routerLine">路线:</label>
                             <textarea class="form-control" name="routerLine" id="routerLine" rows="4">
-                                ${data.routerLine}
+                                ${'${data.routerLine}'}
                             </textarea>
                         </div>
                         <hr>

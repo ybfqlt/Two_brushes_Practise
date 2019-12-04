@@ -2,6 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.memory.mapper.ViewStatisticMapper">
+
+    <resultMap id="BaseResultMap" type="com.memory.pojo.viewStatistic">
+        <id column="view_id" jdbcType="INTEGER" property="viewId" />
+        <result column="router_count" jdbcType="VARCHAR" property="routerCount" />
+        <result column="food_count" jdbcType="VARCHAR" property="foodCount" />
+        <result column="hotel_count" jdbcType="VARCHAR" property="hotelCount" />
+        <result column="ar_view_count" jdbcType="INTEGER" property="arViewCount"/>
+    </resultMap>
+
+
     <insert id="insert" parameterType="com.memory.pojo.viewStatistic">
         insert into view_statistic (view_Id)
         values #{viewId,jdbcType=VARCHAR}
@@ -10,16 +20,34 @@
         update view_statistic
         <set>
             <if test="flag == 1">
-                router_count = router_count+1;
+                router_count = router_count+1
             </if>
             <if test="flag == 2">
-                food_count = food_count+1;
+                food_count = food_count+1
             </if>
             <if test="flag == 3">
-                ar_view_count = ar_view_count+1;
+                ar_view_count = ar_view_count+1
             </if>
             <if test="flag == 4">
-                hotel_count = hotel_count+1;
+                hotel_count = hotel_count+1
+            </if>
+        </set>
+        where view_id = #{viewId,jdbcType=INTEGER}
+    </update>
+    <update id="decrease">
+        update view_statistic
+        <set>
+            <if test="flag == 1">
+                router_count = router_count-1
+            </if>
+            <if test="flag == 2">
+                food_count = food_count-1
+            </if>
+            <if test="flag == 3">
+                ar_view_count = ar_view_count-1
+            </if>
+            <if test="flag == 4">
+                hotel_count = hotel_count-1
             </if>
         </set>
         where view_id = #{viewId,jdbcType=INTEGER}

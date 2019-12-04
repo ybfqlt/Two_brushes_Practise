@@ -21,17 +21,20 @@ public class ViewPointServiceImpl implements ViewPointService {
     @Autowired
     ViewPointMapper viewPointMapper;
 
+    /**
+     * 景点列表
+     * @param flag
+     * @return
+     */
     @Override
     public List<ViewPoint> getAllView(Integer flag) {
         List<ViewPoint> lists = new ArrayList<>();
         switch (flag){
             case 1:
                lists = viewPointMapper.findAllByRouter();
-               System.out.println(lists);
                break;
             case 2:
                 lists = viewPointMapper.findAllByFood();
-                System.out.println(lists);
                 break;
             case 3:
                 lists = viewPointMapper.findAllByArView();

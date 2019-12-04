@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 
 import java.util.HashMap;
 import java.util.List;
@@ -41,13 +42,15 @@ public class RouterController {
 
     /**
      * 增加路线
-     * @param viewRouter
+     * @param viewId
+     * @param routerLine
      * @return
      */
     @PostMapping("/routerAdd")
-    public ModelAndView addRouter(ViewRouter viewRouter){
-        Result res = routerService.addRouter(viewRouter);
-        ModelAndView modelAndView = new ModelAndView("redirect:static/router/router_curd.jsp");
+    public ModelAndView addRouter(@RequestParam("viewId") Integer viewId,@RequestParam("routerLine") String routerLine){
+        System.out.println(viewId+""+routerLine);
+        Result res = routerService.addRouter(viewId,routerLine);
+        ModelAndView modelAndView = new ModelAndView("redirect:static/router/router_details.jsp?viewId="+viewId);
         modelAndView.addObject(res);
         return modelAndView;
     }
@@ -71,7 +74,7 @@ public class RouterController {
     @PostMapping("/routerModify")
     public ModelAndView modifyRouter(ViewRouter viewRouter){
         Result res = routerService.modifyRouter(viewRouter);
-        ModelAndView modelAndView = new ModelAndView("redirect:static/router_curd_details.jsp");
+        ModelAndView modelAndView = new ModelAndView("redirect:static/router/router_details.jsp?viewId="+((ViewRouter)res.getData()).getViewId());
         modelAndView.addObject(res);
         return modelAndView;
     }

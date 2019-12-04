@@ -352,17 +352,17 @@
         $('#view_name').text(`${data.viewName}`);
         for(var i=0;i<data.hotel.length;i++) {
         let con = $(` <tr>
-                          <td><img src="${data.hotel[i].hotelImg}" class="view_img_main"></td>
-                          <td>${data.hotel[i].hotelName}</td>
-                          <td>${data.hotel[i].hotelPrice	}</td>
-                          <td>${data.hotel[i].hotelDistance}</td>
-                          <td>${data.hotel[i].hotelAddress}</td>
-                          <td><code class="text-danger">${data.hotel[i].hotelScore}</code>/5分</td>
+                          <td><img src="${'${data.hotel[i].hotelImg}'}" class="view_img_main"></td>
+                          <td>${'${data.hotel[i].hotelName}'}</td>
+                          <td>${'${data.hotel[i].hotelPrice	}'}</td>
+                          <td>${'${data.hotel[i].hotelDistance}'}</td>
+                          <td>${'${data.hotel[i].hotelAddress}'}</td>
+                          <td><code class="text-danger">${'${data.hotel[i].hotelScore}'}</code>/5分</td>
                           <td>
-                          <button type="button" class="btn btn-inverse-info btn-rounded btn-icon" onclick="showModWindow(${data.hotel[i].hotelId})">
+                          <button type="button" class="btn btn-inverse-info btn-rounded btn-icon" onclick="showModWindow(${'${data.hotel[i].hotelId}'})">
                                <i class="mdi mdi-table-edit"></i>
                           </button>
-                          <button type="button" class="btn btn-inverse-danger btn-rounded btn-icon" onclick="showDelWindow(${data.hotel[i].hotelId})">
+                          <button type="button" class="btn btn-inverse-danger btn-rounded btn-icon" onclick="showDelWindow(${'${data.hotel[i].hotelId}'})">
                                <i class="mdi mdi-delete-forever"></i>
                            </button>
                           </td>
@@ -410,26 +410,26 @@
     //修改弹窗的加载
     function hotelModifyLoad(data){
         let con = $(`<form class="forms-sample" action="http://localhost:8080/hotelModify" method="post">
-                        <input type="hidden" name="hotelId" value="${data.hotelId}">
+                        <input type="hidden" name="hotelId" value="${'${data.hotelId}'}">
                         <div class="form-group">
                             <label for="InputName">酒店名字</label>
-                            <input type="text" name="hotelName" class="form-control" id="InputName" placeholder="name" value="${data.hotelName}">
+                            <input type="text" name="hotelName" class="form-control" id="InputName" placeholder="name" value="${'${data.hotelName}'}">
                         </div>
                         <div class="form-group">
                             <label for="InputPrice">价格</label>
-                            <input type="text" name="hotelPrice"   class="form-control" id="InputPrice" placeholder="price" value="${data.hotelPrice}">
+                            <input type="text" name="hotelPrice"   class="form-control" id="InputPrice" placeholder="price" value="${'${data.hotelPrice}'}">
                         </div>
                         <div class="form-group">
                             <label for="InputDis">距离景点</label>
-                            <input type="text" name="hotelDistance"  class="form-control" id="InputDis" placeholder="distance" value="${data.hotelDistance}">
+                            <input type="text" name="hotelDistance"  class="form-control" id="InputDis" placeholder="distance" value="${'${data.hotelDistance}'}">
                         </div>
                         <div class="form-group">
                             <label for="InputAddress">地址</label>
-                            <input type="text" name="hotelAddress"  class="form-control" id="InputAddress" placeholder="address" value="${data.hotelAddress}">
+                            <input type="text" name="hotelAddress"  class="form-control" id="InputAddress" placeholder="address" value="${'${data.hotelAddress}'}">
                         </div>
                         <div class="form-group">
                             <label for="InputRecommend">评分</label>
-                            <input type="text" name="hotelScore"  class="form-control" id="InputRecommend" placeholder="recommend" value="${data.hotelScore}">
+                            <input type="text" name="hotelScore"  class="form-control" id="InputRecommend" placeholder="recommend" value="${'${data.hotelScore}'}">
                         </div>
                         <hr>
                         <div style="text-align: right;display: inline-block;">
@@ -455,7 +455,7 @@
                                 <hr>
                                 <div style="text-align: right">
                                     <button class="btn_sub btn btn-inverse-info btn-fw"  onclick="closeDelWindow()">取消</button>
-                                    <button class="btn_sub btn btn-inverse-success btn-fw"  onclick="DeleteHotel(${hotelId})">确 定</button>
+                                    <button class="btn_sub btn btn-inverse-success btn-fw"  onclick="DeleteHotel(${'${hotelId}'})">确 定</button>
                                 </div>
                             </div>
                          </div>

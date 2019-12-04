@@ -245,30 +245,30 @@
 
     function container_load(data) {
         let con = $(`
-                        <h4 class="card-title text-info">${data.foodName}</h4>
+                        <h4 class="card-title text-info">${'${data.foodName}'}</h4>
                         <h4 style="float: right;position: relative;top: -15%;"><a href="javascript:history.back(-1)">返回</a></h4>
                         <hr>
                         <div class="desc_more">
                             <h5>美食介绍</h5>
                             <blockquote class="blockquote">
                                 <p class="mb-0">
-                                   ${data.foodDesc}
+                                   ${'${data.foodDesc}'}
                                 </p>
                             </blockquote>
                         </div>`);
         $('#food_content').append(con);
         let con1 = $(`
-                        <img src="${data.foodImg}" width="300" href="200">
+                        <img src="${'${data.foodImg}'}" width="300" href="200">
                         <div class="col-md-8 grid-margin stretch-card" style="display: inline-block;position: absolute;top: 16%;">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">${data.foodName}</h4>
+                                    <h4 class="card-title">${'${data.foodName}'}</h4>
                                     <hr>
                                     <ul class="list-ticked">
-                                        <li>中文名 &nbsp;&nbsp;${data.foodChineseName}</li>
-                                        <li>地 方 &nbsp;&nbsp;${data.foodLocate}</li>
-                                        <li>口 味&nbsp;&nbsp;${data.foodTaste}</li>
-                                        <li>最 早&nbsp;&nbsp;${data.foodOrigin}</li>
+                                        <li>中文名 &nbsp;&nbsp;${'${data.foodChineseName}'}</li>
+                                        <li>地 方 &nbsp;&nbsp;${'${data.foodLocate}'}</li>
+                                        <li>口 味&nbsp;&nbsp;${'${data.foodTaste}'}</li>
+                                        <li>最 早&nbsp;&nbsp;${'${data.foodOrigin}'}</li>
                                     </ul>
                                 </div>
                             </div>

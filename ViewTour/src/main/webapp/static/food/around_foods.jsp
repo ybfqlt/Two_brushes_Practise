@@ -298,13 +298,13 @@
     function viewListLoad(data) {
         for(let i=0;i<data.length;i++){
             let con =$(` <tr>
-                              <td><img src="${data[i].viewImg}" class="view_img_main"></td>
-                              <td>${data[i].viewName}</td>
-                              <td>${data[i].viewPrice}元</td>
-                              <td>${data[i].viewAddress}</td>
+                              <td><img src="${'${data[i].viewImg}'}" class="view_img_main"></td>
+                              <td>${'${data[i].viewName}'}</td>
+                              <td>${'${data[i].viewPrice}'}元</td>
+                              <td>${'${data[i].viewAddress}'}</td>
                               <td>
-                                   <a href="food_details.jsp?viewId=${data[i].viewId}""><button type="button" class="btn btn-inverse-info btn-fw">景点</button></a>
-                                   <button type="button" class="btn btn-inverse-success btn-fw" onclick="showAddWindow(${data[i].viewId})">增加</button>
+                                   <a href="food_details.jsp?viewId=${'${data[i].viewId}'}""><button type="button" class="btn btn-inverse-info btn-fw">景点</button></a>
+                                   <button type="button" class="btn btn-inverse-success btn-fw" onclick="showAddWindow(${'${data[i].viewId}'})">增加</button>
                               </td>
                          </tr>`);
             $('#around_view_list').append(con);
@@ -314,7 +314,7 @@
     function foodAddLoad(data) {
         let con = $(`
                     <form class="forms-sample" action="http://localhost:8080/foodAdd" method="post">
-                        <input type="hidden" name="viewId" value="${data}">
+                        <input type="hidden" name="viewId" value="${'${data}'}">
                         <div class="form-group">
                             <label for="InputName">美食名字</label>
                             <input type="text" name="foodName" class="form-control" id="InputName" placeholder="name" value="">

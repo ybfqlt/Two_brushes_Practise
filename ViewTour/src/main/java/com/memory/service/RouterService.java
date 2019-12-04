@@ -16,10 +16,11 @@ public interface RouterService {
 
     /**
      * 增加路线
-     * @param viewRouter
+     * @param viewId
+     * @param routerLine
      * @return
      */
-    Result addRouter(ViewRouter viewRouter);
+    Result addRouter(Integer viewId,String routerLine);
 
     /**
      * 获取所有路线

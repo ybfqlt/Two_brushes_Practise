@@ -38,9 +38,9 @@ public class RouterServiceImpl implements RouterService {
      * @return
      */
     @Override
-    public Result addRouter(ViewRouter viewRouter) {
-        if(viewRouterMapper.insert(viewRouter)!=0) {
-            viewStatisticMapper.increse(viewRouter.getViewId(),1);
+    public Result addRouter(Integer viewId,String routerLine) {
+        if(viewRouterMapper.insert(viewId,routerLine)!=0) {
+            viewStatisticMapper.increse(viewId,1);
             return new Result(true, "添加成功", null);
         }else{
             return new Result(false,"添加失败",null);
@@ -70,9 +70,11 @@ public class RouterServiceImpl implements RouterService {
     @Override
     public Result modifyRouter(ViewRouter viewRouter) {
         if(viewRouterMapper.update(viewRouter)!=0) {
-            return new Result(true, "修改成功", null);
+            viewRouter = viewRouterMapper.findByRouterId(viewRouter.getRouterId());
+            return new Result(true, "修改成功", viewRouter);
         }else{
-            return new Result(false,"修改失败",null);
+            viewRouter = viewRouterMapper.findByRouterId(viewRouter.getRouterId());
+            return new Result(false,"修改失败",viewRouter);
         }
     }
 
@@ -83,11 +85,13 @@ public class RouterServiceImpl implements RouterService {
      */
     @Override
     public Result deleteRouter(Integer routerId) {
+        ViewRouter viewRouter = viewRouterMapper.findByRouterId(routerId);
         if(viewRouterMapper.delete(routerId)!=0){
-            return new Result(true,"删除成功",null);
+            viewStatisticMapper.decrease(viewRouter.getViewId(),1);
+            return new Result(true,"删除成功",viewRouter);
         }
         else{
-            return new Result(false,"删除失败",null);
+            return new Result(false,"删除失败",viewRouter);
         }
     }
 
