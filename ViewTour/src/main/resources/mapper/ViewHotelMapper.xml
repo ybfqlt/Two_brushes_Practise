@@ -60,10 +60,10 @@
             <if test="hotelAddress!=null">
                 hotel_address=#{hotelAddress,jdbcType=VARCHAR},
             </if>
-            <if test="hotel_score!=null">
+            <if test="hotelScore!=null">
                 hotel_score=#{hotelScore,jdbcType=VARCHAR},
             </if>
-            hotelId=#{hotelId}
+            hotelId= #{hotelId,jdbcType=INTEGER}
         </set>
         where hotelId = #{hotelId}
     </update>

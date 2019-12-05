@@ -303,7 +303,7 @@
                               <td>${'${data[i].viewPrice}'}元</td>
                               <td>${'${data[i].viewAddress}'}</td>
                               <td>
-                                   <a href="food_details.jsp?viewId=${'${data[i].viewId}'}""><button type="button" class="btn btn-inverse-info btn-fw">景点</button></a>
+                                   <a href="foods_details.jsp?viewId=${'${data[i].viewId}'}"><button type="button" class="btn btn-inverse-info btn-fw">景点</button></a>
                                    <button type="button" class="btn btn-inverse-success btn-fw" onclick="showAddWindow(${'${data[i].viewId}'})">增加</button>
                               </td>
                          </tr>`);

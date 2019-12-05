@@ -266,7 +266,7 @@
                     <div class="card" >
                         <div class="card-body">
                             <h4 class="card-title">所有推荐路线</h4>
-                            <h4 style="float: right;position: relative;top: -5%;"><a href="javascript:history.back(-1)">返回</a></h4>
+                            <h4 style="float: right;position: relative;top: -4%;"><a href="javascript:history.back(-1)">返回</a></h4>
                             <hr>
                             <div class="col-lg-12 grid-margin stretch-card">
                                 <div class="card">
@@ -341,7 +341,7 @@
             let con = $(`  <tr>
                                   <th>${'${i}'}</th>
                                   <td>${'${data.router[i].routerLine}'}</td>
-                                  <td><label class="badge badge-success">${'${data.router[i].routerRecommend}'}</label></td>
+                                  <td><label class="text-success">${'${data.router[i].routerRecommend}'}</label></td>
                                   <td>
                                       <button type="button" class="btn btn-inverse-info btn-rounded btn-icon" onclick="showModWindow(${'${data.router[i].routerId}'})">
                                           <i class="mdi mdi-table-edit"></i>
@@ -406,7 +406,7 @@
             },
             success:function () {
                 closeDelWindow(); //关闭弹窗
-                //TODO  后台重定向 刷新当前页面
+                window.location.reload();
             }
         });
     }

@@ -73,7 +73,7 @@
             border: 1px solid #999;
             display: none;
             position: fixed;
-            top: 40%;
+            top: 30%;
             left: 10%;
             z-index: 3;
             background: transparent;
@@ -342,9 +342,13 @@
                             <label for="routerLine">增加路线:</label>
                             <textarea class="form-control" name="routerLine" id="routerLine" rows="4"></textarea>
                         </div>
+                         <div class="form-group">
+                            <label for="routerRecommend">推荐指数:</label>
+                            <input class="form-control" name="routerRecommend" id="routerLine" rows="4"/>
+                        </div>
                         <hr>
                         <div style="text-align: right">
-                            <button class="btn_sub btn btn-inverse-info btn-fw"  onclick="closeAddWindow()">取消</button>
+                            <button type="button" class="btn btn-inverse-info btn-fw"  onclick="closeAddWindow()">取消</button>
                             <button type="submit" class="btn_sub btn btn-inverse-success btn-fw" >确 定</button>
                         </div>
                     </form>`);
@@ -362,9 +366,10 @@
     }
 
     // 关闭增加弹窗
-    function closeAddWindow() {
+    function closeAddWindow(event) {
         $('#alert_add').hide();  //隐藏弹窗
         $('#cover_add').css('display', 'none');   //显示遮罩层
+        return false;
     }
 </script>
 </body>
