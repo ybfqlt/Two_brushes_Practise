@@ -1,6 +1,5 @@
 package cc.openhome;
 
-import javax.jws.WebService;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -10,30 +9,45 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @Classname Login
+ * @Classname Index
  * @Description TODO
  * @Date 19-7-20 下午3:04
  * @Created by xns
  */
-/*@WebServlet("/login.do")
+@WebServlet("/login")
 public class Login extends HttpServlet {
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        String user = request.getParameter("user");
-        String passwd = request.getParameter("passwd");
-        if("caterpillar".equals(user) && "123456".equals(passwd)){
-            *//*String login = request.getParameter("login");
-            if("auto".equals(login)){
-                Cookie cookie = new Cookie("user","caterpillar");
-                cookie.setMaxAge(7*24*60*60);
-                response.addCookie(cookie);
-            }
-            request.setAttribute("user",user);*//*
-            request.getSession().setAttribute("login",user);
-            request.getRequestDispatcher("user.view").forward(request,response);
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getSession().invalidate();
+        String name = request.getParameter("name");
+        String password = request.getParameter("password");
+        String page = "index.jsp";
+        if ((name == null) && (password == null)) {
+            request.setAttribute("mes", "用户名，密码错误");
+        } else if (name == null) {
+            request.setAttribute("mes", "用户名错误");
+        }else if(password == null){
+            request.setAttribute("mes","密码错误");
+        }else if(name.equals("aaa") && password.equals("aaa")){
+            request.setAttribute("name",name);
+            request.getSession().setAttribute("login",true);
+            request.getSession().setAttribute("a",true);
+            page = "directory.jsp";
+        }else if(name.equals("bbb") && password.equals("bbb")){
+            request.setAttribute("name",name);
+            request.getSession().setAttribute("login",true);
+            request.getSession().setAttribute("b",true);
+            page = "directory.jsp";
         }
-        else{
-            response.sendRedirect("login.html");
-        }
+        request.getRequestDispatcher(page).forward(request,response);
     }
-}*/
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        processRequest(request, response);
+    }
+}
