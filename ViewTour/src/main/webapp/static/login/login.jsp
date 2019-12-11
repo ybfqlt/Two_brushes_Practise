@@ -128,7 +128,7 @@
                             <img src="../../images/logo.png">
                         </div>
                         <h4>Hello! let's get started</h4>
-                        <form class="pt-3" action="http://localhost:8080/login" method="post">
+                        <form class="pt-3" action="http://localhost:8080/login" method="post" onsubmit=" return checkForm()">
                             <div class="form-group">
                                 <input type="text" value="" name="userName" class="form-control form-control-lg" id="userName" placeholder="Username">
                                 <span id="usernameMessage"></span>
@@ -138,7 +138,7 @@
                                 <span id="passwordMessage"></span>
                             </div>
                             <div class="mt-3">
-                                <input type="submit" onclick="checkForm()" value="登录" class="btn btn-block btn-gradient-danger btn-lg font-weight-medium auth-form-btn"/>
+                                <input type="submit" value="登录" class="btn btn-block btn-gradient-danger btn-lg font-weight-medium auth-form-btn"/>
                             </div>
                             <div class="text-left mt-4 font-weight-light">
                                 未注册? <a href="sign.jsp" class="text-primary" style="float: right;">去创建</a>
@@ -152,20 +152,19 @@
 </div>
 <script>
     function checkForm() {
-        var username = document.getElementById('userName').value;
-        var password = document.getElementById('passWord').value;
+        var username = document.getElementById('userName');
+        var password = document.getElementById('passWord');
         var usernameMessage = document.getElementById('usernameMessage');
         var passwordMessage = document.getElementById('passwordMessage');
         var reg = new RegExp( "^[0-9a-zA-Z_\u4e00-\u9fa5]{1,15}$");
-        if(!reg.test(username)){
+        if(!reg.test(username.value)){
             usernameMessage.innerText = '! 用户名必须为15位以下的字母数字或汉字';
             return false;
         }
-        if(password.length <= 6){
+        if(password.value.length <= 6){
             passwordMessage.innerText = '! 密码不得少于六位';
             return false;
         }
-
         usernameMessage.innerText = '';
         passwordMessage.innerText = '';
         return true;

@@ -38,9 +38,9 @@ public class RouterServiceImpl implements RouterService {
      * @return
      */
     @Override
-    public Result addRouter(Integer viewId,String routerLine) {
-        if(viewRouterMapper.insert(viewId,routerLine)!=0) {
-            viewStatisticMapper.increse(viewId,1);
+    public Result addRouter(ViewRouter viewRouter) {
+        if(viewRouterMapper.insert(viewRouter)!=0) {
+            viewStatisticMapper.increse(viewRouter.getViewId(),1);
             return new Result(true, "添加成功", null);
         }else{
             return new Result(false,"添加失败",null);

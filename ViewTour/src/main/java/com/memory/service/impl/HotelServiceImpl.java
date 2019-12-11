@@ -73,9 +73,11 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public Result modifyHotel(ViewHotel viewHotel) {
         if (viewHotelMapper.update(viewHotel) != 0) {
-            return new Result(true, "修改成功", null);
+            viewHotel = viewHotelMapper.findById(viewHotel.getHotelId());
+            return new Result(true, "修改成功", viewHotel);
         } else {
-            return new Result(false, "修改失败", null);
+            viewHotel = viewHotelMapper.findById(viewHotel.getHotelId());
+            return new Result(false, "修改失败", viewHotel);
         }
     }
 

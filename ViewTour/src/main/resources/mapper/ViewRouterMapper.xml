@@ -11,8 +11,8 @@
     </resultMap>
 
     <insert id="insert" parameterType="com.memory.pojo.ViewRouter">
-        insert into view_router (view_id, router_line)
-        values (#{viewId,jdbcType=INTEGER}, #{routerLine,jdbcType=VARCHAR})
+        insert into view_router (view_id, router_line,router_recommend)
+        values (#{viewId,jdbcType=INTEGER}, #{routerLine,jdbcType=VARCHAR},#{routerRecommend,jdbcType=VARCHAR})
     </insert>
 
     <delete id="delete" parameterType="int">

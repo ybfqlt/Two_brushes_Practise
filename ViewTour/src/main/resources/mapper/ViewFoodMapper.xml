@@ -20,12 +20,12 @@
     </resultMap>
 
     <insert id="insert" >
-        insert into view_food (food_id, view_id, food_name,
+        insert into view_food (view_id, food_name,
                                food_price, food_distance, food_address,
                                food_hot, food_desc, food_chinese_name,
                                food_locate, food_taste, food_origin,
                                food_recommend)
-        values (#{foodId,jdbcType=INTEGER}, #{viewId,jdbcType=INTEGER}, #{foodName,jdbcType=VARCHAR},
+        values (#{viewId,jdbcType=INTEGER}, #{foodName,jdbcType=VARCHAR},
                 #{foodPrice,jdbcType=INTEGER}, #{foodDistance,jdbcType=VARCHAR}, #{foodAddress,jdbcType=VARCHAR},
                 #{foodHot,jdbcType=VARCHAR}, #{foodDesc,jdbcType=VARCHAR}, #{foodChineseName,jdbcType=VARCHAR},
                 #{foodLocate,jdbcType=VARCHAR}, #{foodTaste,jdbcType=VARCHAR}, #{foodOrigin,jdbcType=VARCHAR},
@@ -87,7 +87,7 @@
     <!--    </update>-->
 
 
-    <select id="findById" parameterType="int" resultType="com.memory.pojo.ViewFood">
+    <select id="findById" parameterType="int" resultMap="BaseResultMap">
         select *
         from view_food
         where food_id = #{foodId}
@@ -102,11 +102,11 @@
         from view_food
         where view_id = #{viewId,jdbcType=INTEGER}
     </select>
-    <update id="update">
+    <update id="update" parameterType="viewFood">
         update view_food
         <set>
             <if test="foodName!=null">
-                food_name = #{foodName,jdbcType=VARCHAR}
+                food_name = #{foodName,jdbcType=VARCHAR},
             </if>
             <if test="foodPrice!=null">
                 food_price = #{foodPrice,jdbcType=INTEGER},
@@ -115,12 +115,12 @@
                 food_distance = #{foodDistance,jdbcType=VARCHAR},
             </if>
             <if test="foodAddress!=null">
-                food_address=#{foodAddress,jdbcType=VARCHAR}
+                food_address=#{foodAddress,jdbcType=VARCHAR},
             </if>
             <if test="foodRecommend!=null">
                 food_recommend = #{foodRecommend,jdbcType=VARCHAR},
             </if>
-            foodId = #{foodId,jdbcType=INTEGER}
+            food_id = #{foodId,jdbcType=INTEGER}
         </set>
         where food_id=#{foodId,jdbcType=INTEGER}
     </update>

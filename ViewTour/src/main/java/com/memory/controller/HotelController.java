@@ -4,10 +4,7 @@ import com.memory.dto.Result;
 import com.memory.pojo.ViewHotel;
 import com.memory.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -20,6 +17,7 @@ import java.util.Map;
  * @Created by xns
  */
 @RestController
+@RequestMapping("/tour")
 public class HotelController {
 
     @Autowired
@@ -70,7 +68,7 @@ public class HotelController {
     @PostMapping("/hotelModify")
     public ModelAndView modifyHotel(ViewHotel viewHotel){
         Result res = hotelService.modifyHotel(viewHotel);
-        ModelAndView modelAndView = new ModelAndView("redirect:static/hotel/hotel_details.jsp");
+        ModelAndView modelAndView = new ModelAndView("redirect:static/hotel/hotel_details.jsp?viewId="+((ViewHotel)res.getData()).getViewId());
         modelAndView.addObject(res);
         return modelAndView;
     }

@@ -172,7 +172,7 @@
             passwordMessage.innerText = '! 密码不得少于六位';
             return false;
         }
-        if(reg2.test(email)){
+        if(reg2.test(email) || email.length === 0){
             emailMessage.innerText = '! 请输入正确的邮箱账号';
             return false;
         }

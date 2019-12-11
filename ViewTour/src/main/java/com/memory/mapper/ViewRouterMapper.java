@@ -11,7 +11,7 @@ import java.util.List;
 public interface ViewRouterMapper {
 
     //增加一条旅游路线
-    int insert(@Param("viewId") Integer viewId, @Param("routerLine") String routerLine);
+    int insert(ViewRouter viewRouter);
 
     //删除指定的景点的某条旅游路线
     int delete(int routerId);

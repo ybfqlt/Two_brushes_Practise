@@ -4,10 +4,7 @@ import com.memory.dto.Result;
 import com.memory.pojo.ViewFood;
 import com.memory.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
@@ -19,6 +16,7 @@ import java.util.Map;
  * @Created by xns
  */
 @RestController
+@RequestMapping("/tour")
 public class FoodController {
 
     @Autowired
@@ -69,7 +67,7 @@ public class FoodController {
     @PostMapping("/foodModify")
     public ModelAndView modifyFood(ViewFood viewFood){
         Result res = foodService.modifyFood(viewFood);
-        ModelAndView modelAndView = new ModelAndView("redirect:static/food/food_details.jsp");
+        ModelAndView modelAndView = new ModelAndView("redirect:static/food/foods_details.jsp?viewId="+((ViewFood)res.getData()).getViewId());
         modelAndView.addObject(res);
         return modelAndView;
     }

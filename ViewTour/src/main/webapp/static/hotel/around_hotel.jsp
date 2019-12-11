@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="shortcut icon" href="../../images/favicon.png" />
     <script src="../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../js/file-upload.js"></script>
+    <script src="../../vendors/js/vendor.bundle.base.js"></script>
+    <script src="../../vendors/js/vendor.bundle.addons.js"></script>
+
     <style>
         .navbar.default-layout-navbar .navbar-brand-wrapper .navbar-brand img {
             width: 200px;
@@ -75,7 +79,7 @@
     <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style=" border-bottom: 1px solid #cccccc;">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
             <a class="navbar-brand brand-logo" href="../../index.jsp"><img src="../../images/logo.png" alt="logo"/></a>
-            <a class="navbar-brand brand-logo-mini" href="../../index.jsp"><img src="../images/logo-mini.svg" alt="logo"/></a>
+            <a class="navbar-brand brand-logo-mini" href="../../index.jsp"></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
             <div class="search-field d-none d-md-block">
@@ -285,7 +289,7 @@
     $(function () {
         $.ajax({
             type:'GET',
-            url:'http://localhost:8080/viewList',
+            url:'http://localhost:8080/tour/viewList',
             data:{
                 flag:4
             },
@@ -315,17 +319,17 @@
     }
     //增加的弹框加载
     function hotelAddLoad(data) {
-        let con = $(`<form class="forms-sample" action="http://localhost:8080/hotelAdd" method="post">
+        let con = $(`<form class="forms-sample" action="http://localhost:8080/tour/hotelAdd" method="post">
                         <input type="hidden" name="viewId" value="${'${data}'}">
                         <div class="form-group">
                             <label for="InputName">酒店名字</label>
                             <input type="text" name="HotelName" class="form-control" id="InputName" placeholder="name" value="">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="width:49%;display:inline-block">
                             <label for="InputPrice">价格</label>
                             <input type="text" name="HotelPrice" class="form-control" id="InputPrice" placeholder="price" value="">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="width:50%;display:inline-block">
                             <label for="InputDis">距离景点</label>
                             <input type="text" name="HotelDistance" class="form-control" id="InputDis" placeholder="distance" value="">
                         </div>
@@ -333,10 +337,21 @@
                             <label for="InputAddress">地址</label>
                             <input type="text" name="HotelAddress" class="form-control" id="InputAddress" placeholder="address" value="">
                         </div>
-                        <div class="form-group">
+                       <div class="form-group" style="width: 50%;display:inline-block">
+                            <label>上传酒店图片:</label>
+                            <input type="file" name="img[]" class="file-upload-default">
+                            <div class="input-group col-xs-12" style="border: none;">
+                                <input type="text"  value="" name="hotelImg" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-gradient-success btn-fw" type="button">上传</button>
+                                </span>
+                            </div>
+                       </div>
+                        <div class="form-group" style="width:49%;display:inline-block">
                             <label for="InputRecommend">评分</label>
                             <input type="text" name="HotelScore" class="form-control" id="InputRecommend" placeholder="recommend" value="">
                         </div>
+
                         <hr>
                         <div style="text-align: right;display: inline-block;">
                             <button type="submit" class="btn_sub btn btn-inverse-success btn-fw" >确 定</button>
@@ -362,5 +377,6 @@
         $('#cover_add').css('display','none');   //显示遮罩层
     }
 </script>
+
 </body>
 </html>

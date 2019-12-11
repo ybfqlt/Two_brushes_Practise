@@ -3,7 +3,7 @@ package com.memory.service;
 import com.memory.dto.Result;
 import com.memory.pojo.ViewRouter;
 
-import java.util.List;
+
 import java.util.Map;
 
 /**
@@ -16,11 +16,10 @@ public interface RouterService {
 
     /**
      * 增加路线
-     * @param viewId
-     * @param routerLine
+     * @param viewRouter
      * @return
      */
-    Result addRouter(Integer viewId,String routerLine);
+    Result addRouter(ViewRouter viewRouter);
 
     /**
      * 获取所有路线

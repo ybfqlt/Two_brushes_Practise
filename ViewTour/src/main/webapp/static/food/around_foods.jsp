@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="shortcut icon" href="../../images/favicon.png" />
     <script src="../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../vendors/js/vendor.bundle.base.js"></script>
+    <script src="../../vendors/js/vendor.bundle.addons.js"></script>
+
     <style>
         .navbar.default-layout-navbar .navbar-brand-wrapper .navbar-brand img {
             width: 200px;
@@ -60,10 +63,10 @@
             width: 100%;
             margin: 0 auto;
             height: 9.5rem;
-            border: 1px solid #999;
+            /*border: 1px solid #999;*/
             display: none;
             position:fixed;
-            top: 17%;
+            top: 13%;
             left: 10%;
             z-index: 3;
             background: transparent;
@@ -268,10 +271,10 @@
 <div class="container-scroller">
     <div id="cover_add"></div>
     <div class="row" id="alert_add">
-        <div class="col-md-5 grid-margin stretch-card" style="margin: 0 auto">
+        <div class="col-md-6 grid-margin stretch-card" style="margin: 0 auto">
             <div class="card">
                 <div class="card-body" id="add_food">
-                    <h4 class="card-title" >增加内容</h4>
+                    <h3 class="card-title" >增加内容</h3>
                     <hr>
                     <!--动态加载-->
                 </div>
@@ -284,7 +287,7 @@
     $(function () {
         $.ajax({
             type:'GET',
-            url:'http://localhost:8080/viewList',
+            url:'http://localhost:8080/tour/viewList',
             data:{
                 flag:2
             },
@@ -313,28 +316,61 @@
     //增加的弹框加载
     function foodAddLoad(data) {
         let con = $(`
-                    <form class="forms-sample" action="http://localhost:8080/foodAdd" method="post">
+                    <form class="forms-sample" action="http://localhost:8080/tour/foodAdd" method="post">
                         <input type="hidden" name="viewId" value="${'${data}'}">
-                        <div class="form-group">
+                        <div class="form-group" style="width:49%;display:inline-block">
                             <label for="InputName">美食名字</label>
                             <input type="text" name="foodName" class="form-control" id="InputName" placeholder="name" value="">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="width:50%;display:inline-block">
                             <label for="InputPrice">人均消费</label>
                             <input type="text" name="foodPrice" class="form-control" id="InputPrice" placeholder="price" value="">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="width:49%;display:inline-block">
                             <label for="InputDis">距离景点</label>
                             <input type="text" name="foodDistance" class="form-control" id="InputDis" placeholder="distance" value="">
                         </div>
-                        <div class="form-group">
-                            <label for="InputAddress">地址</label>
-                            <input type="text" name="foodAddress" class="form-control" id="InputAddress" placeholder="address" value="">
-                        </div>
-                        <div class="form-group">
+
+                        <div class="form-group" style="width:50%;display:inline-block">
                             <label for="InputRecommend">推荐指数</label>
                             <input type="text" name="foodRecommend" class="form-control" id="InputRecommend" placeholder="recommend" value="">
                         </div>
+                        <div class="form-group" style="width:49%;display:inline-block">
+                            <label for="InputRecommend">中文名字</label>
+                            <input type="text" name="foodChineseName" class="form-control" id="InputRecommend" placeholder="chineseName" value="">
+                        </div>
+                        <div class="form-group" style="width:50%;display:inline-block">
+                            <label for="InputRecommend">产地</label>
+                            <input type="text" name="foodLocate" class="form-control" id="InputRecommend" placeholder="location" value="">
+                        </div>
+                        <div class="form-group" style="width:49%;display:inline-block">
+                            <label for="InputRecommend">口味</label>
+                            <input type="text" name="foodTaste" class="form-control" id="InputRecommend" placeholder="taste" value="">
+                        </div>
+                         <div class="form-group" style="width:50%;display:inline-block">
+                            <label for="InputRecommend">起源</label>
+                            <input type="text" name="foodOrigin" class="form-control" id="InputRecommend" placeholder="recommend" value="">
+                        </div>
+                           <div class="form-group">
+                            <label for="exampleTextarea1">美食介绍：</label>
+                            <textarea class="form-control"  value="" name="foodDesc" id="exampleTextarea1" rows="3" placeholder="please write about it ..."></textarea>
+                         </div>
+                        <div class="form-group" style="width:49%;display:inline-block">
+                            <label for="InputAddress">地址</label>
+                            <input type="text" name="foodAddress" class="form-control" id="InputAddress" placeholder="address" value="">
+                        </div>
+
+                        <div class="form-group" style="width:50%;display:inline-block">
+                             <label>上传美食图片:</label>
+                             <input type="file" name="img[]" class="file-upload-default">
+                             <div class="input-group col-xs-12" style="border: none;">
+                             <input type="text"  value="" name="foodImg" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                             <span class="input-group-append">
+                                   <button class="file-upload-browse btn btn-gradient-success btn-fw" type="button">上传</button>
+                             </span>
+                        </div>
+
+                         </div>
                         <hr>
                         <div style="text-align: right;display: inline-block;">
                             <button type="submit"  class="btn_sub btn btn-inverse-success btn-fw" >确 定</button>
@@ -360,5 +396,6 @@
         $('#cover_add').css('display','none');   //显示遮罩层
     }
 </script>
+
 </body>
 </html>

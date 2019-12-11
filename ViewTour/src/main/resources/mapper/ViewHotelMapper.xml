@@ -15,10 +15,10 @@
     </resultMap>
 
     <insert id="insert" parameterType="com.memory.pojo.ViewHotel">
-        insert into view_hotel (hotel_id, view_id, hotel_name,
+        insert into view_hotel (view_id, hotel_name,
                                 hotel_price, hotel_distance, hotel_address,
                                 hotel_score)
-        values (#{hotelId,jdbcType=INTEGER}, #{viewId,jdbcType=INTEGER}, #{hotelName,jdbcType=VARCHAR},
+        values (#{viewId,jdbcType=INTEGER}, #{hotelName,jdbcType=VARCHAR},
                 #{hotelPrice,jdbcType=INTEGER}, #{hotelDistance,jdbcType=VARCHAR}, #{hotelAddress,jdbcType=VARCHAR},
                 #{hotelScore,jdbcType=VARCHAR})
     </insert>
@@ -63,9 +63,9 @@
             <if test="hotelScore!=null">
                 hotel_score=#{hotelScore,jdbcType=VARCHAR},
             </if>
-            hotelId= #{hotelId,jdbcType=INTEGER}
+            hotel_id= #{hotelId,jdbcType=INTEGER}
         </set>
-        where hotelId = #{hotelId}
+        where hotel_id = #{hotelId}
     </update>
 
 </mapper>

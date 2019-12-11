@@ -51,12 +51,16 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView getLogin(HttpServletRequest request,@RequestParam("userName") String userName, @RequestParam("password") String password) {
         Result res = userService.userLogin(userName, password);
+        ModelAndView modelAndView = new ModelAndView();
         if(res.getJudge()){
+            modelAndView.setViewName("redirect:index.jsp");
+            request.getSession().invalidate();
             request.getSession().setAttribute("user",userName);
             request.getSession().setAttribute("login",true);
             request.getSession().setAttribute("type",res.getMes());
+        }else{
+            modelAndView.setViewName("redirect:static/login/login.jsp");
         }
-        ModelAndView modelAndView = new ModelAndView("redirect:index.jsp");
         modelAndView.addObject(res);
         return modelAndView;
     }

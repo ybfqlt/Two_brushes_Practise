@@ -34,7 +34,7 @@
   </filter>
   <filter-mapping>
     <filter-name>SessionFilter</filter-name>
-    <url-pattern>/manager/*</url-pattern>
+    <url-pattern>/tour/*</url-pattern>
   </filter-mapping>
 
 

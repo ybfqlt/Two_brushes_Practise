@@ -5,10 +5,7 @@ import com.memory.pojo.ViewRouter;
 import com.memory.service.RouterService;
 import com.memory.service.impl.RouterServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 
@@ -23,6 +20,7 @@ import java.util.Map;
  * @Created by xns
  */
 @RestController
+@RequestMapping("/tour")
 public class RouterController {
 
     @Autowired
@@ -42,15 +40,13 @@ public class RouterController {
 
     /**
      * 增加路线
-     * @param viewId
-     * @param routerLine
+     * @param viewRouter
      * @return
      */
     @PostMapping("/routerAdd")
-    public ModelAndView addRouter(@RequestParam("viewId") Integer viewId,@RequestParam("routerLine") String routerLine){
-        System.out.println(viewId+""+routerLine);
-        Result res = routerService.addRouter(viewId,routerLine);
-        ModelAndView modelAndView = new ModelAndView("redirect:static/router/router_details.jsp?viewId="+viewId);
+    public ModelAndView addRouter(ViewRouter viewRouter){
+        Result res = routerService.addRouter(viewRouter);
+        ModelAndView modelAndView = new ModelAndView("redirect:static/router/router_details.jsp?viewId="+((ViewRouter)res.getData()).getViewId());
         modelAndView.addObject(res);
         return modelAndView;
     }

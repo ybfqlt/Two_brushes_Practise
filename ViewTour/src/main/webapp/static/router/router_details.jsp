@@ -327,7 +327,7 @@
     $(function () {
         $.ajax({
             type:'GET',
-            url:'http://localhost:8080/routerList'+window.location.search,
+            url:'http://localhost:8080/tour/routerList'+window.location.search,
             dataType:"json",
             success:function (data) {
                 loadList(data);//得到请求的页面数据  动态加载
@@ -378,7 +378,7 @@
     }
     //修改的弹框加载
     function routerModifyLoad(data) {
-        let con = $(`<form class="forms-sample" action="http://localhost:8080/routerModify" method="post">
+        let con = $(`<form class="forms-sample" action="http://localhost:8080/tour/routerModify" method="post">
                         <input type="hidden" name="routerId" value="${'${data.routerId}'}">
                         <div class="form-group">
                             <label for="routerLine">路线:</label>
@@ -400,7 +400,7 @@
     function deleteRouter(routerId) {
         $.ajax({
             type:'GET',
-            url:'http://localhost:8080/routerDelete',
+            url:'http://localhost:8080/tour/routerDelete',
             data:{
                 routerId:routerId
             },
@@ -430,7 +430,7 @@
         console.log(routerId);
         $.ajax({
             type:'GET',
-            url:'http://localhost:8080/routerDetails',
+            url:'http://localhost:8080/tour/routerDetails',
             data:{
                 routerId:routerId
             },

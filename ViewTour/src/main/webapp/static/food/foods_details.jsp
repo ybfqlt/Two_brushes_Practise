@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="shortcut icon" href="../../images/favicon.png" />
     <script src="../../js/jquery-3.3.1.min.js"></script>
+
     <style>
         .navbar.default-layout-navbar .navbar-brand-wrapper .navbar-brand img {
             width: 200px;
@@ -334,7 +335,7 @@
     $(function () {
         $.ajax({
             type:'GET',
-            url:'http://localhost:8080/foodList'+window.location.search,
+            url:'http://localhost:8080/tour/foodList'+window.location.search,
             dataType:"json",
             success:function (data) {
                 foodListLoad(data);//得到请求的页面数据  动态加载
@@ -369,13 +370,14 @@
         console.log(id);
         $.ajax({
             type:'GET',
-            url:'http://localhost:8080/foodDelete',
+            url:'http://localhost:8080/tour/foodDelete',
             data:{
                 foodId:id
             },
             success:function () {
-                alert('删除成功');
+                // alert('删除成功');
                 closeDelWindow();
+                window.location.reload();
             }
         });
     }
@@ -386,7 +388,7 @@
         // FoodModifyLoad(1);
         $.ajax({
             type: 'GET',
-            url: 'http://localhost:8080/foodDetails',
+            url: 'http://localhost:8080/tour/foodDetails',
             data: {
                 foodId: id
             },
@@ -402,27 +404,27 @@
     }
     //修改 弹窗的加载
     function FoodModifyLoad(data) {
-        let con = $(`<form class="forms-sample" action="http://localhost:8080/foodModify" method="post">
+        let con = $(`<form class="forms-sample" action="http://localhost:8080/tour/foodModify" method="post">
                         <input type="hidden" name="foodId" value="${'${data.foodId}'}">
                         <div class="form-group">
                             <label for="InputName">美食名字</label>
-                            <input type="text" name="foodName" class="form-control" id="InputName" placeholder="name" value="${data.foodName}">
+                            <input type="text" name="foodName" class="form-control" id="InputName" placeholder="name" value="${'${data.foodName}'}">
                         </div>
                         <div class="form-group">
                             <label for="InputPrice">人均消费</label>
-                            <input type="text" name="foodPrice" class="form-control" id="InputPrice" placeholder="price" value="${data.foodPrice}">
+                            <input type="text" name="foodPrice" class="form-control" id="InputPrice" placeholder="price" value="${'${data.foodPrice}'}">
                         </div>
                         <div class="form-group">
                             <label for="InputDis">距离景点</label>
-                            <input type="text" name="foodDistance" class="form-control" id="InputDis" placeholder="distance" value="${data.foodDistane}">
+                            <input type="text" name="foodDistance" class="form-control" id="InputDis" placeholder="distance" value="${'${data.foodDistance}'}">
                         </div>
                         <div class="form-group">
                             <label for="InputAddress">地址</label>
-                            <input type="text" name="foodAddress" class="form-control" id="InputAddress" placeholder="address" value="${data.foodAddress}">
+                            <input type="text" name="foodAddress" class="form-control" id="InputAddress" placeholder="address" value="${'${data.foodAddress}'}">
                         </div>
                         <div class="form-group">
                             <label for="InputRecommend">推荐指数</label>
-                            <input type="text" name="foodRecommend" class="form-control" id="InputRecommend" placeholder="recommend" value="${data.foodRecommend}">
+                            <input type="text" name="foodRecommend" class="form-control" id="InputRecommend" placeholder="recommend" value="${'${data.foodRecommend}'}">
                         </div>
                         <hr>
                         <div style="text-align: right;display: inline-block;">

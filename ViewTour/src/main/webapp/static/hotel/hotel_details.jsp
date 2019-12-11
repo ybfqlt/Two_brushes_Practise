@@ -339,7 +339,7 @@
     $(function () {
         $.ajax({
             type:'GET',
-            url:'http://localhost:8080/hotelList'+window.location.search,
+            url:'http://localhost:8080/tour/hotelList'+window.location.search,
             dataType:"json",
             success:function (data) {
                 //TODO  返回 列表 及 当前景点的名字
@@ -376,13 +376,14 @@
         console.log(id);
         $.ajax({
             type:'GET',
-            url:'http://localhost:8080/hotelDelete',
+            url:'http://localhost:8080/tour/hotelDelete',
             data:{
                 hotelId:id
             },
             success:function () {
-                alert('删除成功');
+                // alert('删除成功');
                 closeDelWindow();
+                window.location.reload();
             }
         });
     }
@@ -393,7 +394,7 @@
         // hotelModifyLoad(1);
         $.ajax({
             type:'GET',
-            url:'http://localhost:8080/hotelDetails',
+            url:'http://localhost:8080/tour/hotelDetails',
             data:{
                 hotelId:id
             },
@@ -409,7 +410,7 @@
     }
     //修改弹窗的加载
     function hotelModifyLoad(data){
-        let con = $(`<form class="forms-sample" action="http://localhost:8080/hotelModify" method="post">
+        let con = $(`<form class="forms-sample" action="http://localhost:8080/tour/hotelModify" method="post">
                         <input type="hidden" name="hotelId" value="${'${data.hotelId}'}">
                         <div class="form-group">
                             <label for="InputName">酒店名字</label>

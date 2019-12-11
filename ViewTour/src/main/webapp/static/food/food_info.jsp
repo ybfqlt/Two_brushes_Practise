@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="shortcut icon" href="../../images/favicon.png" />
+    <script src="../../js/jquery-3.3.1.min.js"></script>
     <style>
         .navbar.default-layout-navbar .navbar-brand-wrapper .navbar-brand img {
             width: 200px;
@@ -235,7 +236,7 @@
     $(function () {
         $.ajax({
             type:'GET',
-            url:'http://localhost:8080/foodInfo'+window.location.search,
+            url:'http://localhost:8080/tour/foodInfo'+window.location.search,
             dataType:"json",
             success:function (data) {
                 container_load(data);//得到请求的介绍数据  动态加载
@@ -273,7 +274,7 @@
                                 </div>
                             </div>
                         </div>`);
-        $('#food_details').append(con);
+        $('#food_details').append(con1);
     }
 </script>
 <script src="../../vendors/js/vendor.bundle.base.js"></script>

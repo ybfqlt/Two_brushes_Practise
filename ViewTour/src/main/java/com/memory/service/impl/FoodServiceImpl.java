@@ -74,9 +74,11 @@ public class FoodServiceImpl implements FoodService {
     @Override
     public Result modifyFood(ViewFood viewFood) {
         if (viewFoodMapper.update(viewFood) != 0) {
-            return new Result(true, "修改成功", null);
+            viewFood = viewFoodMapper.findById(viewFood.getFoodId());
+            return new Result(true, "修改成功", viewFood);
         } else {
-            return new Result(false, "修改失败", null);
+            viewFood = viewFoodMapper.findById(viewFood.getFoodId());
+            return new Result(false, "修改失败", viewFood);
         }
     }
 

@@ -306,7 +306,7 @@
     $(function () {
         $.ajax({
             type: 'GET',
-            url: 'http://localhost:8080/viewList',
+            url: 'http://localhost:8080/tour/viewList',
             data: {
                 flag: 1
             },
@@ -336,7 +336,7 @@
 
     //加载 弹框 TODO 表单提交  增加内容  后台重定向 刷新当前页面
     function loadAddAlert(viewId) {
-        let con = $(`<form class="forms-sample" action="http://localhost:8080/routerAdd" method="post" >
+        let con = $(`<form class="forms-sample" action="http://localhost:8080/tour/routerAdd" method="post" >
                         <input type="hidden" name="viewId" value="${'${viewId}'}">
                         <div class="form-group">
                             <label for="routerLine">增加路线:</label>
