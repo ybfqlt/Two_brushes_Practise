@@ -43,7 +43,7 @@ public class FoodController {
     @PostMapping("/foodAdd")
     public ModelAndView addFood(ViewFood viewFood){
         Result res = foodService.addFood(viewFood);
-        ModelAndView modelAndView = new ModelAndView("redirect:static/food/around_foods.jsp");
+        ModelAndView modelAndView = new ModelAndView("redirect:../static/food/foods_details.jsp?viewId="+viewFood.getViewId());
         modelAndView.addObject(res);
         return modelAndView;
     }
@@ -67,7 +67,7 @@ public class FoodController {
     @PostMapping("/foodModify")
     public ModelAndView modifyFood(ViewFood viewFood){
         Result res = foodService.modifyFood(viewFood);
-        ModelAndView modelAndView = new ModelAndView("redirect:static/food/foods_details.jsp?viewId="+((ViewFood)res.getData()).getViewId());
+        ModelAndView modelAndView = new ModelAndView("redirect:../static/food/foods_details.jsp?viewId="+((ViewFood)res.getData()).getViewId());
         modelAndView.addObject(res);
         return modelAndView;
     }

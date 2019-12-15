@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="shortcut icon" href="../../images/favicon.png" />
     <script src="../../js/jquery-3.3.1.min.js"></script>
-    <script src="../../vendors/js/vendor.bundle.base.js"></script>
-    <script src="../../vendors/js/vendor.bundle.addons.js"></script>
 
     <style>
         .navbar.default-layout-navbar .navbar-brand-wrapper .navbar-brand img {
@@ -175,7 +173,7 @@
                             <span class="login-status online"></span>
                         </div>
                         <div class="nav-profile-text d-flex flex-column">
-                            <span class="font-weight-bold mb-2">小本</span>
+                            <span class="font-weight-bold mb-2">${sessionScope.user}</span>
                             <span class="text-secondary text-small">管理员</span>
                         </div>
                         <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
@@ -306,7 +304,7 @@
                               <td>${'${data[i].viewPrice}'}元</td>
                               <td>${'${data[i].viewAddress}'}</td>
                               <td>
-                                   <a href="foods_details.jsp?viewId=${'${data[i].viewId}'}"><button type="button" class="btn btn-inverse-info btn-fw">景点</button></a>
+                                   <a href="foods_details.jsp?viewId=${'${data[i].viewId}'}"><button type="button" class="btn btn-inverse-info btn-fw">美食</button></a>
                                    <button type="button" class="btn btn-inverse-success btn-fw" onclick="showAddWindow(${'${data[i].viewId}'})">增加</button>
                               </td>
                          </tr>`);
@@ -362,7 +360,7 @@
 
                         <div class="form-group" style="width:50%;display:inline-block">
                              <label>上传美食图片:</label>
-                             <input type="file" name="img[]" class="file-upload-default">
+                             <input type="file" name="foodImg" class="file-upload-default">
                              <div class="input-group col-xs-12" style="border: none;">
                              <input type="text"  value="" name="foodImg" class="form-control file-upload-info" disabled placeholder="Upload Image">
                              <span class="input-group-append">
@@ -380,6 +378,13 @@
                         <button class="btn_sub btn btn-inverse-info btn-fw"  onclick="closeAddWindow()">取消</button>
                     </div>`);
             $('#add_food').append(con);
+            $('.file-upload-browse').on('click', function() {
+                var file = $(this).parent().parent().parent().find('.file-upload-default');
+                file.trigger('click');
+            });
+            $('.file-upload-default').on('change', function() {
+                $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
+            });
     }
     // 修改弹窗
     function showAddWindow(id) {

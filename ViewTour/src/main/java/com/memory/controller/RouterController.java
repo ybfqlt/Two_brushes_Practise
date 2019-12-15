@@ -46,7 +46,7 @@ public class RouterController {
     @PostMapping("/routerAdd")
     public ModelAndView addRouter(ViewRouter viewRouter){
         Result res = routerService.addRouter(viewRouter);
-        ModelAndView modelAndView = new ModelAndView("redirect:static/router/router_details.jsp?viewId="+((ViewRouter)res.getData()).getViewId());
+        ModelAndView modelAndView = new ModelAndView("redirect:../static/router/router_details.jsp?viewId="+viewRouter.getViewId());
         modelAndView.addObject(res);
         return modelAndView;
     }
@@ -70,7 +70,7 @@ public class RouterController {
     @PostMapping("/routerModify")
     public ModelAndView modifyRouter(ViewRouter viewRouter){
         Result res = routerService.modifyRouter(viewRouter);
-        ModelAndView modelAndView = new ModelAndView("redirect:static/router/router_details.jsp?viewId="+((ViewRouter)res.getData()).getViewId());
+        ModelAndView modelAndView = new ModelAndView("redirect:../static/router/router_details.jsp?viewId="+((ViewRouter)res.getData()).getViewId());
         modelAndView.addObject(res);
         return modelAndView;
     }

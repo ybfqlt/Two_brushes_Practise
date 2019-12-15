@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -70,7 +70,6 @@
             width: 100%;
             margin: 0 auto;
             height: 9.5rem;
-            border: 1px solid #999;
             display: none;
             position: fixed;
             top: 30%;
@@ -192,7 +191,7 @@
                             <span class="login-status online"></span>
                         </div>
                         <div class="nav-profile-text d-flex flex-column">
-                            <span class="font-weight-bold mb-2">小本</span>
+                            <span class="font-weight-bold mb-2">${sessionScope.user}</span>
                             <span class="text-secondary text-small">管理员</span>
                         </div>
                         <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
@@ -326,7 +325,7 @@
                                     <td>${'${data[i].viewPrice}'}元</td>
                                     <td>${'${data[i].viewAddress}'}</td>
                                     <td>
-                                        <a href="router_details.jsp?viewId=${'${data[i].viewId}'}"><button type="button" class="btn btn-inverse-danger btn-fw">查看</button></a>
+                                        <a href="router_details.jsp?viewId=${'${data[i].viewId}'}"><button type="button" class="btn btn-inverse-danger btn-fw">路线</button></a>
                                         <button type="button" class="btn btn-inverse-success btn-fw" onclick="showAddWindow(${'${data[i].viewId}'})">增加</button>
                                     </td>
                                 </tr>`);

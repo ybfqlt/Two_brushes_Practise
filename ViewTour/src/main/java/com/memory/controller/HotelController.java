@@ -44,7 +44,7 @@ public class HotelController {
     @PostMapping("/hotelAdd")
     public ModelAndView addhotel(ViewHotel viewHotel){
         Result res = hotelService.addHotel(viewHotel);
-        ModelAndView modelAndView = new ModelAndView("redirect:static/hotel/around_hotel.jsp");
+        ModelAndView modelAndView = new ModelAndView("redirect:../static/hotel/around_hotel.jsp?viewId="+viewHotel.getViewId());
         modelAndView.addObject(res);
         return modelAndView;
     }
@@ -68,7 +68,7 @@ public class HotelController {
     @PostMapping("/hotelModify")
     public ModelAndView modifyHotel(ViewHotel viewHotel){
         Result res = hotelService.modifyHotel(viewHotel);
-        ModelAndView modelAndView = new ModelAndView("redirect:static/hotel/hotel_details.jsp?viewId="+((ViewHotel)res.getData()).getViewId());
+        ModelAndView modelAndView = new ModelAndView("redirect:../static/hotel/hotel_details.jsp?viewId="+((ViewHotel)res.getData()).getViewId());
         modelAndView.addObject(res);
         return modelAndView;
     }

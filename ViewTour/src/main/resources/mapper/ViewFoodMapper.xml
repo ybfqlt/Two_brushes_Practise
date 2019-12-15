@@ -24,12 +24,12 @@
                                food_price, food_distance, food_address,
                                food_hot, food_desc, food_chinese_name,
                                food_locate, food_taste, food_origin,
-                               food_recommend)
+                               food_recommend,food_img)
         values (#{viewId,jdbcType=INTEGER}, #{foodName,jdbcType=VARCHAR},
                 #{foodPrice,jdbcType=INTEGER}, #{foodDistance,jdbcType=VARCHAR}, #{foodAddress,jdbcType=VARCHAR},
                 #{foodHot,jdbcType=VARCHAR}, #{foodDesc,jdbcType=VARCHAR}, #{foodChineseName,jdbcType=VARCHAR},
                 #{foodLocate,jdbcType=VARCHAR}, #{foodTaste,jdbcType=VARCHAR}, #{foodOrigin,jdbcType=VARCHAR},
-                #{foodRecommend,jdbcType=VARCHAR})
+                #{foodRecommend,jdbcType=VARCHAR},#{foodImg,jdbcType=VARCHAR})
     </insert>
 
     <delete id="delete" parameterType="int">

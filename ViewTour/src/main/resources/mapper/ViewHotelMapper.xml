@@ -17,10 +17,10 @@
     <insert id="insert" parameterType="com.memory.pojo.ViewHotel">
         insert into view_hotel (view_id, hotel_name,
                                 hotel_price, hotel_distance, hotel_address,
-                                hotel_score)
+                                hotel_score,hotel_img)
         values (#{viewId,jdbcType=INTEGER}, #{hotelName,jdbcType=VARCHAR},
                 #{hotelPrice,jdbcType=INTEGER}, #{hotelDistance,jdbcType=VARCHAR}, #{hotelAddress,jdbcType=VARCHAR},
-                #{hotelScore,jdbcType=VARCHAR})
+                #{hotelScore,jdbcType=VARCHAR},#{hotelImg,jdbcType=VARCHAR})
     </insert>
 
     <delete id="delete" parameterType="int">
