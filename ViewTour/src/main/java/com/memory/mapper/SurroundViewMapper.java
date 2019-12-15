@@ -24,4 +24,6 @@ public interface SurroundViewMapper {
 
     //查询全部景点
     List<SurroundView> findAll();
+
+    List<SurroundView> findByViewId(Integer viewId);
 }

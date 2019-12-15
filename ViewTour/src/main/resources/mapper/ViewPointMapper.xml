@@ -116,5 +116,8 @@
         from view_point
         order by (select hotel_count from view_statistic where view_statistic.view_id = view_point.view_id) desc
     </select>
+    <select id="findByName" resultMap="BaseResultMap">
+        select * from view_point where view_name = #{viewName,jdbcType=VARCHAR}
+    </select>
 
 </mapper>

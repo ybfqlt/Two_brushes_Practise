@@ -30,4 +30,5 @@ public interface ViewPointMapper {
 
     List<ViewPoint> findAllByHotel();
 
+    ViewPoint findByName(String viewName);
 }

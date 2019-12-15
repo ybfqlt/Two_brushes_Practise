@@ -1,5 +1,6 @@
 package com.memory.service;
 
+import com.memory.dto.Result;
 import com.memory.pojo.ViewPoint;
 
 import java.util.List;
@@ -18,4 +19,7 @@ public interface ViewPointService {
      * @return
      */
     List<ViewPoint> getAllView(Integer flag);
+
+    Result search(String viewName);
+
 }

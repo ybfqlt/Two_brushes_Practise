@@ -87,6 +87,9 @@
     <select id="findAll"  resultType="com.memory.pojo.SurroundView">
         select * from surround_view
     </select>
+    <select id="findByViewId" resultType="com.memory.pojo.SurroundView">
+        select * from surround_view where view_id=#{viewId,jdbcType=INTEGER}
+    </select>
 
 </mapper>
 
