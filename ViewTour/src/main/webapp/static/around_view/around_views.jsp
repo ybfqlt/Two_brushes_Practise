@@ -1,4 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="true" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="shortcut icon" href="../../images/favicon.png" />
     <script src="../../js/jquery-3.3.1.min.js"></script>
+
     <style>
         .navbar.default-layout-navbar .navbar-brand-wrapper .navbar-brand img {
             width: 200px;
@@ -60,7 +62,7 @@
             width: 100%;
             margin: 0 auto;
             height: 9.5rem;
-            border: 1px solid #999;
+            /*border: 1px solid #999;*/
             display: none;
             position:fixed;
             top: 15%;
@@ -75,7 +77,7 @@
     <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style=" border-bottom: 1px solid #cccccc;">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
             <a class="navbar-brand brand-logo" href="../../index.jsp"><img src="../../images/logo.png" alt="logo"/></a>
-            <a class="navbar-brand brand-logo-mini" href="../../index.jsp"><img src="../images/logo-mini.svg" alt="logo"/></a>
+            <a class="navbar-brand brand-logo-mini" href="../../index.jsp"></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
             <div class="search-field d-none d-md-block">
@@ -84,7 +86,7 @@
                         <div class="input-group-prepend bg-transparent">
                             <i class="input-group-text border-0 mdi mdi-magnify"></i>
                         </div>
-                        <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
+                        <input type="text" id="search" value="" class="form-control bg-transparent border-0" placeholder="按照景点名搜索" onkeydown="load()">
                     </div>
                 </form>
             </div>
@@ -172,7 +174,7 @@
                             <span class="login-status online"></span>
                         </div>
                         <div class="nav-profile-text d-flex flex-column">
-                            <span class="font-weight-bold mb-2">${sessionScope.user}</span>
+                            <span class="font-weight-bold mb-2">小本</span>
                             <span class="text-secondary text-small">管理员</span>
                         </div>
                         <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
@@ -199,7 +201,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../router/router_curd.jsp">
+                    <a class="nav-link" href="../router/router_curd.jsp>
                         <span class="menu-title">旅游路线管理</span>
                         <i class="mdi mdi-assistant menu-icon"></i>
                     </a>
@@ -284,7 +286,7 @@
     $(function () {
         $.ajax({
             type:'GET',
-            url:'http://localhost:8080/viewList',
+            url:'http://localhost:8080/tour/viewList',
             data:{
                 flag:3
             },
@@ -296,8 +298,8 @@
     });
     //景点列表加载
     function viewListLoad(data) {
-        for(let i=0;i<data.length;i++){
-            let con =$(` <tr>
+        for(var i=0;i<data.length;i++){
+            var con =$(` <tr>
                               <td><img src="${'${data[i].viewImg}'}" class="view_img_main"></td>
                               <td>${'${data[i].viewName}'}</td>
                               <td>${'${data[i].viewPrice}'}元</td>
@@ -312,16 +314,20 @@
     }
     //增加的弹框加载
     function arViewAddLoad(data) {
-        let con = $(`
-              <form class="forms-sample" action="http://localhost:8080/arViewAdd" method="post">
+        var con = $(`
+              <form class="forms-sample" action="http://localhost:8080/tour/arViewAdd" method="post">
                         <input type="hidden" name="viewId" value="${'${data}'}">
                         <div class="form-group">
                             <label for="InputName">景点名字</label>
                             <input type="text" name="arViewName" class="form-control" id="InputName" placeholder="name" value="">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="width:49%;display:inline-block">
                             <label for="InputPrice">门票价格</label>
                             <input type="text" name="arViewPrice" class="form-control" id="InputPrice" placeholder="price" value="">
+                        </div>
+                         <div class="form-group" style="width:50%;display:inline-block">
+                            <label for="InputRecommend">推荐指数</label>
+                            <input type="text" name="arViewRecommend" class="form-control" id="InputRecommend" placeholder="recommend" value="">
                         </div>
                         <div class="form-group">
                             <label for="InputDis">距离景点</label>
@@ -329,12 +335,19 @@
                         </div>
                         <div class="form-group">
                             <label for="InputAddress">地址</label>
-                            <input type="text" name="arViewsAddress" class="form-control" id="InputAddress" placeholder="address" value="">
+                            <input type="text" name="arViewAddress" class="form-control" id="InputAddress" placeholder="address" value="">
                         </div>
-                        <div class="form-group">
-                            <label for="InputRecommend">推荐指数</label>
-                            <input type="text" name="arViewRecommend" class="form-control" id="InputRecommend" placeholder="recommend" value="">
-                        </div>
+                       <div class="form-group">
+                             <label>上传景点图片:</label>
+                             <input type="file" name="arViewImg" class="file-upload-default">
+                             <div class="input-group col-xs-12" style="  border: none;">
+                                 <input type="text"  value="" name="arViewImg" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                 <span class="input-group-append">
+                                     <button class="file-upload-browse btn btn-gradient-success btn-fw" type="button">上传</button>
+                                 </span>
+                             </div>
+                         </div>
+
                         <hr>
                         <div style="text-align: right;display: inline-block;">
                             <button type="submit"  class="btn_sub btn btn-inverse-success btn-fw" >确 定</button>
@@ -344,6 +357,13 @@
                         <button class="btn_sub btn btn-inverse-info btn-fw"  onclick="closeAddWindow()">取消</button>
                     </div>`);
         $('#add_around_view').append(con);
+        $('.file-upload-browse').on('click', function() {
+            var file = $(this).parent().parent().parent().find('.file-upload-default');
+            file.trigger('click');
+        });
+        $('.file-upload-default').on('change', function() {
+            $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
+        });
     }
     // 增加弹窗
     function showAddWindow(id) {
@@ -360,5 +380,6 @@
         $('#cover_add').css('display','none');   //显示遮罩层
     }
 </script>
+<script src="../../js/search.js"></script>
 </body>
 </html>

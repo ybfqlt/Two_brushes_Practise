@@ -125,5 +125,9 @@
         where food_id=#{foodId,jdbcType=INTEGER}
     </update>
 
+
+    <select id="findByCount" resultType="int">
+        select count(*) from view_food
+    </select>
 </mapper>
 

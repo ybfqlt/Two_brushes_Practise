@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -97,7 +98,6 @@
             width: 100%;
             margin: 0 auto;
             height: 9.5rem;
-            border: 1px solid #999;
             display: none;
             position: fixed;
             top: 40%;
@@ -112,7 +112,7 @@
     <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style=" border-bottom: 1px solid #cccccc;">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
             <a class="navbar-brand brand-logo" href="../../index.jsp"><img src="../../images/logo.png" alt="logo"/></a>
-            <a class="navbar-brand brand-logo-mini" href="../../index.jsp"><img src="../images/logo-mini.svg" alt="logo"/></a>
+            <a class="navbar-brand brand-logo-mini" href="../../index.jsp"></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
             <div class="search-field d-none d-md-block">
@@ -121,7 +121,7 @@
                         <div class="input-group-prepend bg-transparent">
                             <i class="input-group-text border-0 mdi mdi-magnify"></i>
                         </div>
-                        <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
+                        <input type="text" id="search" value="" class="form-control bg-transparent border-0" placeholder="按照景点名搜索" onkeydown="load()">
                     </div>
                 </form>
             </div>
@@ -340,7 +340,7 @@
     $(function () {
         $.ajax({
             type:'GET',
-            url:'http://localhost:8080/arViewList'+window.location.search,
+            url:'http://localhost:8080/tour/arViewList'+window.location.search,
             dataType:"json",
             success:function (data) {
                 arViewListLoad(data);//得到请求的页面数据  动态加载
@@ -349,21 +349,21 @@
     });
     //  所有周边景点列表加载
     function arViewListLoad(data) {
-        $('#view_name').text(`${data.viewName}`);
-        for (let i = 0; i < data.length; i++) {
-            let con = $(`
+        $('#view_name').text(`${'${data.viewName}'}`);
+        for (var i = 0; i < data.arView.length; i++) {
+            var con = $(`
                   <tr>
                       <td><img src="${'${data.arView[i].arViewImg}'}" class="view_img_main"></td>
                       <td>${'${data.arView[i].arViewName}'}</td>
-                      <td>${'$data.arView[i].arViewPrice}'}元</td>
-                      <td>${'$data.arView[i].arViewDesc}'}</td>
-                      <td>${'$data.arView[i].arViewAddress}'}</td>
-                      <td><code class="text-warning">>${'$data.arView[i].arViewRecommend}'}</code></td>
+                      <td>${'${data.arView[i].arViewPrice}'}元</td>
+                      <td>${'${data.arView[i].arViewDistance}'}</td>
+                      <td>${'${data.arView[i].arViewAddress}'}</td>
+                      <td><code class="text-warning">>${'${data.arView[i].arViewRecommend}'}</code></td>
                       <td>
-                          <button type="button" class="btn btn-inverse-info btn-rounded btn-icon" onclick="showModWindow(${'$data.arView[i].arViewId}'})">
+                          <button type="button" class="btn btn-inverse-info btn-rounded btn-icon" onclick="showModWindow(${'${data.arView[i].arViewId}'})">
                               <i class="mdi mdi-table-edit"></i>
                           </button>
-                          <button type="button" class="btn btn-inverse-danger btn-rounded btn-icon" onclick="showDelWindow(${'$data.arView[i].arViewId}'})">
+                          <button type="button" class="btn btn-inverse-danger btn-rounded btn-icon" onclick="showDelWindow(${'${data.arView[i].arViewId}'},${'${data.arView[i].viewId}'})">
                               <i class="mdi mdi-delete-forever"></i>
                          </button>
                       </td>
@@ -372,17 +372,20 @@
         }
     }
     //点击删除 确定  TODO 删除景点
-    function DeleteArView(id){
-        console.log(id);
+    function DeleteArView(arViewId,viewId){
+        // console.log(id);
         $.ajax({
             type:'GET',
-            url:'http://localhost:8080/arViewDelete',
+            url:'http://localhost:8080/tour/arViewDelete',
             data:{
-                arViewId:id
+                arViewId:arViewId,
+                viewId:viewId
             },
+            dataType:'json',
             success:function () {
-                alert('删除成功');
+                // alert('删除成功');
                 closeDelWindow();
+                window.location.reload();
             }
         });
     }
@@ -393,9 +396,9 @@
         // arViewModifyLoad(1);
         $.ajax({
             type: 'GET',
-            url: 'http://localhost:8080/arViewDetails',
+            url: 'http://localhost:8080/tour/arViewDetails',
             data: {
-                arViewlId: id
+                arViewId: id
             },
             dataType: "json",
             success: function (data) {
@@ -410,27 +413,27 @@
     //修改 弹窗的加载
     function arViewModifyLoad(data){
         let con = $(`
-         <form class="forms-sample" action="http://localhost:8080/arViewModify" method="post">
-                        <input type="hidden" name="arViewId" value="${'$data.arViewId}'}">
+         <form class="forms-sample" action="http://localhost:8080/tour/arViewModify" method="post">
+                        <input type="hidden" name="arViewId" value="${'${data.arViewId}'}">
                         <div class="form-group">
                             <label for="InputName">景点名字</label>
-                            <input type="text" name="arViewName" class="form-control" id="InputName" placeholder="name" value="${'$data.arViewName}'}">
+                            <input type="text" name="arViewName" class="form-control" id="InputName" placeholder="name" value="${'${data.arViewName}'}">
                         </div>
                         <div class="form-group">
                             <label for="InputPrice">门票价格</label>
-                            <input type="text" name="arViewPrice" class="form-control" id="InputPrice" placeholder="price" value="${'$data.arViewPrice}'}">
+                            <input type="text" name="arViewPrice" class="form-control" id="InputPrice" placeholder="price" value="${'${data.arViewPrice}'}">
                         </div>
                         <div class="form-group">
                             <label for="InputDis">距离景点</label>
-                            <input type="text" name="arViewDistance" class="form-control" id="InputDis" placeholder="distance" value="${'$data.arViewDistance}'}">
+                            <input type="text" name="arViewDistance" class="form-control" id="InputDis" placeholder="distance" value="${'${data.arViewDistance}'}">
                         </div>
                         <div class="form-group">
                             <label for="InputAddress">地址</label>
-                            <input type="text" name="arViewAddress" class="form-control" id="InputAddress" placeholder="address" value="${'$data.arViewAddress}'}">
+                            <input type="text" name="arViewAddress" class="form-control" id="InputAddress" placeholder="address" value="${'${data.arViewAddress}'}">
                         </div>
                         <div class="form-group">
                             <label for="InputRecommend">推荐指数</label>
-                            <input type="text" name="arViewRecommend" class="form-control" id="InputRecommend" placeholder="recommend" value="${'$data.arViewRecommend}'}">
+                            <input type="text" name="arViewRecommend" class="form-control" id="InputRecommend" placeholder="recommend" value="${'${data.arViewRecommend}'}">
                         </div>
                         <hr>
                         <div style="text-align: right;display: inline-block;">
@@ -452,8 +455,8 @@
 
 
     //删除弹框的加载
-    function arViewDeleteLoad(arViewId) {
-        let con = $(`
+    function arViewDeleteLoad(arViewId,viewId) {
+        var con = $(`
            <div id="cover_del"></div>
             <div class="row" id="alert_del">
                 <div class="col-md-5 grid-margin stretch-card" style="margin: 0 auto">
@@ -464,7 +467,7 @@
                             <hr>
                             <div style="text-align: right">
                                 <button class="btn_sub btn btn-inverse-info btn-fw"  onclick="closeDelWindow()">取消</button>
-                                <button class="btn_sub btn btn-inverse-success btn-fw"  onclick="DeleteArView(${'$arViewId}'})">确 定</button>
+                                <button class="btn_sub btn btn-inverse-success btn-fw"  onclick="DeleteArView(${'${arViewId}'},${'${viewId}'})">确 定</button>
                             </div>
                         </div>
                     </div>
@@ -473,9 +476,9 @@
         $('#delete_around_view').append(con);
     }
     // 删除弹窗
-    function showDelWindow(arViewId) {
-        console.log(arViewId);
-        arViewDeleteLoad(arViewId);
+    function showDelWindow(arViewId,viewId) {
+        console.log(arViewId,viewId);
+        arViewDeleteLoad(arViewId,viewId);
         $('#alert_del').show();  //显示弹窗
         $('#cover_del').css('display','block'); //显示遮罩层
         $('#cover_del').css('height',document.body.clientHeight+'px'); //设置遮罩层的高度为当前页面高度
@@ -488,5 +491,7 @@
 
 
 </script>
+
+<script src="../../js/search.js"></script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -44,6 +45,17 @@
             color: white;
             text-decoration: none;
         }
+        .table tbody tr .desc {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            overflow: hidden;
+            max-height: 73px;
+            text-align: left;
+            border-bottom: none;
+            border-left: none;
+            border-right: none;
+        }
     </style>
 </head>
 <body>
@@ -51,7 +63,7 @@
     <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style=" border-bottom: 1px solid #cccccc;">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
             <a class="navbar-brand brand-logo" href="../../index.jsp"><img src="../../images/logo.png" alt="logo"/></a>
-            <a class="navbar-brand brand-logo-mini" href="../../index.jsp"><img src="../images/logo-mini.svg" alt="logo"/></a>
+            <a class="navbar-brand brand-logo-mini" href="../../index.jsp"></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
             <div class="search-field d-none d-md-block">
@@ -60,7 +72,7 @@
                         <div class="input-group-prepend bg-transparent">
                             <i class="input-group-text border-0 mdi mdi-magnify"></i>
                         </div>
-                        <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
+                        <input type="text" id="search" value="" class="form-control bg-transparent border-0" placeholder="按照景点名搜索" onkeydown="load()">
                     </div>
                 </form>
             </div>
@@ -232,7 +244,7 @@
                                     <th>操作</th>
                                 </tr>
                                 </thead>
-                                <tbody id="view_list_all">
+                                <tbody id="view_all">
 
                                 </tbody>
                             </table>
@@ -248,34 +260,33 @@
     $(function () {
         $.ajax({
             type:'GET',
-            url:'http://localhost:8080/viewList',
+            url:'http://localhost:8080/tour/viewList',
             data:{
               flag:0
             },
-            dataType:"json",
+            dataType:'json',
             success:function (data) {
-                load(data);//得到请求的页面数据  动态加载
+                loads(data);//得到请求的页面数据  动态加载
             }
         });
-    });
+    })
     //加载
-    function load(data) {
-        for(let i=0;i<data.length;i++) {
-            let con =  $(`<tr>
-                                <td><img src="${data[i].viewImg}" class="view_img_main"></td>
-                                <td>${data[i].viewName}</td>
-                                <td>${data[i].viewAddress}</td>
-                                <td>${data[i].viewPrice}元</td>
-                                <td>${data[i].viewDate}</td>
-                                <td><label class="badge badge-danger">${data[i].viewType}</label></td>
-                                <td class="desc">${data[i].viewDesc}</td>
-                                <td><button type="button" class="btn btn-gradient-danger"><a href="detail_view.jsp?viewId=${data[i].viewId}">查看详情</a></button></td>
+    function loads(data) {
+        for(var i=0; i<data.length; i++) {
+            var con = $(`<tr>
+                                <td><img src="${'${data[i].viewImg}'}" class="view_img_main"></td>
+                                <td>${'${data[i].viewName}'}</td>
+                                <td>${'${data[i].viewAddress}'}</td>
+                                <td>${'${data[i].viewPrice}'}元</td>
+                                <td>${'${data[i].viewDate}'}</td>
+                                <td><label class="badge badge-success">${'${data[i].viewType}'}</label></td>
+                                <td class="desc">${'${data[i].viewDesc}'}</td>
+                                <td><button type="button" class="btn btn-gradient-danger"><a href="detail_view.jsp?viewId=${'${data[i].viewId}'}">查看详情</a></button></td>
                            </tr>`);
-            $('#view_list_all').append(con);
+            $('#view_all').append(con);
         }
     }
 </script>
-<script src="../../vendors/js/vendor.bundle.base.js"></script>
-<script src="../../vendors/js/vendor.bundle.addons.js"></script>
+<script src="../../js/search.js"></script>
 </body>
 </html>

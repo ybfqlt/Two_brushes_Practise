@@ -12,10 +12,6 @@
     </resultMap>
 
 
-    <insert id="insert" parameterType="com.memory.pojo.viewStatistic">
-        insert into view_statistic (view_Id)
-        values #{viewId,jdbcType=VARCHAR}
-    </insert>
     <update id="increse">
         update view_statistic
         <set>
@@ -52,4 +48,33 @@
         </set>
         where view_id = #{viewId,jdbcType=INTEGER}
     </update>
+
+
+    <insert id="insert" parameterType="int">
+        insert into view_statistic(view_id) values(#{viewId})
+    </insert>
+
+    <delete id="deleteById" parameterType="int">
+        delete from view_statistic where view_id=#{viewId}
+    </delete>
+
+    <select id="findByArCount" resultType="int">
+        select ar_view_count from view_statistic where view_id=#{viewId}
+    </select>
+
+    <update id="update" parameterType="int">
+        update  view_statistic set ar_view_count=#{count} where view_id=#{viewId}
+    </update>
+
+    <select id="findByFood" resultType="int">
+        select food_count from view_statistic where view_id=#{viewId}
+    </select>
+
+    <select id="findByHotel" resultType="int">
+        select hotel_count from view_statistic where view_id=#{viewId}
+    </select>
+
+    <select id="findById" resultType="int">
+        select view_id from view_statistic
+    </select>
 </mapper>

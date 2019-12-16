@@ -1,5 +1,7 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,7 +25,7 @@
 </head>
 <body>
     <div class="container-scroller">
-      <!-- partial:partials/_navbar -->
+      <!-- partial:partials/_navbar.html -->
       <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style=" border-bottom: 1px solid #cccccc;">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
           <a class="navbar-brand brand-logo" href="index.jsp"><img src="images/logo.png" alt="logo"/></a>
@@ -115,7 +117,7 @@
       </nav>
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
-        <!-- partial:partials/_sidebar.jsp -->
+        <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item nav-profile">
@@ -125,7 +127,7 @@
                   <span class="login-status online"></span>
                 </div>
                 <div class="nav-profile-text d-flex flex-column">
-                  <span class="font-weight-bold mb-2">${sessionScope.user}</span>
+                  <span class="font-weight-bold mb-2">小本</span>
                   <span class="text-secondary text-small">管理员</span>
                 </div>
                 <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
@@ -170,7 +172,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="static/hotel/around_hotel.jsp">
+              <a class="nav-link" href="static/hotel/around_hotel.html">
                 <span class="menu-title">周边住宿管理</span>
                 <i class="mdi mdi-apps menu-icon"></i>
               </a>
@@ -376,7 +378,7 @@
   <script>
     $(function () {
         $.ajax({
-            url:'http://localhost:8080/',
+            url:'http://localhost:8080/tour/index',
             type:'get',
             dataType:'json',
             success:function (data) {
@@ -391,48 +393,48 @@
         })
     });
     function loadIndexAll(data) {
-        $('#view_number').text(`${data.viewNumber}`); //景点个数
-        $(`#around_number`).text(`${data.aroundNumber}`);//周边个数
-        for(let i=0;i<data.viewHot.length;i++) {
-            let con = $(` <tr>
+        $('#view_number').text(`${'${data.viewNumber}'}`); //景点个数
+        $(`#around_number`).text(`${'${data.aroundNumber}'}`);//周边个数
+        for(var i=0;i<data.viewHot.length;i++) {
+            var con = $(` <tr>
                           <td>
-                            <img src="${data.viewHot[i].viewImg}" class="mr-2" alt="image">
-                            ${data.viewHot[i].viewName}
+                            <img src="${'${data.viewHot[i].viewImg}'}" class="mr-2" alt="image">
+                            ${'${data.viewHot[i].viewName}'}
                           </td>
                           <td>
-                            ${data.viewHot[i].viewAddress}
+                            ${'${data.viewHot[i].viewAddress}'}
                           </td>
                           <td>
-                            <label class="badge badge-gradient-danger">${data.viewHot[i].viewType}</label>
+                            <label class="badge badge-gradient-danger">${'${data.viewHot[i].viewType}'}</label>
                           </td>
                           <td>
-                            ${1000+i*6}
+                            ${'${1000+i*6}'}
                           </td>
                           <td>
-                            ${data.viewHot[i].viewNumber}
+                           ${' ${data.viewHot[i].viewNumber}'}
                           </td>
                         </tr>`);
             $('#view_hot').append(con);
         }
-        for(let i=0;i<data.aroundHot.length;i++) {
-            let con = $(`
+        for(var i=0;i<data.aroundHot.length;i++) {
+            var con1 = $(`
                     <tr>
                           <td>
-                            ${i}
+                            ${'${i}'}
                           </td>
                           <td>
-                             ${data.aroundHot[i].aroundName}
+                             ${'${data.aroundHot[i].aroundName}'}
                           </td>
                           <td>
-                             ${data.aroundHot[i].aroundAddress}
+                             ${'${data.aroundHot[i].aroundAddress}'}
                           </td>
                           <td>
                             <div class="progress">
-                              <div class="progress-bar bg-gradient-primary" role="progressbar" style="width: ${(i+1)*10}%" aria-valuenow="${(i+1)*10}" aria-valuemin="0" aria-valuemax="100"></div>
+                              <div class="progress-bar bg-gradient-danger" role="progressbar" style="width: ${'${Math.ceil(Math.random()*100)}'}%" aria-valuenow="${(i+1)*10}" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                           </td>
                         </tr>`);
-            $('#around_hot').append(con);
+            $('#around_hot').append(con1);
         }
 
     }

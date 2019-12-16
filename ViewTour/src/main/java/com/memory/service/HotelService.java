@@ -3,6 +3,7 @@ package com.memory.service;
 import com.memory.dto.Result;
 import com.memory.pojo.ViewHotel;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -47,4 +48,9 @@ public interface HotelService {
      * @return
      */
     ViewHotel getOneHotel(Integer HotelId);
+
+    //根据viewId查询周边住宿
+    public List<ViewHotel> findByViewId(int viewId);
+    //统计周边住宿的个数
+    public int findByCount();
 }

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -90,11 +91,11 @@
 </head>
 <body>
 <div class="container-scroller">
-    <!-- partial:partials/_navbar.html -->
+    <!-- partial:partials/_navbar.jsp -->
     <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style=" border-bottom: 1px solid #cccccc;">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo" href="../../index.html"><img src="../../images/logo.png" alt="logo"/></a>
-            <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="../images/logo-mini.svg" alt="logo"/></a>
+            <a class="navbar-brand brand-logo" href="../../index.jsp"><img src="../../images/logo.png" alt="logo"/></a>
+            <a class="navbar-brand brand-logo-mini" href="../../index.jsp"></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
             <div class="search-field d-none d-md-block">
@@ -103,7 +104,7 @@
                         <div class="input-group-prepend bg-transparent">
                             <i class="input-group-text border-0 mdi mdi-magnify"></i>
                         </div>
-                        <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
+                        <input type="text" id="search" value="" class="form-control bg-transparent border-0" placeholder="按照景点名搜索" onkeydown="load()">
                     </div>
                 </form>
             </div>
@@ -119,7 +120,7 @@
                         </div>
                     </a>
                     <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item" href="../login/login.html">
+                        <a class="dropdown-item" href="../login/login.jsp">
                             <i class="mdi mdi-cached mr-2 text-success"></i>
                             登录
                         </a>
@@ -183,7 +184,7 @@
     </nav>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
-        <!-- partial:partials/_sidebar.html -->
+        <!-- partial:partials/_sidebar.jsp -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
                 <li class="nav-item nav-profile">
@@ -200,7 +201,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../../index.html">
+                    <a class="nav-link" href="../../index.jsp">
                         <span class="menu-title">首页</span>
                         <i class="mdi mdi-home menu-icon"></i>
                     </a>
@@ -213,14 +214,14 @@
                     </a>
                     <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="list_view.html">景点列表</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="add_view.html">添加景点</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="../static/modify_view.html">删改景点</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="list_view.jsp">景点列表</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="add_view.jsp">添加景点</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="modify_view.jsp">删改景点</a></li>
                         </ul>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../router/router_curd.html">
+                    <a class="nav-link" href="../router/router_curd.jsp">
                         <span class="menu-title">旅游路线管理</span>
                         <i class="mdi mdi-assistant menu-icon"></i>
                     </a>
@@ -263,7 +264,7 @@
                     <div class="card" >
                         <div class="card-body">
                             <h4 class="card-title">景点列表</h4>
-                            <h4 style="float: right;position: relative;top: -13%;"><a href="javascript:history.back(-1)">返回</a></h4>
+                            <h4 style="float: right;position: relative;top: -10%;"><a href="javascript:history.back(-1)">返回</a></h4>
                             <hr>
                             <table class="table  table-bordered">
                                 <thead>
@@ -311,7 +312,10 @@
     $(function () {
         $.ajax({
             type:'GET',
-            url:'http://localhost:8080/viewList',
+            url:'http://localhost:8080/tour/viewList',
+            data:{
+                flag:0
+            },
             dataType:"json",
             success:function (data) {
                 viewListLoad(data);//得到请求的页面数据  动态加载
@@ -323,14 +327,14 @@
     function DeleteView(id){
         console.log(id);
         $.ajax({
-            type:'GET',
-            url:'http://localhost:8080/viewDelete',
+            type:'get',
+            url:'http://localhost:8080/tour/viewDelete',
             data:{
                 viewId:id
             },
             success:function () {
-                alert('删除成功');
                 closeDelWindow();
+                window.location.reload();
             }
         });
     }
@@ -340,14 +344,13 @@
         console.log(id);
         $.ajax({
             type:'GET',
-            url:'http://localhost:8080/viewDetails',
+            url:'http://localhost:8080/tour/viewDetails',
             data:{
                 viewId:id
             },
             dataType:"json",
             success:function (data) {
                 viewModifyLoad(data);//删除弹框内容加载
-                //TODO  修改提交后 后台重定向
             }
         });
         $('#alert_modify').show();  //显示弹窗
@@ -363,20 +366,19 @@
 
     //景点列表加载
     function viewListLoad(data) {
-        for(let i=0;i<data.length;i++) {
-            let con =  $(`<tr>
-                                <td><img src="${data[i].viewImg}" class="view_img_main"></td>
-                                <td>${data[i].viewName}</td>
-                                <td>${data[i].viewAddress}</td>
-                                <td>${data[i].viewPrice}元</td>
-                                <td>${data[i].viewDate}</td>
-                                <td><label class="badge badge-danger">${data[i].viewType}</label></td>
-                                <td class="desc">${data[i].viewDesc}</td>
+        for(var i=0;i<data.length;i++) {
+            var con =  $(`<tr>
+                                <td><img src="${'${data[i].viewImg}'}" class="view_img_main"></td>
+                                <td>${'${data[i].viewName}'}</td>
+                                <td>${'${data[i].viewAddress}'}</td>
+                                <td>${'${data[i].viewPrice}'}元</td>
+                                <td>${'${data[i].viewDate}'}</td>
+                                <td><label class="badge badge-success">${'${data[i].viewType}'}</label></td>
                                 <td>
-                                      <button type="button" class="btn btn-inverse-info btn-rounded btn-icon" onclick="showModWindow(${data[i].viewId})">
+                                      <button type="button" class="btn btn-inverse-info btn-rounded btn-icon" onclick="showModWindow(${'${data[i].viewId}'})">
                                          <i class="mdi mdi-table-edit"></i>
                                       </button>
-                                      <button type="button" class="btn btn-inverse-danger btn-rounded btn-icon" onclick="showDelWindow(${data[i].viewId})">
+                                      <button type="button" class="btn btn-inverse-danger btn-rounded btn-icon" onclick="showDelWindow(${'${data[i].viewId}'})">
                                          <i class="mdi mdi-delete-forever"></i>
                                       </button>
                                  </td>
@@ -386,27 +388,27 @@
     }
     //修改的弹框加载
     function viewModifyLoad(data) {
-        let con = $(`<form class="forms-sample" action="http://localhost:8080/viewModify" method="post">
-                        <input type="hidden" name="viewId" value="${data.viewId}">
+        let con = $(`<form class="forms-sample" action="http://localhost:8080/tour/viewModify" method="post">
+                        <input type="hidden" name="viewId" value="${'${data.viewId}'}">
                         <div class="form-group">
                             <label for="InputName">景点名字</label>
-                            <input type="text" name="viewName" class="form-control" id="InputName" placeholder="name" value="${data.viewName}">
+                            <input type="text" name="viewName" class="form-control" id="InputName" placeholder="name" value="${'${data.viewName}'}">
                         </div>
                         <div class="form-group">
                             <label for="InputPrice">门票价格</label>
-                            <input type="text" name="viewPrice" class="form-control" id="InputPrice" placeholder="price" value="${data.viewPrice}元">
+                            <input type="number" name="viewPrice" class="form-control" id="InputPrice" placeholder="price" value="${'${data.viewPrice}'}">
                         </div>
                         <div class="form-group">
                             <label for="InputTime">开发时间</label>
-                            <input type="text" name="viewDate" class="form-control" id="InputTime" placeholder="time" value="${data.viewDate}">
+                            <input type="text" name="viewDate" class="form-control" id="InputTime" placeholder="time" value="${'${data.viewDate}'}">
                         </div>
                         <div class="form-group">
                             <label for="InputAddress">景点位置</label>
-                            <input type="text" name="viewAddress" class="form-control" id="InputAddress" placeholder="address" value="${data.viewAddress}">
+                            <input type="text" name="viewAddress" class="form-control" id="InputAddress" placeholder="address" value="${'${data.viewAddress}'}">
                         </div>
                         <div class="form-group">
                             <label for="InputType">景点类别</label>
-                            <input type="text" name="viewType" class="form-control" id="InputType" placeholder="recommend" value="${data.viewType}">
+                            <input type="text" name="viewType" class="form-control" id="InputType" placeholder="recommend" value="${'${data.viewType}'}">
                         </div>
                          <hr>
                         <div style="text-align: right;display: inline-block;">
@@ -422,7 +424,7 @@
     //删除的弹框加载
     function viewDeleteLoad(viewId) {
         console.log(viewId);
-        let con = $(` <div id="cover_del"></div>
+        var con = $(` <div id="cover_del"></div>
                         <div class="row" id="alert_del">
                             <div class="col-md-5 grid-margin stretch-card" style="margin: 0 auto">
                                 <div class="card">
@@ -432,7 +434,7 @@
                                 <hr>
                                 <div style="text-align: right">
                                     <button class="btn_sub btn btn-inverse-info btn-fw"  onclick="closeDelWindow()">取消</button>
-                                    <button class="btn_sub btn btn-inverse-success btn-fw"  onclick="DeleteView(${viewId})">确 定</button>
+                                    <button class="btn_sub btn btn-inverse-success btn-fw"  onclick="DeleteView(${'${viewId}'})">确 定</button>
                                 </div>
                             </div>
                          </div>
@@ -455,8 +457,8 @@
         $('#cover_del').css('display','none');   //显示遮罩层
     }
 </script>
+<script src="../../js/search.js"></script>
 <script src="../../vendors/js/vendor.bundle.base.js"></script>
 <script src="../../vendors/js/vendor.bundle.addons.js"></script>
-
 </body>
 </html>

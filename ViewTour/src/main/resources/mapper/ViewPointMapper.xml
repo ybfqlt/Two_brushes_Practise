@@ -18,84 +18,8 @@
         <result column="net_locate" property="netLocate"/>
         <result column="connect_address" property="connectAddress"/>
     </resultMap>
-    <insert id="insert" parameterType="com.memory.pojo.ViewPoint">
-        insert into view_point (view_id, view_name, view_desc,
-                                view_address, view_price, view_date,
-                                view_type, view_img, open_time,
-                                ticket_info, bus_router, net_locate,
-                                connect_address)
-        values (#{viewId,jdbcType=INTEGER}, #{viewName,jdbcType=VARCHAR}, #{viewDesc,jdbcType=VARCHAR},
-                #{viewAddress,jdbcType=VARCHAR}, #{viewPrice,jdbcType=INTEGER}, #{viewDate,jdbcType=VARCHAR},
-                #{viewType,jdbcType=VARCHAR}, #{viewImg,jdbcType=VARCHAR}, #{openTime,jdbcType=VARCHAR},
-                #{ticketInfo,jdbcType=VARCHAR}, #{busRouter,jdbcType=VARCHAR}, #{netLocate,jdbcType=VARCHAR},
-                #{connectAddress,jdbcType=VARCHAR})
-    </insert>
-
-    <delete id="delete" parameterType="int">
-        delete
-        from view_point
-        where view_id = #{viewId}
-    </delete>
-
-    <!--    <update id="update" parameterType="com.memory.pojo.ViewPoint">-->
-    <!--        update view_point-->
-    <!--        <set >-->
-    <!--            <if test="viewPoint.viewId != null" >-->
-    <!--                view_id = #{viewPoint.viewId,jdbcType=INTEGER},-->
-    <!--            </if>-->
-    <!--            <if test="viewPoint.viewName != null" >-->
-    <!--                view_name = #{viewPoint.viewName,jdbcType=VARCHAR},-->
-    <!--            </if>-->
-    <!--            <if test="viewPoint.viewDesc != null" >-->
-    <!--                view_desc = #{viewPoint.viewDesc,jdbcType=VARCHAR},-->
-    <!--            </if>-->
-    <!--            <if test="viewPoint.viewAddress != null" >-->
-    <!--                view_address = #{viewPoint.viewAddress,jdbcType=VARCHAR},-->
-    <!--            </if>-->
-    <!--            <if test="viewPoint.viewPrice != null" >-->
-    <!--                view_price = #{viewPoint.viewPrice,jdbcType=INTEGER},-->
-    <!--            </if>-->
-    <!--            <if test="viewPoint.viewDate != null" >-->
-    <!--                view_date = #{viewPoint.viewDate,jdbcType=VARCHAR},-->
-    <!--            </if>-->
-    <!--            <if test="viewPoint.viewType != null" >-->
-    <!--                view_type = #{viewPoint.viewType,jdbcType=VARCHAR},-->
-    <!--            </if>-->
-    <!--            <if test="viewPoint.viewImg != null" >-->
-    <!--                view_img = #{viewPoint.viewImg,jdbcType=VARCHAR},-->
-    <!--            </if>-->
-    <!--            <if test="viewPoint.openTime != null" >-->
-    <!--                open_time = #{viewPoint.openTime,jdbcType=VARCHAR},-->
-    <!--            </if>-->
-    <!--            <if test="viewPoint.ticketInfo != null" >-->
-    <!--                ticket_info = #{viewPoint.ticketInfo,jdbcType=VARCHAR},-->
-    <!--            </if>-->
-    <!--            <if test="viewPoint.busRouter != null" >-->
-    <!--                bus_router = #{viewPoint.busRouter,jdbcType=VARCHAR},-->
-    <!--            </if>-->
-    <!--            <if test="viewPoint.netLocate != null" >-->
-    <!--                net_locate = #{viewPoint.netLocate,jdbcType=VARCHAR},-->
-    <!--            </if>-->
-    <!--            <if test="viewPoint.connectAddress != null" >-->
-    <!--                connect_address = #{viewPoint.connectAddress,jdbcType=VARCHAR},-->
-    <!--            </if>-->
-    <!--        </set>-->
-    <!--        <if test="_parameter != null" >-->
-    <!--            <include refid="Update_By_Example_Where_Clause" />-->
-    <!--        </if>-->
-    <!--    </update>-->
 
 
-    <select id="findById" parameterType="int" resultMap="BaseResultMap">
-        select *
-        from view_point
-        where view_id = #{viewId}
-    </select>
-
-    <select id="findAll" resultMap="BaseResultMap">
-        select *
-        from view_point
-    </select>
     <select id="findAllByRouter" resultMap="BaseResultMap">
         select *
         from view_point
@@ -118,6 +42,101 @@
     </select>
     <select id="findByName" resultMap="BaseResultMap">
         select * from view_point where view_name = #{viewName,jdbcType=VARCHAR}
+    </select>
+
+
+    <insert id="insert" parameterType="com.memory.pojo.ViewPoint"  >
+        <selectKey keyProperty="viewId" order="AFTER" resultType="java.lang.Integer">
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert into view_point (view_name, view_desc,
+        view_address, view_price, view_date,
+        view_type, view_img, open_time,
+        ticket_info, bus_router, net_locate,
+        connect_address)
+        values (#{viewName,jdbcType=VARCHAR}, #{viewDesc,jdbcType=VARCHAR},
+        #{viewAddress,jdbcType=VARCHAR}, #{viewPrice,jdbcType=INTEGER}, #{viewDate,jdbcType=VARCHAR},
+        #{viewType,jdbcType=VARCHAR}, #{viewImg,jdbcType=VARCHAR}, #{openTime,jdbcType=VARCHAR},
+        #{ticketInfo,jdbcType=VARCHAR}, #{busRouter,jdbcType=VARCHAR}, #{netLocate,jdbcType=VARCHAR},
+        #{connectAddress,jdbcType=VARCHAR})
+    </insert>
+
+    <delete id="delete" parameterType="int">
+        delete from view_point where view_id=#{viewId}
+    </delete>
+
+    <update id="update" parameterType="viewPoint">
+        update view_point
+        <set >
+            <!--<if test="viewPoint.viewId!= null" >
+                view_name = #{viewPoint.viewId,jdbcType=INTEGER},
+            </if>-->
+            <if test="viewPoint.viewName != null" >
+                view_name = #{viewPoint.viewName,jdbcType=VARCHAR},
+            </if>
+            <if test="viewPoint.viewDesc != null" >
+                view_desc = #{viewPoint.viewDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="viewPoint.viewAddress != null" >
+                view_address = #{viewPoint.viewAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="viewPoint.viewPrice != null" >
+                view_price = #{viewPoint.viewPrice,jdbcType=INTEGER},
+            </if>
+            <if test="viewPoint.viewDate != null" >
+                view_date = #{viewPoint.viewDate,jdbcType=VARCHAR},
+            </if>
+            <if test="viewPoint.viewType != null" >
+                view_type = #{viewPoint.viewType,jdbcType=VARCHAR},
+            </if>
+            <if test="viewPoint.viewImg != null" >
+                view_img = #{viewPoint.viewImg,jdbcType=VARCHAR},
+            </if>
+            <if test="viewPoint.openTime != null" >
+                open_time = #{viewPoint.openTime,jdbcType=VARCHAR},
+            </if>
+            <if test="viewPoint.ticketInfo != null" >
+                ticket_info = #{viewPoint.ticketInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="viewPoint.busRouter != null" >
+                bus_router = #{viewPoint.busRouter,jdbcType=VARCHAR},
+            </if>
+            <if test="viewPoint.netLocate != null" >
+                net_locate = #{viewPoint.netLocate,jdbcType=VARCHAR},
+            </if>
+            <if test="viewPoint.connectAddress != null" >
+                connect_address = #{viewPoint.connectAddress,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where  view_id=#{viewPoint.viewId,jdbcType=INTEGER}
+    </update>
+
+
+    <select id="findById" parameterType="int" resultMap="BaseResultMap">
+        select * from  view_point where view_id=#{viewId}
+    </select>
+
+    <select id="findAll"  resultMap="BaseResultMap">
+        select * from  view_point
+    </select>
+
+    <select id="findByCount" resultType="int">
+        select count(*) from view_point
+    </select>
+
+    <select id="findName" parameterType="int" resultType="string">
+        select view_name from view_point where view_id=#{viewId}
+    </select>
+
+    <select id="findByAddress" parameterType="int" resultType="string">
+        select view_address from view_point where view_id=#{viewId}
+    </select>
+
+    <select id="findByType" parameterType="int" resultType="string">
+        select view_type from view_point where view_id=#{viewId}
+    </select>
+    <select id="findByImg" parameterType="int" resultType="string">
+        select view_img from view_point where view_id=#{viewId}
     </select>
 
 </mapper>

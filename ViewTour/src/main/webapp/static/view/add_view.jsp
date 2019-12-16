@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -44,7 +45,7 @@
     <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style=" border-bottom: 1px solid #cccccc;">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
             <a class="navbar-brand brand-logo" href="../../index.jsp"><img src="../../images/logo.png" alt="logo"/></a>
-            <a class="navbar-brand brand-logo-mini" href="../../index.jsp"><img src="../images/logo-mini.svg" alt="logo"/></a>
+            <a class="navbar-brand brand-logo-mini" href="../../index.jsp"></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
             <div class="search-field d-none d-md-block">
@@ -53,7 +54,7 @@
                         <div class="input-group-prepend bg-transparent">
                             <i class="input-group-text border-0 mdi mdi-magnify"></i>
                         </div>
-                        <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
+                        <input type="text" id="search" value="" class="form-control bg-transparent border-0" placeholder="按照景点名搜索" onkeydown="load()">
                     </div>
                 </form>
             </div>
@@ -210,37 +211,57 @@
                     <div class="card">
                         <div class="card-body" style="background: #ffffff;">
                             <h4 class="card-title">填写景点信息</h4>
-                            <h4 style="float: right;position: relative;top: -4%;"><a href="javascript:history.back(-1)">返回</a></h4>
+                            <h4 style="float: right;position: relative;top: -3%;"><a href="javascript:history.back(-1)">返回</a></h4>
                             <hr>
-                            <form class="forms-sample" action="http://localhost:8080/viewAdd" method="post">
+                            <form class="forms-sample" action="http://localhost:8080/tour/viewAdd" method="post">
                                 <div class="form-group">
-                                    <label for="exampleInputName">项目名称：</label>
-                                    <input type="text" value="" name="viewName" class="form-control" id="exampleInputName" placeholder="please write name ...">
+                                    <label for="exampleInputName">景点名称：</label>
+                                    <input type="text" value="" name="viewName" class="form-control" id="exampleInputName" placeholder="请输入景点名称 ...">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputAddress">景点位置：</label>
-                                    <input type="text"  value="" name="viewAddress" class="form-control" id="exampleInputAddress" placeholder="please write address ...">
+                                    <input type="text"  value="" name="viewAddress" class="form-control" id="exampleInputAddress" placeholder="请输入景点位置 ...">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPrice">门票价钱：</label>
-                                    <input type="text"  value="" name="viewPrice" class="form-control" id="exampleInputPrice" placeholder="please write price ...">
+                                    <input type="text"  value="" name="viewPrice" class="form-control" id="exampleInputPrice" placeholder="请输入门票价钱 ...">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputTime">开发时间：</label>
-                                    <input type="text"  value="" name="viewDate" class="form-control" id="exampleInputTime" placeholder="please write time ...">
+                                    <input type="text"  value="" name="viewDate" class="form-control" id="exampleInputTime" placeholder="请输入开发时间 ...">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputType">景点类别：</label>
-                                    <input type="text"  value="" name="viewType" class="form-control" id="exampleInputType" placeholder="please write type ...">
+                                    <input type="text"  value="" name="viewType" class="form-control" id="exampleInputType" placeholder="请输入景点类别 ...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputopenTime">开放时间：</label>
+                                    <input type="text"  value="" name="openTime" class="form-control" id="exampleInputopenTime" placeholder="请输入开放时间 ...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputticketInfo">票务信息：</label>
+                                    <input type="text"  value="" name="ticketInfo" class="form-control" id="exampleInputticketInfo" placeholder="请输入票务信息 ...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputbusRouter">公交路线：</label>
+                                    <input type="text"  value="" name="busRouter" class="form-control" id="exampleInputbusRouter" placeholder="请输入公交路线 ...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputnetLocate">官方网站：</label>
+                                    <input type="text"  value="" name="netLocate" class="form-control" id="exampleInputnetLocate" placeholder="请输入官方网站 ...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputconnectAddress">联系地址：</label>
+                                    <input type="text"  value="" name="connectAddress" class="form-control" id="exampleInputconnectAddress" placeholder="请输入联系地址 ...">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleTextarea1">景点介绍：</label>
-                                    <textarea class="form-control"  value="" name="viewDesc" id="exampleTextarea1" rows="4" placeholder="please write about it ..."></textarea>
+                                    <textarea class="form-control"   name="viewDesc" id="exampleTextarea1" rows="4" placeholder="请输入景点介绍 ..."></textarea>
                                 </div>
                                 <div class="form-group" style="width: 87%;text-align: left;margin: 0 auto">
                                     <label>上传景点图片:</label>
-                                    <input type="file" name="img[]" class="file-upload-default">
-                                    <div class="input-group col-xs-12" style="border: none;">
+                                    <input type="file" name="viewImg" class="file-upload-default">
+                                    <div class="input-group col-xs-12" style="  border: none;">
                                         <input type="text"  value="" name="viewImg" class="form-control file-upload-info" disabled placeholder="Upload Image">
                                         <span class="input-group-append">
                                             <button class="file-upload-browse btn btn-gradient-danger btn-fw" type="button">上传</button>
@@ -259,7 +280,7 @@
         </div>
     </div>
 </div>
-
+<script src="../../js/search.js"></script>
 <script src="../../vendors/js/vendor.bundle.base.js"></script>
 <script src="../../vendors/js/vendor.bundle.addons.js"></script>
 <script src="../../js/file-upload.js"></script>

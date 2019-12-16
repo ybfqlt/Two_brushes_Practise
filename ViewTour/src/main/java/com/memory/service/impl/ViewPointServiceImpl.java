@@ -45,6 +45,9 @@ public class ViewPointServiceImpl implements ViewPointService {
     public List<ViewPoint> getAllView(Integer flag) {
         List<ViewPoint> lists = new ArrayList<>();
         switch (flag){
+            case 0:
+                lists = viewPointMapper.findAll();
+                break;
             case 1:
                lists = viewPointMapper.findAllByRouter();
                break;
@@ -88,4 +91,54 @@ public class ViewPointServiceImpl implements ViewPointService {
         result.setMes("yep");
         return result;
      }
+
+    @Override
+    public List<ViewPoint> findAll() {
+        return viewPointMapper.findAll();
+    }
+
+    @Override
+    public ViewPoint findById(int viewId) {
+        return  viewPointMapper.findById(viewId);
+    }
+
+    @Override
+    public void  insert(ViewPoint viewPoint) {
+        viewPointMapper.insert(viewPoint);
+    }
+
+    @Override
+    public void update(ViewPoint viewPoint) {
+        viewPointMapper.update(viewPoint);
+    }
+
+    @Override
+    public void delete(int viewId) {
+        viewPointMapper.delete(viewId);
+    }
+
+    @Override
+    public int findByCount() {
+        return  viewPointMapper.findByCount();
+    }
+
+    @Override
+    public String findByName(int viewId) {
+        return viewPointMapper.findName(viewId);
+    }
+
+    @Override
+    public String findByAddress(int viewId) {
+        return  viewPointMapper.findByAddress(viewId);
+    }
+
+    @Override
+    public String findByType(int viewId) {
+        return  viewPointMapper.findByType(viewId);
+    }
+
+    @Override
+    public String findByImg(int viewId) {
+        return viewPointMapper.findByImg(viewId);
+    }
 }

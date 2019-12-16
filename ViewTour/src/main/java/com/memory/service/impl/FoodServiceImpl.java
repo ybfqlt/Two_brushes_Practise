@@ -5,7 +5,6 @@ import com.memory.mapper.ViewFoodMapper;
 import com.memory.mapper.ViewPointMapper;
 import com.memory.mapper.ViewStatisticMapper;
 import com.memory.pojo.ViewFood;
-import com.memory.pojo.ViewHotel;
 import com.memory.pojo.ViewPoint;
 import com.memory.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,5 +105,16 @@ public class FoodServiceImpl implements FoodService {
     @Override
     public ViewFood getOneFood(Integer FoodId) {
         return viewFoodMapper.findById(FoodId);
+    }
+
+    @Override
+    public List<ViewFood> findByViewId(int viewId) {
+
+        return  viewFoodMapper.findByViewId(viewId);
+    }
+
+    @Override
+    public int findByCount() {
+        return viewFoodMapper.findByCount();
     }
 }

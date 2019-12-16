@@ -27,7 +27,14 @@ public class ViewPoint {
 
     private String connectAddress;
 
-    public ViewPoint(){
+    private int  viewNumber;
+
+    public int getViewNumber() {
+        return viewNumber;
+    }
+
+    public void setViewNumber(int viewNumber) {
+        this.viewNumber = viewNumber;
     }
 
     public Integer getViewId() {

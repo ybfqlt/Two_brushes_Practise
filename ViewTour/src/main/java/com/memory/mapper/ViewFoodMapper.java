@@ -29,4 +29,7 @@ public interface ViewFoodMapper {
 
     //更新
     int update(ViewFood viewFood);
+
+    //统计周边美食的个数
+    public int findByCount();
 }

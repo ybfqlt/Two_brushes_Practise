@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -45,13 +47,17 @@
             display: inline-block;
             padding-left: 5px;
         }
+        #view_details img{
+            width: 360px;
+            height: 220px;
+        }
     </style>
 </head>
 <body>
 <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style=" border-bottom: 1px solid #cccccc;">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         <a class="navbar-brand brand-logo" href="../../index.jsp"><img src="../../images/logo.png" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href="../../index.jsp"><img src="../images/logo-mini.svg" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="../../index.jsp"></a>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-stretch">
         <div class="search-field d-none d-md-block">
@@ -60,7 +66,7 @@
                     <div class="input-group-prepend bg-transparent">
                         <i class="input-group-text border-0 mdi mdi-magnify"></i>
                     </div>
-                    <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
+                    <input type="text" id="search" value="" class="form-control bg-transparent border-0" placeholder="按照景点名搜索" onkeydown="load()">
                 </div>
             </form>
         </div>
@@ -218,7 +224,7 @@
                 <div class="card-body"  style="margin-top: 20px" id="view_container">
 
                 </div>
-                <div class="card-body" id="view_details">
+                <div class="card-body" id="view_details" style="width: 100%;height:  300px;">
                     <h5>景点展示</h5><br>
 
                 </div>
@@ -247,62 +253,62 @@
     $(function () {
         $.ajax({
             type:'GET',
-            url:'http://localhost:8080/viewInfo'+window.location.search,
+            url:'http://localhost:8080/tour/viewInfo'+window.location.search,
             dataType:"json",
             success:function (data) {
                 //TODO  数据由四部分组成
-                container_load(data.content);//得到请求的介绍数据  动态加载
-                view_load(data.view); //周边景点数据
-                food_load(data.food);//周边美食数据
-                hotel_load(data.hotel);//周边住宿数据
+                container_load(data.view);//得到请求的介绍数据  动态加载
+                view_load(data.surroundViews); //周边景点数据
+                food_load(data.foods);//周边美食数据
+                hotel_load(data.hotels);//周边住宿数据
             }
         });
     });
     //加载介绍部分
     function container_load(data) {
-        let con = $(`   <h4 class="card-title text-info">${'${data.viewName}'}</h4>
+        var con = $(`   <h4 class="card-title text-info">${'${data.viewName}'}</h4>
                 <h4 style="float: right;position: relative;top: -10%;"><a href="javascript:history.back(-1)">返回</a></h4>
                 <hr>
                 <div class="desc_more">
                     <h5>景点介绍</h5>
                     <blockquote class="blockquote">
                         <p class="mb-0">
-                            ${data.viewDesc}
+                            ${'${data.viewDesc}'}
                         </p>
                     </blockquote>
                 </div>`);
         $('#view_container').append(con);
-        let con1 = $(` <img src="${data.viewImg}" width="300" href="200">
+        var con1 = $(` <img src="${'${data.viewImg}'}" width="300" href="200">
                     <div class="col-md-8 grid-margin stretch-card" style="display: inline-block;position: absolute;top:16%;">
                         <div class="card" >
                             <div class="card-body">
-                            <h4 class="card-title">${data.viewName}</h4>
+                            <h4 class="card-title">${'${data.viewName}'}</h4>
                             <hr>
                             <ul class="list-ticked">
-                                <li>开放时间 &nbsp;&nbsp;${data.openTime}</li>
-                                <li>票务信息 &nbsp;&nbsp;${data.ticketInfo}</li>
-                                <li>公交路线&nbsp;&nbsp;${data.busRouter}</li>
-                                <li>官方网站&nbsp;&nbsp;${data.netLocate}</li>
-                                <li>联系地址&nbsp;&nbsp;${data.connetAddress}</li>
+                                <li>开放时间 &nbsp;&nbsp;${'${data.openTime}'}</li>
+                                <li>票务信息 &nbsp;&nbsp;${'${data.ticketInfo}'}</li>
+                                <li>公交路线&nbsp;&nbsp;${'${data.busRouter}'}</li>
+                                <li>官方网站&nbsp;&nbsp;${'${data.netLocate}'}</li>
+                                <li>联系地址&nbsp;&nbsp;${'${data.connectAddress}'}</li>
                             </ul>
                         </div>`);
         $('#view_details').append(con1);
     }
     //加载周边景点
     function view_load(data) {
-        for(let i =0;i< data.length;i++){
-            let con = $(`     <div class="col-md-5 grid-margin stretch-card recommend_item">
+        for(var i =0;i< data.length;i++){
+            var con = $(`     <div class="col-md-5 grid-margin stretch-card recommend_item">
                     <div class="card card_item">
                         <div class="card-body card_item_body">
-                            <h6>${data.arViewName}</h6>
+                            <h6>${'${data[i].arViewName}'}</h6>
                             <div class="media">
-                                <img src="${data.arViewImg}" width="60" height="60"/>
+                                <img src="${'${data[i].arViewImg}'}" width="60" height="60"/>
                                 <div class="media-body">
                                     <p class="card-description">
-                                        距离：<code>${data.arViewDistance}</code>, 票价：<code>${data.arViewPrice}元/人</code>
+                                        距离：<code>${'${data[i].arViewDistance}'}</code>, 票价：<code>${'${data[i].arViewPrice}'}元/人</code>
                                     </p>
                                     <p class="card-description">
-                                        推荐指数：<code class="text-warning">${data.arViewReconmend}</code>
+                                        推荐指数：<code class="text-warning">${'${data[i].arViewRecommend}'}</code>
                                     </p>
                                 </div>
                             </div>
@@ -315,20 +321,20 @@
     }
     //加载周边美食
     function food_load(data) {
-        for(let i =0;i< data.length;i++){
-            let con = $(`
+        for(var i =0;i< data.length;i++){
+            var con = $(`
              <div class="col-md-5 grid-margin stretch-card recommend_item">
                         <div class="card card_item">
                             <div class="card-body card_item_body">
-                                <h6>${data.foodName}</h6>
+                                <h6>${'${data[i].foodName}'}</h6>
                                 <div class="media">
-                                    <img src="${data.foodImg}" width="60" height="60"/>
+                                    <img src="${'${data[i].foodImg}'}" width="60" height="60"/>
                                     <div class="media-body">
                                         <p class="card-description">
-                                            距离：<code>${data.foodDistence}公里</code>, 票价：<code>${data.foodPrice}元/人</code>
+                                            距离：<code>${'${data[i].foodDistance}'}公里</code>, 票价：<code>${'${data[i].foodPrice}'}元/人</code>
                                         </p>
                                         <p class="card-description">
-                                            推荐指数：<code class="text-warning">${data.foodRecommend}</code>
+                                            推荐指数：<code class="text-warning">${'${data[i].foodRecommend}'}</code>
                                         </p>
                                     </div>
                                 </div>
@@ -340,19 +346,19 @@
     }
     //加载周边住宿
     function hotel_load(data) {
-        for(let i =0;i< data.length;i++) {
-            let con = $(` <div class="col-md-5 grid-margin stretch-card recommend_item">
+        for(var i =0;i< data.length;i++) {
+            var con = $(` <div class="col-md-5 grid-margin stretch-card recommend_item">
                         <div class="card card_item">
                             <div class="card-body card_item_body">
-                                <h6>${data.hotelName}</h6>
+                                <h6>${'${data[i].hotelName}'}</h6>
                                 <div class="media">
-                                    <img src="${data.hotelImg}" width="60" height="60"/>
+                                    <img src="${'${data[i].hotelImg}'}" width="60" height="60"/>
                                     <div class="media-body">
                                         <p class="card-description">
-                                            距离：<code>${data.hotelDistance}公里</code>, 票价：<code>${data.hotelPrice}元/人</code>
+                                            距离：<code>${'${data[i].hotelDistance}'}公里</code>, 票价：<code>${'${data[i].hotelPrice}'}元/人</code>
                                         </p>
                                         <p class="card-description">
-                                            推荐指数：<code class="text-warning">${data.hotelScore}</code>
+                                            推荐指数：<code class="text-warning">${'${data[i].hotelScore}'}</code>
                                         </p>
                                     </div>
                                 </div>
@@ -363,6 +369,7 @@
         }
     }
 </script>
+<script src="../../js/search.js"></script>
 <script src="../../vendors/js/vendor.bundle.base.js"></script>
 <script src="../../vendors/js/vendor.bundle.addons.js"></script>
 </body>

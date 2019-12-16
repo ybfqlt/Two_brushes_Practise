@@ -10,8 +10,6 @@ import java.util.List;
 @Repository
 public interface SurroundViewMapper {
 
-    //增加一个周边景点
-    int insert(SurroundView surroundView);
 
     //根据主键删除一个周边景点
     int delete(int arViewId);
@@ -26,4 +24,22 @@ public interface SurroundViewMapper {
     List<SurroundView> findAll();
 
     List<SurroundView> findByViewId(Integer viewId);
+
+    //根据viewId查询周边景点
+    public List<SurroundView> findByViewId(int viewId);
+
+    //增加景点
+    public void insert(SurroundView surroundView);
+
+    //修改周边景点
+    public void update(SurroundView surroundView);
+
+
+    //根据arViewId查询单个周边景点的信息
+    SurroundView findByArViewId(int arViewId);
+    //统计周边景点的个数
+    public int findByCount();
+
+    //查找viewId
+    int findId(Integer arViewId);
 }

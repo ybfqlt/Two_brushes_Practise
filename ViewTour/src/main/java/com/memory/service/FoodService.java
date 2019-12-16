@@ -3,6 +3,7 @@ package com.memory.service;
 import com.memory.dto.Result;
 import com.memory.pojo.ViewFood;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -46,4 +47,9 @@ public interface FoodService {
      * @return
      */
     ViewFood getOneFood(Integer foodId);
+
+    //根据景点id查询周边饮食
+    public List<ViewFood> findByViewId(int viewId);
+    //统计周边美食的个数
+    public int findByCount();
 }

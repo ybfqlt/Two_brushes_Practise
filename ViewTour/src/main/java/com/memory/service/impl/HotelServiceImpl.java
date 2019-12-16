@@ -106,4 +106,14 @@ public class HotelServiceImpl implements HotelService {
     public ViewHotel getOneHotel(Integer HotelId) {
         return viewHotelMapper.findById(HotelId);
     }
+
+    @Override
+    public List<ViewHotel> findByViewId(int viewId) {
+        return  viewHotelMapper.findByViewId(viewId);
+    }
+
+    @Override
+    public int findByCount() {
+        return viewHotelMapper.findByCount();
+    }
 }

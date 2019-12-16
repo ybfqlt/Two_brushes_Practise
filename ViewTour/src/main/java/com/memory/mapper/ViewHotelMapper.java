@@ -36,4 +36,8 @@ public interface ViewHotelMapper {
      * @return
      */
     int update(ViewHotel viewHotel);
+
+    //统计周边住宿的个数
+    public int findByCount();
+
 }

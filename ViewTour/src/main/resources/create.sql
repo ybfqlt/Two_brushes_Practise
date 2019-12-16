@@ -43,4 +43,22 @@ create table view_statistic
     food_count int default 0 comment '美食数量',
     hotel_count int default 0 comment '住宿数量',
     ar_view_count int default 0 comment '周边景点数量'
-)
+);
+
+use view_project;
+
+CREATE TABLE around_hot(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    around_name VARCHAR(200),
+    around_address VARCHAR(200)
+
+    );
+
+INSERT INTO  around_hot(around_name,around_address)
+SELECT  food_name,food_address FROM view_food LIMIT 2;
+
+INSERT INTO  around_hot(around_name,around_address)
+SELECT hotel_name,hotel_address FROM view_hotel LIMIT 2;
+
+INSERT INTO around_hot(around_name,around_address)
+SELECT  ar_view_name,ar_view_address FROM  surround_view LIMIT 2;

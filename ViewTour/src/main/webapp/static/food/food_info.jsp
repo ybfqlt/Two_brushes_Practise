@@ -63,7 +63,7 @@
                     <div class="input-group-prepend bg-transparent">
                         <i class="input-group-text border-0 mdi mdi-magnify"></i>
                     </div>
-                    <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
+                    <input type="text" id="search" value="" class="form-control bg-transparent border-0" placeholder="按照景点名搜索" onkeydown="load()">
                 </div>
             </form>
         </div>
@@ -277,6 +277,7 @@
         $('#food_details').append(con1);
     }
 </script>
+<script src="../../js/search.js"></script>
 <script src="../../vendors/js/vendor.bundle.base.js"></script>
 <script src="../../vendors/js/vendor.bundle.addons.js"></script>
 </body>
