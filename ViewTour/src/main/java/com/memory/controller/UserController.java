@@ -64,4 +64,16 @@ public class UserController {
         modelAndView.addObject(res);
         return modelAndView;
     }
+
+    /**
+     * 登出
+     * @param httpServletRequest
+     * @return
+     */
+    @GetMapping("/tour/exit")
+    public ModelAndView logout(HttpServletRequest httpServletRequest){
+        httpServletRequest.getSession().invalidate();
+        ModelAndView modelAndView = new ModelAndView("redirect:../static/login/login.jsp");
+        return  modelAndView;
+    }
 }

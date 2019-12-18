@@ -24,6 +24,9 @@
         .table th{
             text-align: left;
         }
+        .table td {
+            padding: 0.9rem 0.5rem;
+        }
         .table th:nth-child(2), .table td:nth-child(2) {
             width: 180px;
         }
@@ -82,7 +85,7 @@
             width: 100%;
             margin: 0 auto;
             height: 9.5rem;
-            border: 1px solid #999;
+            /*border: 1px solid #999;*/
             display: none;
             position: fixed;
             top: 17%;
@@ -109,7 +112,7 @@
     <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style=" border-bottom: 1px solid #cccccc;">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
             <a class="navbar-brand brand-logo" href="../../index.jsp"><img src="../../images/logo.png" alt="logo"/></a>
-            <a class="navbar-brand brand-logo-mini" href="../../index.jsp"><img src="../images/logo-mini.svg" alt="logo"/></a>
+            <a class="navbar-brand brand-logo-mini" href="../../index.jsp"></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
             <div class="search-field d-none d-md-block">
@@ -136,7 +139,7 @@
                     <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
                         <a class="dropdown-item" href="../login/login.jsp">
                             <i class="mdi mdi-cached mr-2 text-success"></i>
-                            登录
+                            个人中心
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">
@@ -219,7 +222,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="../../static/view/list_view.jsp" aria-expanded="false" aria-controls="ui-basic">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                         <span class="menu-title">景点管理</span>
                         <i class="menu-arrow"></i>
                         <i class="mdi mdi-crosshairs-gps menu-icon"></i>
@@ -352,13 +355,13 @@
         $('#view_name').text(`${data.viewName}`);
         for(var i=0;i<data.hotel.length;i++) {
         let con = $(` <tr>
-                          <td><img src="${'${data.hotel[i].hotelImg}'}" class="view_img_main"></td>
+                          <td><img src="../../images/all/${'${data.hotel[i].hotelImg}'}" class="view_img_main"></td>
                           <td>${'${data.hotel[i].hotelName}'}</td>
-                          <td>${'${data.hotel[i].hotelPrice	}'}</td>
+                          <td>${'${data.hotel[i].hotelPrice	}'}起</td>
                           <td>${'${data.hotel[i].hotelDistance}'}</td>
                           <td>${'${data.hotel[i].hotelAddress}'}</td>
-                          <td><code class="text-danger">${'${data.hotel[i].hotelScore}'}</code>/5分</td>
-                          <td>
+                          <td><code class="text-warning">${'${data.hotel[i].hotelScore}'}</code></td>
+                          <td style="width:106px">
                           <button type="button" class="btn btn-inverse-info btn-rounded btn-icon" onclick="showModWindow(${'${data.hotel[i].hotelId}'})">
                                <i class="mdi mdi-table-edit"></i>
                           </button>
@@ -485,5 +488,7 @@
     }
 </script>
 <script src="../../js/search.js"></script>
+<script src="../../vendors/js/vendor.bundle.base.js"></script>
+<script src="../../vendors/js/vendor.bundle.addons.js"></script>
 </body>
 </html>

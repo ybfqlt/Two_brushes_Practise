@@ -81,7 +81,7 @@
                 <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
                     <a class="dropdown-item" href="../login/login.jsp">
                         <i class="mdi mdi-cached mr-2 text-success"></i>
-                        登录
+                        个人中心
                     </a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">
@@ -164,7 +164,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="../../static/view/list_view.jsp" aria-expanded="false" aria-controls="ui-basic">
+                <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                     <span class="menu-title">景点管理</span>
                     <i class="menu-arrow"></i>
                     <i class="mdi mdi-crosshairs-gps menu-icon"></i>
@@ -259,7 +259,7 @@
                         </div>`);
         $('#food_content').append(con);
         let con1 = $(`
-                        <img src="${'${data.foodImg}'}" width="300" href="200">
+                        <img src="../../images/all/${'${data.foodImg}'}" width="300" href="200">
                         <div class="col-md-8 grid-margin stretch-card" style="display: inline-block;position: absolute;top: 16%;">
                             <div class="card">
                                 <div class="card-body">

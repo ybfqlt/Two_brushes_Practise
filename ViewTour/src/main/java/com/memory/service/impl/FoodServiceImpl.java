@@ -89,7 +89,9 @@ public class FoodServiceImpl implements FoodService {
      */
     @Override
     public Result deleteFood(Integer FoodId) {
+        ViewFood viewFood = viewFoodMapper.findById(FoodId);
         if (viewFoodMapper.delete(FoodId) != 0) {
+            viewStatisticMapper.decrease(viewFood.getViewId(),2);
             return new Result(true, "删除成功", null);
         } else {
             return new Result(false, "删除失败", null);

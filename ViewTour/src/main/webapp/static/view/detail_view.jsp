@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,7 +84,7 @@
                 <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
                     <a class="dropdown-item" href="../login/login.jsp">
                         <i class="mdi mdi-cached mr-2 text-success"></i>
-                        登录
+                        个人中心
                     </a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">
@@ -154,7 +154,7 @@
                         <span class="login-status online"></span>
                     </div>
                     <div class="nav-profile-text d-flex flex-column">
-                        <span class="font-weight-bold mb-2">小本</span>
+                        <span class="font-weight-bold mb-2">${sessionScope.user}</span>
                         <span class="text-secondary text-small">管理员</span>
                     </div>
                     <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
@@ -278,7 +278,7 @@
                     </blockquote>
                 </div>`);
         $('#view_container').append(con);
-        var con1 = $(` <img src="${'${data.viewImg}'}" width="300" href="200">
+        var con1 = $(` <img src="../../images/all/${'${data.viewImg}'}" width="300" href="200">
                     <div class="col-md-8 grid-margin stretch-card" style="display: inline-block;position: absolute;top:16%;">
                         <div class="card" >
                             <div class="card-body">
@@ -302,7 +302,7 @@
                         <div class="card-body card_item_body">
                             <h6>${'${data[i].arViewName}'}</h6>
                             <div class="media">
-                                <img src="${'${data[i].arViewImg}'}" width="60" height="60"/>
+                                <img src="../../images/all/${'${data[i].arViewImg}'}" width="60" height="60"/>
                                 <div class="media-body">
                                     <p class="card-description">
                                         距离：<code>${'${data[i].arViewDistance}'}</code>, 票价：<code>${'${data[i].arViewPrice}'}元/人</code>
@@ -328,7 +328,7 @@
                             <div class="card-body card_item_body">
                                 <h6>${'${data[i].foodName}'}</h6>
                                 <div class="media">
-                                    <img src="${'${data[i].foodImg}'}" width="60" height="60"/>
+                                    <img src="../../images/all/${'${data[i].foodImg}'}" width="60" height="60"/>
                                     <div class="media-body">
                                         <p class="card-description">
                                             距离：<code>${'${data[i].foodDistance}'}公里</code>, 票价：<code>${'${data[i].foodPrice}'}元/人</code>
@@ -352,7 +352,7 @@
                             <div class="card-body card_item_body">
                                 <h6>${'${data[i].hotelName}'}</h6>
                                 <div class="media">
-                                    <img src="${'${data[i].hotelImg}'}" width="60" height="60"/>
+                                    <img src="../../images/all/${'${data[i].hotelImg}'}" width="60" height="60"/>
                                     <div class="media-body">
                                         <p class="card-description">
                                             距离：<code>${'${data[i].hotelDistance}'}公里</code>, 票价：<code>${'${data[i].hotelPrice}'}元/人</code>

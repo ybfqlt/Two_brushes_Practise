@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,7 +37,7 @@
                 <div class="input-group-prepend bg-transparent">
                     <i class="input-group-text border-0 mdi mdi-magnify"></i>
                 </div>
-                <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
+                <input type="text" id="search" value="" class="form-control bg-transparent border-0" placeholder="按照景点名搜索" onkeydown="load()">
               </div>
             </form>
           </div>
@@ -55,12 +55,12 @@
               <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
                 <a class="dropdown-item" href="./static/login/login.jsp">
                   <i class="mdi mdi-cached mr-2 text-success"></i>
-                  登录
+                  个人中心
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">
                   <i class="mdi mdi-logout mr-2 text-primary"></i>
-                  退出
+                  <span onclick="exit()">退出</span>
                 </a>
               </div>
             </li>
@@ -127,7 +127,7 @@
                   <span class="login-status online"></span>
                 </div>
                 <div class="nav-profile-text d-flex flex-column">
-                  <span class="font-weight-bold mb-2">小本</span>
+                  <span class="font-weight-bold mb-2">${sessionScope.user}</span>
                   <span class="text-secondary text-small">管理员</span>
                 </div>
                 <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
@@ -236,7 +236,7 @@
 
           <div class="row">
             <div class="col-12 grid-margin">
-              <div class="card">
+              <div class="card" style="overflow-x: hidden">
                 <div class="card-body">
                   <h4 class="card-title">景点热度排行</h4>
                   <div class="table-responsive">
@@ -299,7 +299,7 @@
                   <div class="d-flex">
                     <div class="d-flex align-items-center mr-4 text-muted font-weight-light">
                       <i class="mdi mdi-account-outline icon-sm mr-2"></i>
-                      <span>小本</span>
+                      <span>${sessionScope.user}</span>
                     </div>
                     <div class="d-flex align-items-center text-muted font-weight-light">
                       <i class="mdi mdi-clock icon-sm mr-2"></i>
@@ -395,10 +395,10 @@
     function loadIndexAll(data) {
         $('#view_number').text(`${'${data.viewNumber}'}`); //景点个数
         $(`#around_number`).text(`${'${data.aroundNumber}'}`);//周边个数
-        for(var i=0;i<data.viewHot.length;i++) {
+        for(var i=0;i<6;i++) {
             var con = $(` <tr>
                           <td>
-                            <img src="${'${data.viewHot[i].viewImg}'}" class="mr-2" alt="image">
+                            <img src="images/all/${'${data.viewHot[i].viewImg}'}" class="mr-2" alt="image">
                             ${'${data.viewHot[i].viewName}'}
                           </td>
                           <td>
@@ -420,7 +420,7 @@
             var con1 = $(`
                     <tr>
                           <td>
-                            ${'${i}'}
+                            ${'${i+1}'}
                           </td>
                           <td>
                              ${'${data.aroundHot[i].aroundName}'}
@@ -430,7 +430,7 @@
                           </td>
                           <td>
                             <div class="progress">
-                              <div class="progress-bar bg-gradient-danger" role="progressbar" style="width: ${'${Math.ceil(Math.random()*100)}'}%" aria-valuenow="${(i+1)*10}" aria-valuemin="0" aria-valuemax="100"></div>
+                              <div class="progress-bar bg-gradient-success" role="progressbar" style="width: ${'${Math.ceil(Math.random()*100)}'}%" aria-valuenow="${(i+1)*10}" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                           </td>
                         </tr>`);
@@ -438,7 +438,18 @@
         }
 
     }
+    function exit() {
+      $.ajax({
+        url: 'http://localhost:8080/tour/exit',
+        type: 'get',
+        success: function () {
+          alert('退出成功');
+          window.location.href="../static/login/login.jsp"
+        }
+      });
+    }
   </script>
+  <script src="js/search.js"></script>
   <script src="vendors/js/vendor.bundle.base.js"></script>
   <script src="vendors/js/vendor.bundle.addons.js"></script>
 

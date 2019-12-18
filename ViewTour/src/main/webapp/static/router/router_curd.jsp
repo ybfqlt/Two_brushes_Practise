@@ -89,8 +89,7 @@
          style=" border-bottom: 1px solid #cccccc;">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
             <a class="navbar-brand brand-logo" href="../../index.jsp"><img src="../../images/logo.png" alt="logo"/></a>
-            <a class="navbar-brand brand-logo-mini" href="../../index.jsp"><img src="../images/logo-mini.svg"
-                                                                                alt="logo"/></a>
+            <a class="navbar-brand brand-logo-mini" href="../../index.jsp"></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
             <div class="search-field d-none d-md-block">
@@ -118,7 +117,7 @@
                     <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
                         <a class="dropdown-item" href="../login/login.jsp">
                             <i class="mdi mdi-cached mr-2 text-success"></i>
-                            登录
+                            个人中心
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">
@@ -204,7 +203,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="../../static/view/list_view.jsp"
+                    <a class="nav-link" data-toggle="collapse" href="#ui-basic"
                        aria-expanded="false" aria-controls="ui-basic">
                         <span class="menu-title">景点管理</span>
                         <i class="menu-arrow"></i>
@@ -320,7 +319,7 @@
     function loadList(data) {
         for (let i = 0; i < data.length; i++) {
             let con = $(` <tr>
-                                    <td><img src="${'${data[i].viewImg}'}" class="view_img_main"></td>
+                                    <td><img src="../../images/all/${'${data[i].viewImg}'}" class="view_img_main"></td>
                                     <td>${'${data[i].viewName}'}</td>
                                     <td>${'${data[i].viewPrice}'}元</td>
                                     <td>${'${data[i].viewAddress}'}</td>
@@ -372,5 +371,7 @@
     }
 </script>
 <script src="../../js/search.js"></script>
+<script src="../../vendors/js/vendor.bundle.base.js"></script>
+<script src="../../vendors/js/vendor.bundle.addons.js"></script>
 </body>
 </html>

@@ -89,7 +89,9 @@ public class HotelServiceImpl implements HotelService {
      */
     @Override
     public Result deleteHotel(Integer HotelId) {
+        ViewHotel viewHotel = viewHotelMapper.findById(HotelId);
         if (viewHotelMapper.delete(HotelId) != 0) {
+            viewStatisticMapper.decrease(viewHotel.getViewId(),4);
             return new Result(true, "删除成功", null);
         } else {
             return new Result(false, "删除失败", null);

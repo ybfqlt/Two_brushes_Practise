@@ -81,7 +81,7 @@
             width: 100%;
             margin: 0 auto;
             height: 9.5rem;
-            border: 1px solid #999;
+            /*border: 1px solid #999;*/
             display: none;
             position:fixed;
             top: 40%;
@@ -126,7 +126,7 @@
                     <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
                         <a class="dropdown-item" href="../login/login.jsp">
                             <i class="mdi mdi-cached mr-2 text-success"></i>
-                            登录
+                            个人中心
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">
@@ -209,7 +209,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="../../static/view/list_view.jsp" aria-expanded="false" aria-controls="ui-basic">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                         <span class="menu-title">景点管理</span>
                         <i class="menu-arrow"></i>
                         <i class="mdi mdi-crosshairs-gps menu-icon"></i>
@@ -339,9 +339,9 @@
         $('#view_name').text(`${'${data.viewName}'}`);
         for (let i = 0; i < data.router.length; i++) {
             let con = $(`  <tr>
-                                  <th>${'${i}'}</th>
+                                  <th>${'${i+1}'}</th>
                                   <td>${'${data.router[i].routerLine}'}</td>
-                                  <td><label class="text-success">${'${data.router[i].routerRecommend}'}</label></td>
+                                  <td><label class="text-warning">${'${data.router[i].routerRecommend}'}</label></td>
                                   <td>
                                       <button type="button" class="btn btn-inverse-info btn-rounded btn-icon" onclick="showModWindow(${'${data.router[i].routerId}'})">
                                           <i class="mdi mdi-table-edit"></i>
@@ -451,5 +451,7 @@
     }
 </script>
 <script src="../../js/search.js"></script>
+<script src="../../vendors/js/vendor.bundle.base.js"></script>
+<script src="../../vendors/js/vendor.bundle.addons.js"></script>
 </body>
 </html>

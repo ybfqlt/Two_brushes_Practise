@@ -60,7 +60,7 @@
             width: 100%;
             margin: 0 auto;
             height: 9.5rem;
-            border: 1px solid #999;
+            /*border: 1px solid #999;*/
             display: none;
             position:fixed;
             top: 17%;
@@ -102,7 +102,7 @@
                     <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
                         <a class="dropdown-item" href="../login/login.jsp">
                             <i class="mdi mdi-cached mr-2 text-success"></i>
-                            登录
+                            个人中心
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">
@@ -185,7 +185,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="../../static/view/list_view.jsp" aria-expanded="false" aria-controls="ui-basic">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                         <span class="menu-title">景点管理</span>
                         <i class="menu-arrow"></i>
                         <i class="mdi mdi-crosshairs-gps menu-icon"></i>
@@ -300,7 +300,7 @@
         for(let i=0;i<data.length;i++) {
             let con =  $(`
                             <tr>
-                                <td><img src="${'${data[i].viewImg}'}" class="view_img_main"></td>
+                                <td><img src="../../images/all/${'${data[i].viewImg}'}" class="view_img_main"></td>
                                 <td>${'${data[i].viewName}'}</td>
 
                                 <td>${'${data[i].viewPrice}'}元</td>
@@ -381,5 +381,7 @@
     }
 </script>
 <script src="../../js/search.js"></script>
+<script src="../../vendors/js/vendor.bundle.base.js"></script>
+<script src="../../vendors/js/vendor.bundle.addons.js"></script>
 </body>
 </html>

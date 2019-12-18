@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,9 +46,9 @@
                         </div>
                     </a>
                     <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item" href="../static/login/login.html">
+                        <a class="dropdown-item" href="../static/login/login.jsp">
                             <i class="mdi mdi-cached mr-2 text-success"></i>
-                            登录
+                            个人中心
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">
@@ -123,14 +123,14 @@
                             <span class="login-status online"></span>
                         </div>
                         <div class="nav-profile-text d-flex flex-column">
-                            <span class="font-weight-bold mb-2">小本</span>
+                            <span class="font-weight-bold mb-2">${sessionScope.user}</span>
                             <span class="text-secondary text-small">管理员</span>
                         </div>
                         <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../index.html">
+                    <a class="nav-link" href="../index.jsp">
                         <span class="menu-title">首页</span>
                         <i class="mdi mdi-home menu-icon"></i>
                     </a>
@@ -261,13 +261,13 @@
                                                     <thead>
                                                     <tr>
                                                         <th>
-                                                            #
+                                                            Top
                                                         </th>
                                                         <th>
                                                             推荐路线
                                                         </th>
                                                         <th>
-                                                            推荐原因
+                                                            推荐指数
                                                         </th>
                                                     </tr>
                                                     </thead>
@@ -296,7 +296,7 @@
                                                     <thead>
                                                     <tr>
                                                         <th>
-                                                            #
+                                                            Top
                                                         </th>
                                                         <th>
                                                             名称
@@ -311,7 +311,7 @@
                                                             人均消费
                                                         </th>
                                                         <th>
-                                                            推荐原因
+                                                            推荐指数
                                                         </th>
                                                     </tr>
                                                     </thead>
@@ -340,7 +340,7 @@
                                                     <thead>
                                                     <tr>
                                                         <th>
-                                                            #
+                                                            Top
                                                         </th>
                                                         <th>
                                                             名称
@@ -396,9 +396,12 @@
             dataType: 'json',
             success: function (data) {
                 if (data.data!== null) {
-                    loadAll(data.data);
+                    loads(data.data);
+                    loadOne(data.data);
+                    loadTwo(data.data);
+                    loadThree(data.data);
+                    loadFour(data.data);
                     // console.log(data.data.view.viewName);
-                    console.log(data.data.view.viewName);
                 }
                 else {
                     $('.content-wrapper').html("<div style=\"margin: 20px;text-align: center\">\n" +
@@ -409,9 +412,7 @@
             }
         })
     }
-
-    function loadAll(data) {
-
+    function loads(data) {
         $('#view_name').text(`${'${data.view.viewName}'}`);
         var info = $(`
                 <div class="col-md-6 grid-margin stretch-card" style="display: inline-block;padding-right: 3px;padding-left: 13px;">
@@ -419,20 +420,20 @@
                         <div class="card-body">
                             <h4 class="card-title">beautiful as a painting</h4>
                             <div class="media">
-                                <img src="${'${data.view.viewImg}'}" width="100%" height="330">
+                                <img src="../../images/all/${'${data.view.viewImg}'}" width="100%" height="330">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-5 grid-margin stretch-card" style="height:330px;box-sizing:border-box;display: inline-block;padding-right: 3px;padding-left: 13px;">
                     <div class="card" id="desc" style="padding-bottom:0 !important;">
-                        <div class="card-body" style="min-height: 200px">
+                        <div class="card-body" style="min-height: 235px">
                             <h4 class="card-title">About</h4>
                             <blockquote class="blockquote">
                                 <p class="mb-0">${'${data.view.viewDesc}'}</p>
                             </blockquote>
                         </div>
-                        <div class="card-body" style="padding-top:0 !important;">
+                        <div class="card-body" style="padding-top:0 !important;height: 145px;">
                             <ul class="list-star">
                                 <li>${'${data.view.viewPrice}'}元</li>
                                 <li>${'${data.view.viewAddress}'}</li>
@@ -445,57 +446,69 @@
                 </div>`);
         $('#view_info').append(info);
 
+    }
+    function loadOne(data) {
+
         for (var i = 0; i < data.surroundView.length; i++) {
             var con1 = $(`
             <tr>
-                <td>${'${i}'}</td>
+                <td>${'${i+1}'}</td>
                 <td>${'${data.surroundView[i].arViewName}'}</td>
                 <td>${'${data.surroundView[i].arViewAddress}'}</td>
                 <td>${'${data.surroundView[i].arViewDistance}'}</td>
-                <td>${'${data.surroundView[i].arViewPrice}'}</td>
-                <td>${'${data.surroundView[i].arViewRecommend}'}</td>
+                <td>${'${data.surroundView[i].arViewPrice}'}元</td>
+                <td><label class="text-warning">${'${data.surroundView[i].arViewRecommend}'}</label></td>
             </tr>
-        `)
+        `) ;
+            $('#arView').append(con1);
         }
-        $('#arView').append(con1);
+
+
+    }
+    function loadTwo(data) {
         for (var i = 0; i < data.viewFood.length; i++) {
             var con2 = $(`
             <tr>
-                <td>${'${i}'}</td>
+                <td>${'${i+1}'}</td>
                 <td>${'${data.viewFood[i].foodName}'}</td>
                 <td>${'${data.viewFood[i].foodAddress}'}</td>
                 <td>${'${data.viewFood[i].foodDistance}'}</td>
-                <td>${'${data.viewFood[i].foodPrice}'}</td>
-                <td>${'${data.viewFood[i].foodRecommend}'}</td>
+                <td>${'${data.viewFood[i].foodPrice}'}元</td>
+                <td><label class="text-warning">${'${data.viewFood[i].foodRecommend}'}</label></td>
             </tr>
-        `)
+        `) ;
+            $('#food').append(con2);
         }
-        $('#food').append(con2);
 
+    }
+    function loadThree(data) {
         for (var i = 0; i < data.viewHotel.length; i++) {
             var con3 = $(`
             <tr>
-                <td>${'${i}'}</td>
+                <td>${'${i+1}'}</td>
                 <td>${'${data.viewHotel[i].hotelName}'}</td>
                 <td>${'${data.viewHotel[i].hotelAddress}'}</td>
                 <td>${'${data.viewHotel[i].hotelDistance}'}</td>
-                <td>${'${data.viewHotel[i].hotelPrice}'}</td>
-                <td>${'${data.viewHotel[i].hotelRecommend}'}</td>
+                <td>${'${data.viewHotel[i].hotelPrice}'}元</td>
+                <td><label class="text-warning">${'${data.viewHotel[i].hotelScore}'}</label></td>
             </tr>
-        `)
+        `);
+            $('#hotel').append(con3);
         }
-        $('#hotel').append(con3);
 
+    }
+    function loadFour(data){
         for (var i = 0; i < data.viewRouter.length; i++) {
             var con4 = $(`
             <tr>
-                <td>${'${i}'}</td>
+                <td>${'${i+1}'}</td>
                 <td>${'${data.viewRouter[i].routerLine}'}</td>
-                <td>${'${data.viewRouter[i].hotelRecommend}'}</td>
+                <td><label class="text-warning">${'${data.viewRouter[i].routerRecommend}'}</label></td>
             </tr>
-        `)
+        `);
+            $('#router').append(con4);
         }
-        $('#router').append(con4);
+
     }
 </script>
 </body>

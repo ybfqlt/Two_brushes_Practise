@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +50,7 @@
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 3;
             overflow: hidden;
-            max-height: 73px;
+            max-height: 80px;
             text-align: left;
             border-bottom: none;
             border-left: none;
@@ -90,7 +90,7 @@
                     <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
                         <a class="dropdown-item" href="../login/login.jsp">
                             <i class="mdi mdi-cached mr-2 text-success"></i>
-                            登录
+                            个人中心
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">
@@ -160,7 +160,7 @@
                             <span class="login-status online"></span>
                         </div>
                         <div class="nav-profile-text d-flex flex-column">
-                            <span class="font-weight-bold mb-2">小本</span>
+                            <span class="font-weight-bold mb-2">${sessionScope.user}</span>
                             <span class="text-secondary text-small">管理员</span>
                         </div>
                         <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
@@ -274,19 +274,21 @@
     function loads(data) {
         for(var i=0; i<data.length; i++) {
             var con = $(`<tr>
-                                <td><img src="${'${data[i].viewImg}'}" class="view_img_main"></td>
+                                <td><img src="../../images/all/${'${data[i].viewImg}'}" class="view_img_main"></td>
                                 <td>${'${data[i].viewName}'}</td>
                                 <td>${'${data[i].viewAddress}'}</td>
                                 <td>${'${data[i].viewPrice}'}元</td>
                                 <td>${'${data[i].viewDate}'}</td>
                                 <td><label class="badge badge-success">${'${data[i].viewType}'}</label></td>
                                 <td class="desc">${'${data[i].viewDesc}'}</td>
-                                <td><button type="button" class="btn btn-gradient-danger"><a href="detail_view.jsp?viewId=${'${data[i].viewId}'}">查看详情</a></button></td>
+                                <td><button type="button" class="btn btn-gradient-danger"><a href="/static/view/detail_view.jsp?viewId=${'${data[i].viewId}'}">查看详情</a></button></td>
                            </tr>`);
             $('#view_all').append(con);
         }
     }
 </script>
 <script src="../../js/search.js"></script>
+<script src="../../vendors/js/vendor.bundle.base.js"></script>
+<script src="../../vendors/js/vendor.bundle.addons.js"></script>
 </body>
 </html>
