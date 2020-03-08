@@ -1,20 +1,15 @@
 package com.ns.demo1;
 
 import java.util.ArrayList;
-import java.util.List;
 
-/**
- * @Author: xns
- * @Date: 20-2-8 下午11:14
- */
+public class test{
+    byte[] a = new byte[1024*100];
 
-class ListNode {
-    int val;
-    ListNode next;
-    ListNode(int x) {
-        val = x;
+    public static void main(String[] args) throws InterruptedException {
+        ArrayList<test> tests = new ArrayList<>();
+        while(true){
+            tests.add(new test());
+            Thread.sleep(10);
+        }
     }
-}
-
-public class test {
 }
