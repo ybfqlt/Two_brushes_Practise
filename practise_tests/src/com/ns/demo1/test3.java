@@ -28,6 +28,8 @@ public class test3 {
         cc.put("aa","a");
         cv.put("a","a");
         cb.put("aa","aa");
+        ArrayList<String> aaa = new ArrayList<>();
+        aaa.add("A");
         ArrayList<String> list = new ArrayList();
         list.add("Aa");
         LinkedList<String> lists = new LinkedList<>();
