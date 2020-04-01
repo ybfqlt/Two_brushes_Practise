@@ -1,9 +1,6 @@
 package com.ns.demo1;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.LinkedList;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -25,9 +22,14 @@ public class test3 {
         HashMap<String,String> cc = new HashMap();
         Hashtable<String,String> cv = new Hashtable<>();
         ConcurrentHashMap<String,String> cb = new ConcurrentHashMap<>();
+        TreeMap<String,String> treeMap = new TreeMap<>();
         cc.put("aa","a");
+        cc.get("aa");
         cv.put("a","a");
+        cv.get("a");
         cb.put("aa","aa");
+        cb.get("aa");
+        treeMap.put("aa","bb");
         ArrayList<String> aaa = new ArrayList<>();
         aaa.add("A");
         ArrayList<String> list = new ArrayList();
