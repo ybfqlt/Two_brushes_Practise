@@ -21,9 +21,9 @@ public class kuaipai {
                 low++;
             }
             arr[high] = arr[low];
-            if(low >= high){
-                arr[low] = mark;
-            }
+        }
+        if(low >= high){
+            arr[low] = mark;
         }
         kuai(arr,i,low-1);
         kuai(arr,low+1,j);
