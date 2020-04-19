@@ -12,6 +12,8 @@ public class test3 {
     public static void main(String[] args) {
         int aw=2,e=3;
         String b = "aaa";
+        ArrayList<String> aak = new ArrayList<>();
+        aak.add("aaa");
         String b2 = new String("aaa");
         StringBuffer a = new StringBuffer("aaa");
         StringBuffer a2 = new StringBuffer("aaa");
@@ -24,8 +26,11 @@ public class test3 {
         Hashtable<String,String> cv = new Hashtable<>();
         ConcurrentHashMap<String,String> cb = new ConcurrentHashMap<>();
         TreeMap<String,String> treeMap = new TreeMap<>();
+        LinkedHashMap<String,String> cvb = new LinkedHashMap<>();
+        cvb.put("sdd","dsds");
         cc.put("aa","a");
         cc.get("aa");
+        Object obj = new Object();
         cv.put("a","a");
         cv.get("a");
         cb.put("aa","aa");

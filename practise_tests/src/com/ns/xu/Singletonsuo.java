@@ -9,7 +9,7 @@ public class Singletonsuo {
     private volatile static Singletonsuo singletonsuo = null;
 
     private Singletonsuo(){
-
+        StringBuilder b = new StringBuilder();
     }
 
     public static Singletonsuo getInstance(){
